@@ -1,10 +1,31 @@
 ---
-title: "Frontpage"
+title: "Bioinformatics II Exercises"
 ---
-
 
 ---------------------------------
 
 # Introduction
 
-Blabla
+All exercises for the lecture Bioinformatics II are provided on this web page.
+
+The exercises complement the lecture slides and aim to improve your understanding of the diverse topics of this course.
+
+`r knitr::asis_output("\U26A0")` We highly recommend doing these exercises.
+
+# Setup
+
+Exercises are made up of two parts:
+
+- standard theory and calculation questions 
+- programming assignments.
+
+Standard questions can be found on this web page.
+
+Programming assignments are available via Github Classroom. Links to the appropriate programming assignments will be provided in the according exercise sheet.
+
+Exercises are designed for self-teaching. Every week there will be a exercise session where questions about the current exercise sheet will be answered and discussed. Please check the Bioinformatics II Illias course page for more information about dates and times.
+
+
+```{r, include=knitr::is_html_output(), echo=F}
+knitr::asis_output('Download: <a href="index.pdf" title="Download PDF Version">PDF Version</a> of this page.')
+```
