@@ -1,0 +1,70 @@
+---
+title: "Exercise sheet 2: Hidden Markov models II"
+---
+
+---------------------------------
+
+# Exercise 1 - The occasionally cheating casino
+
+In a casino they use a fair die most of the time, but occasionally they switch to a loaded die. The loaded die has a probability $0.5$ to show number six and probability $0.1$ for the numbers one to five. Assume that the casino switches from a fair to a loaded die with probability $0.05$ before each roll, and that the probability of switching back is $0.1$. The probability to start a game with the fair die is $0.9$.
+
+
+#### {.tabset}
+
+##### Question 1A
+
+::: {.question data-latex=""}
+Find the probability $P(O|M)$ for $O=1662$ and the given HMM using the forward algorithm. 
+::: 
+
+
+##### Hint 1 : Formulae
+
+::: {.answer data-latex=""}
+todo
+::: 
+
+##### Hint 2 : Calculation Method
+
+::: {.answer data-latex=""}
+todo
+::: 
+
+##### Solution
+
+::: {.answer data-latex=""}
+todo
+::: 
+
+#### {-}
+
+
+
+#### {.tabset}
+
+##### Question 1B
+
+::: {.question data-latex=""}
+Given the result of Question 1A, do you expect an higher probability for the observations $O = 1666$ and $O = 1262$?
+::: 
+
+
+##### Hint 1 : Formulae
+
+::: {.answer data-latex=""}
+todo
+::: 
+
+##### Hint 2 : Calculation Method
+
+::: {.answer data-latex=""}
+todo
+::: 
+
+##### Solution
+
+::: {.answer data-latex=""}
+todo
+::: 
+
+#### {-}

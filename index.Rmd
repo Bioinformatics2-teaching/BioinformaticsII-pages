@@ -23,7 +23,7 @@ Standard questions can be found on this web page.
 
 Programming assignments are available via Github Classroom. Links to the appropriate programming assignments will be provided in the according exercise sheet.
 
-Exercises are designed for self-teaching. Every week there will be a exercise session where questions about the current exercise sheet will be answered and discussed. Please check the Bioinformatics II Illias course page for more information about dates and times.
+Exercises are designed for self-teaching. Every week there will be a exercise session where questions about the current exercise sheet will be answered and discussed. Please check the Bioinformatics II Ilias course page for more information about dates and times.
 
 
 ```{r, include=knitr::is_html_output(), echo=F}
