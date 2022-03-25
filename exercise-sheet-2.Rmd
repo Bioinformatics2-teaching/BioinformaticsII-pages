@@ -14,26 +14,40 @@ In a casino they use a fair die most of the time, but occasionally they switch t
 ##### Question 1A
 
 ::: {.question data-latex=""}
-Find the probability $P(O|M)$ for $O=1662$ and the given HMM using the forward algorithm. 
+Find the probability $P(\mathcal{O}|M)$ for $\mathcal{O}=1662$ and the given HMM using the forward algorithm. 
 ::: 
 
 
 ##### Hint 1 : Formulae
 
 ::: {.answer data-latex=""}
-todo
+\begin{align*}
+\alpha_{1}(i)   &= \pi_{i} \times b_{i,o_1}\\
+\alpha_{t+1}(j) &= \sum_{i\in\{F,L\}}\alpha_{t}(i)\times a_{i,j}\times b_{j,o_{t+1}}
+\end{align*}
 ::: 
 
 ##### Hint 2 : Calculation Method
 
 ::: {.answer data-latex=""}
-todo
+\begin{align*}
+\alpha_1(F) =& \pi_F \times b_{F,1} = 0.9 \times \frac{1}{6} = 0.15\\
+\alpha_1(L) =& \pi_F \times b_{L,1} = 0.1 \times 0.1 = 0.01\\\\
+\alpha_2(F) =& \alpha_{1}(F)\times a_{F,F}\times b_{F,6} + \alpha_{1}(L)\times a_{L,F}\times b_{F,6} =  0.15 \times 0.95 \times \frac{1}{6} + 0.01 \times 0.1 \times \frac{1}{6} = 0.0239167\\
+\alpha_2(L) =& \alpha_{1}(F)\times a_{F,L}\times b_{L,6} + \alpha_{1}(L)\times a_{L,L}\times b_{L,6} =  0.15 \times 0.05 \times 0.5 + 0.01 \times 0.9 \times 0.5 = 0.00825\\
+\alpha_3(F) =& 0.023917 \times 0.95 \times \frac{1}{6} + 0.00825 \times 0.1 \times \frac{1}{6} = 0.00392\\
+\alpha_3(L) =& 0.023917 \times 0.05 \times 0.5 + 0.00825 \times 0.9 \times 0.5 = 0.00431\\
+\alpha_4(F) =& 0.00392 \times 0.95 \times \frac{1}{6} + 0.00431 \times 0.1 \times \frac{1}{6} = 0.000693\\
+\alpha_4(L) =& 0.00392 \times 0.05 \times 0.1 + 0.00431 \times 0.9 \times 0.1 = 0.000407\\
+\end{align*}
 ::: 
 
 ##### Solution
 
 ::: {.answer data-latex=""}
-todo
+$$
+P( \mathcal{O}=1662)= \alpha_4(F)+\alpha_4(L) = 0.000693 + 0.000407 = 0.0011
+$$
 ::: 
 
 #### {-}
@@ -45,17 +59,38 @@ todo
 ##### Question 1B
 
 ::: {.question data-latex=""}
-Given the result of Question 1A, do you expect an higher probability for the observations $O = 1666$ and $O = 1262$?
+Given the result of Question 1A, do you expect a higher probability for the observations $\mathcal{O} = 1666$ and $\mathcal{O} = 1262$?
 ::: 
 
-
-##### Hint 1 : Formulae
+##### Hint 1
 
 ::: {.answer data-latex=""}
-todo
+It has something to do with the emission probabilities of the different states.
 ::: 
 
-##### Hint 2 : Calculation Method
+##### Solution
+
+::: {.answer data-latex=""}
+As state L has a high probability to emit a six, observations with more sixes are more likely.
+
+$$
+P(\mathcal{O} = 1666) > P(\mathcal{O} = 1662) > P(\mathcal{O} = 1262)
+$$
+::: 
+
+#### {-}
+
+
+
+#### {.tabset}
+
+##### Question 1C
+
+::: {.question data-latex=""}
+Find the most probable path through the HMM that produces the sequence $\mathcal{O} = 1662$.
+::: 
+
+##### Hint 1
 
 ::: {.answer data-latex=""}
 todo
@@ -68,3 +103,4 @@ todo
 ::: 
 
 #### {-}
+

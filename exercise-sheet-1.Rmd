@@ -29,8 +29,8 @@ When we pick up a die from a table at random, what is the probability of rolling
 ::: {.answer data-latex=""}
 
 $$
-L= \text{Loaded} \quad F= \text{Fair}\quad O= \text{Observation}\\
-P(O) = P(F) \times P(O|F) + P(L) \times P(O|L)
+L= \text{Loaded} \quad F= \text{Fair}\quad \mathcal{O}= \text{Observation}\\
+P(\mathcal{O}) = P(F) \times P(\mathcal{O}|F) + P(L) \times P(\mathcal{O}|L)
 $$
 ::: 
 
@@ -69,8 +69,8 @@ We pick up a die from a table at random and roll [`r knitr::asis_output("\U2685 
 ::: {.answer data-latex=""}
 
 $$
-P(L|O) = \frac{P(L,O)}{P(O)}\\
-P(L,O) = P(O|L) \times P(L)
+P(L|\mathcal{O}) = \frac{P(L,\mathcal{O})}{P(\mathcal{O})}\\
+P(L,\mathcal{O}) = P(\mathcal{O}|L) \times P(L)
 $$
 ::: 
 
@@ -79,7 +79,7 @@ $$
 ::: {.answer data-latex=""}
 
 \begin{align*}
-P(L|O) &= \frac{P(O|L)\times P(L)}{P(O|L)\times P(L) + P(O|F)\times P(F)}\\
+P(L|\mathcal{O}) &= \frac{P(\mathcal{O}|L)\times P(L)}{P(\mathcal{O}|L)\times P(L) + P(\mathcal{O}|F)\times P(F)}\\
        &= \frac{(\frac{1}{2})^3 \times 0.02}{(\frac{1}{2})^3 \times 0.02 + (\frac{1}{6})^3 \times 0.98}
 \end{align*}
 ::: 
@@ -88,7 +88,7 @@ P(L|O) &= \frac{P(O|L)\times P(L)}{P(O|L)\times P(L) + P(O|F)\times P(F)}\\
 
 ::: {.answer data-latex=""}
 $$
-P(L|O) = 35.53\%
+P(L|\mathcal{O}) = 35.53\%
 $$
 ::: 
 
@@ -109,7 +109,7 @@ How many sixes in a row would we need to roll to be at least 90\% sure that the 
 ::: {.answer data-latex=""}
 
 $$
-P(L|O) = \frac{P(O|L)\times P(L)}{P(O|L)\times P(L) + P(O|F)\times P(F)}\\
+P(L|\mathcal{O}) = \frac{P(\mathcal{O}|L)\times P(L)}{P(\mathcal{O}|L)\times P(L) + P(\mathcal{O}|F)\times P(F)}\\
 $$
 ::: 
 
@@ -118,7 +118,7 @@ $$
 ::: {.answer data-latex=""}
 
 \begin{alignat}{3}
-&P(L|O) = \frac{\frac{2}{100}\times(\frac{1}{2})^n}{\frac{2}{100}\times(\frac{1}{2})^n + \frac{98}{100}\times(\frac{1}{6})^n} &&\geq 0.9 &&\quad| \text{ split } (\frac{1}{6})^n\\
+&P(L|\mathcal{O}) = \frac{\frac{2}{100}\times(\frac{1}{2})^n}{\frac{2}{100}\times(\frac{1}{2})^n + \frac{98}{100}\times(\frac{1}{6})^n} &&\geq 0.9 &&\quad| \text{ split } (\frac{1}{6})^n\\
 &\iff \frac{\frac{2}{100}\times(\frac{1}{2})^n}{\frac{2}{100}\times(\frac{1}{2})^n + \frac{98}{100}\times(\frac{1}{2})^n \times (\frac{1}{3})^n} &&\geq \frac{9}{10}  &&\quad| \text{ factorize}\\
 &\iff \frac{\frac{2}{100}\times(\frac{1}{2})^n}{\frac{2}{100}\times(\frac{1}{2})^n \times (1 + 49 \times (\frac{1}{3})^n)} &&\geq \frac{9}{10} &&\quad| \text{ simplify, given } n > 0\\
 &\iff \frac{1}{1 + 49 \times (\frac{1}{3})^n} &&\geq \frac{9}{10} &&\quad| \text{ cross-multiply, given } n > 0\\
@@ -177,7 +177,7 @@ knitr::include_graphics("figures/exercise-1/sheet01-exercise2-a-HMM-solution.png
 ##### Question 2B
 
 ::: {.question data-latex=""}
-Given an observed sequence of outcomes $O = 3661634$ and two possible state sequences $s_1 = LLLFFFF$ and $s_2 = FFFFFFF$ (where $F$ = Fair and $L$ = Loaded), what are the joint probabilities $P(O, p_1)$ and $P(O, p_2)$ in the HMM described above?
+Given an observed sequence of outcomes $\mathcal{O} = 3661634$ and two possible state sequences $s_1 = LLLFFFF$ and $s_2 = FFFFFFF$ (where $F$ = Fair and $L$ = Loaded), what are the joint probabilities $P(\mathcal{O}, p_1)$ and $P(\mathcal{O}, p_2)$ in the HMM described above?
 ::: 
 
 
@@ -185,7 +185,7 @@ Given an observed sequence of outcomes $O = 3661634$ and two possible state sequ
 
 ::: {.answer data-latex=""}
 $$
-P(O, p_x) = P(O|p_x) \times P(p_x)
+P(\mathcal{O}, p_x) = P(\mathcal{O}|p_x) \times P(p_x)
 $$
 ::: 
 
@@ -195,10 +195,10 @@ $$
 \begin{align*}
 P(s_1)   =& \pi_L \times t_{LL}^2 \times t_{LF} \times t_{FF}^3 = 0.1 \times 0.9^2 \times 0.1 \times (0.95)^3 = 0.0069 \\
 P(s_2)   =& \pi_F \times t_{FF}^6  = 0.9 \times 0.95^6 = 0.6616 \\
-P(O|s_1) =& t_{L,3} \times t_{L,6}^2 \times t_{F,1} \times t_{F,6} \times t_{F,3} \times t_{F,4} = 0.1 \times 0.5^2 \times (\frac{1}{6})^4 = 1.9 \times 10^{-5} \\
-P(O|s_2) =& t_{F,3} \times t_{F,6}^2 \times t_{F,1} \times t_{F,6} \times t_{F,3} \times t_{F,4} = (\frac{1}{6})^7 = 3.57 \times 10^{-6} \\
-P(O,s_1) =& P(O|s_1) \times P(s_1)= 1.9 \times 10^{-5} \times 0.0069 \\
-P(O,s_2) =& P(O|s_2) \times P(s_2)= 3.57 \times 10^{-6} \times 0.6616
+P(\mathcal{O}|s_1) =& t_{L,3} \times t_{L,6}^2 \times t_{F,1} \times t_{F,6} \times t_{F,3} \times t_{F,4} = 0.1 \times 0.5^2 \times (\frac{1}{6})^4 = 1.9 \times 10^{-5} \\
+P(\mathcal{O}|s_2) =& t_{F,3} \times t_{F,6}^2 \times t_{F,1} \times t_{F,6} \times t_{F,3} \times t_{F,4} = (\frac{1}{6})^7 = 3.57 \times 10^{-6} \\
+P(\mathcal{O},s_1) =& P(\mathcal{O}|s_1) \times P(s_1)= 1.9 \times 10^{-5} \times 0.0069 \\
+P(\mathcal{O},s_2) =& P(\mathcal{O}|s_2) \times P(s_2)= 3.57 \times 10^{-6} \times 0.6616
 \end{align*}
 ::: 
 
@@ -206,8 +206,8 @@ P(O,s_2) =& P(O|s_2) \times P(s_2)= 3.57 \times 10^{-6} \times 0.6616
 
 ::: {.answer data-latex=""}
 \begin{align*}
-P(O,s_1) &= 1.34 \times 10^{-7}\\
-P(O,s_2) &= 2.36 \times 10^{-6}
+P(\mathcal{O},s_1) &= 1.34 \times 10^{-7}\\
+P(\mathcal{O},s_2) &= 2.36 \times 10^{-6}
 \end{align*}
 ::: 
 
@@ -219,7 +219,7 @@ P(O,s_2) &= 2.36 \times 10^{-6}
 ##### Question 2C
 
 ::: {.question data-latex=""}
-Give an observation $O = 1662$, how many possible state sequences exist in the described HMM?
+Give an observation $\mathcal{O} = 1662$, how many possible state sequences exist in the described HMM?
 ::: 
 
 

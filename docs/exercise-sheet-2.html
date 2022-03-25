@@ -11,7 +11,7 @@
 
 
 
-<title>Bioinformatics II Exercises</title>
+<title>Exercise sheet 2: Hidden Markov models II</title>
 
 <script src="site_libs/header-attrs-2.12/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
@@ -359,37 +359,141 @@ div.tocify {
 
 
 
-<h1 class="title toc-ignore">Bioinformatics II Exercises</h1>
+<h1 class="title toc-ignore">Exercise sheet 2: Hidden Markov models
+II</h1>
 
 </div>
 
 
 <hr />
-<div id="introduction" class="section level1">
-<h1>Introduction</h1>
-<p>All exercises for the lecture Bioinformatics II are provided on this
-web page.</p>
-<p>The exercises complement the lecture slides and aim to improve your
-understanding of the diverse topics of this course.</p>
-<p>⚠ We highly recommend doing these exercises.</p>
+<div id="exercise-1---the-occasionally-cheating-casino"
+class="section level1">
+<h1>Exercise 1 - The occasionally cheating casino</h1>
+<p>In a casino they use a fair die most of the time, but occasionally
+they switch to a loaded die. The loaded die has a probability <span
+class="math inline">\(0.5\)</span> to show number six and probability
+<span class="math inline">\(0.1\)</span> for the numbers one to five.
+Assume that the casino switches from a fair to a loaded die with
+probability <span class="math inline">\(0.05\)</span> before each roll,
+and that the probability of switching back is <span
+class="math inline">\(0.1\)</span>. The probability to start a game with
+the fair die is <span class="math inline">\(0.9\)</span>.</p>
+<div id="section" class="section level4 tabset">
+<h4 class="tabset"></h4>
+<div id="question-1a" class="section level5">
+<h5>Question 1A</h5>
+<div class="question">
+<p>Find the probability <span
+class="math inline">\(P(\mathcal{O}|M)\)</span> for <span
+class="math inline">\(\mathcal{O}=1662\)</span> and the given HMM using
+the forward algorithm.</p>
 </div>
-<div id="setup" class="section level1">
-<h1>Setup</h1>
-<p>Exercises are made up of two parts:</p>
-<ul>
-<li>standard theory and calculation questions</li>
-<li>programming assignments.</li>
-</ul>
-<p>Standard questions can be found on this web page.</p>
-<p>Programming assignments are available via Github Classroom. Links to
-the appropriate programming assignments will be provided in the
-according exercise sheet.</p>
-<p>Exercises are designed for self-teaching. Every week there will be a
-exercise session where questions about the current exercise sheet will
-be answered and discussed. Please check the Bioinformatics II Ilias
-course page for more information about dates and times.</p>
-<p>Download: <a href="index.pdf" title="Download PDF Version">PDF
-Version</a> of this page.</p>
+</div>
+<div id="hint-1-formulae" class="section level5">
+<h5>Hint 1 : Formulae</h5>
+<div class="answer">
+<p><span class="math display">\[\begin{align*}
+\alpha_{1}(i)   &amp;= \pi_{i} \times b_{i,o_1}\\
+\alpha_{t+1}(j) &amp;= \sum_{i\in\{F,L\}}\alpha_{t}(i)\times
+a_{i,j}\times b_{j,o_{t+1}}
+\end{align*}\]</span></p>
+</div>
+</div>
+<div id="hint-2-calculation-method" class="section level5">
+<h5>Hint 2 : Calculation Method</h5>
+<div class="answer">
+<p><span class="math display">\[\begin{align*}
+\alpha_1(F) =&amp; \pi_F \times b_{F,1} = 0.9 \times \frac{1}{6} =
+0.15\\
+\alpha_1(L) =&amp; \pi_F \times b_{L,1} = 0.1 \times 0.1 = 0.01\\\\
+\alpha_2(F) =&amp; \alpha_{1}(F)\times a_{F,F}\times b_{F,6} +
+\alpha_{1}(L)\times a_{L,F}\times b_{F,6} =  0.15 \times 0.95 \times
+\frac{1}{6} + 0.01 \times 0.1 \times \frac{1}{6} = 0.0239167\\
+\alpha_2(L) =&amp; \alpha_{1}(F)\times a_{F,L}\times b_{L,6} +
+\alpha_{1}(L)\times a_{L,L}\times b_{L,6} =  0.15 \times 0.05 \times 0.5
++ 0.01 \times 0.9 \times 0.5 = 0.00825\\
+\alpha_3(F) =&amp; 0.023917 \times 0.95 \times \frac{1}{6} + 0.00825
+\times 0.1 \times \frac{1}{6} = 0.00392\\
+\alpha_3(L) =&amp; 0.023917 \times 0.05 \times 0.5 + 0.00825 \times 0.9
+\times 0.5 = 0.00431\\
+\alpha_4(F) =&amp; 0.00392 \times 0.95 \times \frac{1}{6} + 0.00431
+\times 0.1 \times \frac{1}{6} = 0.000693\\
+\alpha_4(L) =&amp; 0.00392 \times 0.05 \times 0.1 + 0.00431 \times 0.9
+\times 0.1 = 0.000407\\
+\end{align*}\]</span></p>
+</div>
+</div>
+<div id="solution" class="section level5">
+<h5>Solution</h5>
+<div class="answer">
+<p><span class="math display">\[
+P( \mathcal{O}=1662)= \alpha_4(F)+\alpha_4(L) = 0.000693 + 0.000407 =
+0.0011
+\]</span></p>
+</div>
+</div>
+</div>
+<div id="section-1" class="section level4 unnumbered">
+<h4 class="unnumbered"></h4>
+</div>
+<div id="section-2" class="section level4 tabset">
+<h4 class="tabset"></h4>
+<div id="question-1b" class="section level5">
+<h5>Question 1B</h5>
+<div class="question">
+<p>Given the result of Question 1A, do you expect a higher probability
+for the observations <span class="math inline">\(\mathcal{O} =
+1666\)</span> and <span class="math inline">\(\mathcal{O} =
+1262\)</span>?</p>
+</div>
+</div>
+<div id="hint-1" class="section level5">
+<h5>Hint 1</h5>
+<div class="answer">
+<p>It has something to do with the emission probabilities of the
+different states.</p>
+</div>
+</div>
+<div id="solution-1" class="section level5">
+<h5>Solution</h5>
+<div class="answer">
+<p>As state L has a high probability to emit a six, observations with
+more sixes are more likely.</p>
+<p><span class="math display">\[
+P(\mathcal{O} = 1666) &gt; P(\mathcal{O} = 1662) &gt; P(\mathcal{O} =
+1262)
+\]</span></p>
+</div>
+</div>
+</div>
+<div id="section-3" class="section level4 unnumbered">
+<h4 class="unnumbered"></h4>
+</div>
+<div id="section-4" class="section level4 tabset">
+<h4 class="tabset"></h4>
+<div id="question-1c" class="section level5">
+<h5>Question 1C</h5>
+<div class="question">
+<p>Find the most probable path through the HMM that produces the
+sequence <span class="math inline">\(\mathcal{O} = 1662\)</span>.</p>
+</div>
+</div>
+<div id="hint-1-1" class="section level5">
+<h5>Hint 1</h5>
+<div class="answer">
+<p>todo</p>
+</div>
+</div>
+<div id="solution-2" class="section level5">
+<h5>Solution</h5>
+<div class="answer">
+<p>todo</p>
+</div>
+</div>
+</div>
+<div id="section-5" class="section level4 unnumbered">
+<h4 class="unnumbered"></h4>
+</div>
 </div>
 
 
