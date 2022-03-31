@@ -12,7 +12,7 @@ b = ACCAAG\\
 c = AACACC\\
 $$
 
-The pairwise optimal alignments were calculated as:
+The pairwise optimal alignments of Pool $P$ were calculated as:
 
 ~~~
 a: CACCG_G          a: __CACCGG     b: ACCAAG
@@ -29,15 +29,33 @@ b: _ACCAAG          c: AACACC__     c: AACACC
 Calculate the primary library ($L$)
 :::
 
+
+##### Formulae
+
+::: {.answer data-latex=""}
+
+init: $L^{x,y}_{i,j}=0$
+
+$\forall$ alignments $A$ of sequence $s^x$ $^y$ in pool $P$
+
+$weight(A) = \dfrac{number\ of\ matches}{min(len(s^x), len(s^y))}$
+
+$\forall$ aligned positions $i,j$
+
+$L^{x,y}_{i,j}=L^{x,y}_{i,j} + weight(A)$
+
+:::
+
+
 ##### Solution
 
 ::: {.answer data-latex=""}
 
-$L^{a,b}_{2,1}=L^{a,b}_{3,2}=L^{a,b}_{4,3}=L^{a,b}_{6,6}=100*\frac{4}{6}=67$ and all other $L^{a,b}_{i,j}=0$\\
+$L^{a,b}_{2,1}=L^{a,b}_{3,2}=L^{a,b}_{4,3}=L^{a,b}_{6,6}=100*\frac{4}{6}=67$ and all other $L^{a,b}_{i,j}=0$
 
-$L^{a,c}_{1,3}=L^{a,c}_{2,4}=L^{a,c}_{3,5}=L^{a,c}_{4,6}=100*\frac{4}{6}=67$ and all other $L^{a,c}_{i,j}=0$\\
+$L^{a,c}_{1,3}=L^{a,c}_{2,4}=L^{a,c}_{3,5}=L^{a,c}_{4,6}=100*\frac{4}{6}=67$ and all other $L^{a,c}_{i,j}=0$
 
-$L^{b,c}_{1,1}=L^{b,c}_{3,3}=L^{b,c}_{4,4}=100*\frac{3}{6}=50$ and all other $L^{b,c}_{i,j}=0$\\
+$L^{b,c}_{1,1}=L^{b,c}_{3,3}=L^{b,c}_{4,4}=100*\frac{3}{6}=50$ and all other $L^{b,c}_{i,j}=0$
 :::
 #### {-}
 
