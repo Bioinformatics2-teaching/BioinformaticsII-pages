@@ -1,6 +1,6 @@
 table td:first-child { border-right:  1px solid; }
 table th {border-bottom: 1px solid;}
-.navbar-inverse {background-color: #003591ff}
+.navbar-default {background-color: #003591ff}
 .navbar .navbar-brand {
   vertical-align: middle;
 }
