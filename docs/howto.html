@@ -13,7 +13,7 @@
 
 <title>HowTo</title>
 
-<script src="site_libs/header-attrs-2.12/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.11/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/cosmo.min.css" rel="stylesheet" />
@@ -60,7 +60,6 @@ if (window.hljs) {
 
 
 
-
 <link rel="stylesheet" href="bioinf-style.css" type="text/css" />
 
 
@@ -85,9 +84,6 @@ button.code-folding-btn:focus {
 }
 summary {
   display: list-item;
-}
-details > summary > p:only-child {
-  display: inline;
 }
 pre code {
   padding: 0;
@@ -317,19 +313,6 @@ div.tocify {
 
 <div class="navbar navbar-default  navbar-fixed-top" role="navigation">
   <div style="background:white">
-   <div id="logo-section" class="container">
-    <a  class="logo-link"
-        title="University Freiburg"
-        href="https://www.tf.uni-freiburg.de/en?set_language=en"><img
-            alt="Logo Bioinformatics Freiburg"
-            src=""
-            width="134px"
-            height="35px"
-    ></a><a  class="logo-link"
-        id="logo-bioinf"
-        title="Bioinformatics Group Freiburg"
-        href="http://www.bioinf.uni-freiburg.de/index.html?en">Bioformatics Group Freiburg</a>
-   </div>
   </div>
   <div class="container">
     <div class="navbar-header">
@@ -339,7 +322,14 @@ div.tocify {
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="index.html">Bioinformatics II</a>
+      <a class="navbar-brand navbar-img" href="#">
+        <div class="d-flex align-items-center h-25">
+          <img src="figures/bioinf-fr-logo-blau.svg" class="d-flex align-items-center" alt="">
+        </div>
+
+      </a>
+              <a class="navbar-brand">BioinformaticsII</a>
+
     </div>
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
@@ -347,6 +337,7 @@ div.tocify {
         <li><a href="howto.html">HowTo</a></li>
         <li><a href="exercise-sheet-1.html">Sheet 1</a></li>
         <li><a href="exercise-sheet-2.html">Sheet 2</a></li>
+        <li><a href="exercise-sheet-3.html">Sheet 3</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li><a href="http://www.bioinf.uni-freiburg.de/index.html?en2">Contact</a></li>
