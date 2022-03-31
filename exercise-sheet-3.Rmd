@@ -34,15 +34,15 @@ Calculate the primary library ($L$)
 
 ::: {.answer data-latex=""}
 
-init: $L^{x,y}_{i,j}=0$
+init: $L^{i,i'}_{j,j'}=0$
 
-$\forall$ alignments $A$ of sequence $s^x$ $^y$ in pool $P$
+$\forall$ alignments $A$ of sequence $s^i$ $s^{i'}$ in pool $P$
 
-$weight(A) = \dfrac{number\ of\ matches}{min(len(s^x), len(s^y))}$
+$weight(A) = \dfrac{number\ of\ matches}{min(len(s^i), len(s^{i'}))}$
 
 $\forall$ aligned positions $i,j$
 
-$L^{x,y}_{i,j}=L^{x,y}_{i,j} + weight(A)$
+$L^{i,i'}_{j,j'} = L^{i,i'}_{j,j'} + weight(A)$
 
 :::
 
@@ -68,13 +68,23 @@ $L^{b,c}_{1,1}=L^{b,c}_{3,3}=L^{b,c}_{4,4}=100*\frac{3}{6}=50$ and all other $L^
 Calculate the extended library ($EL$)
 :::
 
+##### Formulae
+
+::: {.answer data-latex=""}
+$k :=$ number of entries in $L$
+
+
+$EL^{i,i'}_{j,j' }= L^{i,i'}_{j,j'}  + \sum_{i \neq (1 \leq i^* \leq k) \neq i'}  min(L^{i,i^*}_{j,j^*}, L^{i^*,i'}_{j^*,j'})$
+
+:::
+
 ##### Solution
 
 ::: {.answer data-latex=""}
 
 The original Library doesn't change as there are no edges enforcing certain connections. Hence
 
-$EL^{s1,s2}_{i,j}=L^{s1,s2}_{i,j} \qquad \forall L^{s1,s2}_{i,j}\neq 0$
+$EL^{i,i'}_{j,j' }=L^{i,i'}_{j,j'} \qquad \forall L^{i,i'}_{j,j' }\neq 0$
 
 and the following weights are added:
 

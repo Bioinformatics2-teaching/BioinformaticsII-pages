@@ -363,7 +363,7 @@ a = CACCGG\\
 b = ACCAAG\\
 c = AACACC\\
 \]</span></p>
-<p>The pairwise optimal alignments were calculated as:</p>
+<p>The pairwise optimal alignments of Pool <span class="math inline">\(P\)</span> were calculated as:</p>
 <pre><code>a: CACCG_G          a: __CACCGG     b: ACCAAG
     |||: |               ||||          |:||::
 b: _ACCAAG          c: AACACC__     c: AACACC</code></pre>
@@ -375,12 +375,22 @@ b: _ACCAAG          c: AACACC__     c: AACACC</code></pre>
 <p>Calculate the primary library (<span class="math inline">\(L\)</span>)</p>
 </div>
 </div>
+<div id="formulae" class="section level5">
+<h5>Formulae</h5>
+<div class="answer">
+<p>init: <span class="math inline">\(L^{i,i&#39;}_{j,j&#39;}=0\)</span></p>
+<p><span class="math inline">\(\forall\)</span> alignments <span class="math inline">\(A\)</span> of sequence <span class="math inline">\(s^i\)</span> <span class="math inline">\(s^{i&#39;}\)</span> in pool <span class="math inline">\(P\)</span></p>
+<p><span class="math inline">\(weight(A) = \dfrac{number\ of\ matches}{min(len(s^i), len(s^{i&#39;}))}\)</span></p>
+<p><span class="math inline">\(\forall\)</span> aligned positions <span class="math inline">\(i,j\)</span></p>
+<p><span class="math inline">\(L^{i,i&#39;}_{j,j&#39;} = L^{i,i&#39;}_{j,j&#39;} + weight(A)\)</span></p>
+</div>
+</div>
 <div id="solution" class="section level5">
 <h5>Solution</h5>
 <div class="answer">
-<p><span class="math inline">\(L^{a,b}_{2,1}=L^{a,b}_{3,2}=L^{a,b}_{4,3}=L^{a,b}_{6,6}=100*\frac{4}{6}=67\)</span> and all other <span class="math inline">\(L^{a,b}_{i,j}=0\)</span>\</p>
-<p><span class="math inline">\(L^{a,c}_{1,3}=L^{a,c}_{2,4}=L^{a,c}_{3,5}=L^{a,c}_{4,6}=100*\frac{4}{6}=67\)</span> and all other <span class="math inline">\(L^{a,c}_{i,j}=0\)</span>\</p>
-<p><span class="math inline">\(L^{b,c}_{1,1}=L^{b,c}_{3,3}=L^{b,c}_{4,4}=100*\frac{3}{6}=50\)</span> and all other <span class="math inline">\(L^{b,c}_{i,j}=0\)</span>\</p>
+<p><span class="math inline">\(L^{a,b}_{2,1}=L^{a,b}_{3,2}=L^{a,b}_{4,3}=L^{a,b}_{6,6}=100*\frac{4}{6}=67\)</span> and all other <span class="math inline">\(L^{a,b}_{i,j}=0\)</span></p>
+<p><span class="math inline">\(L^{a,c}_{1,3}=L^{a,c}_{2,4}=L^{a,c}_{3,5}=L^{a,c}_{4,6}=100*\frac{4}{6}=67\)</span> and all other <span class="math inline">\(L^{a,c}_{i,j}=0\)</span></p>
+<p><span class="math inline">\(L^{b,c}_{1,1}=L^{b,c}_{3,3}=L^{b,c}_{4,4}=100*\frac{3}{6}=50\)</span> and all other <span class="math inline">\(L^{b,c}_{i,j}=0\)</span></p>
 </div>
 </div>
 </div>
@@ -395,11 +405,18 @@ b: _ACCAAG          c: AACACC__     c: AACACC</code></pre>
 <p>Calculate the extended library (<span class="math inline">\(EL\)</span>)</p>
 </div>
 </div>
+<div id="formulae-1" class="section level5">
+<h5>Formulae</h5>
+<div class="answer">
+<p><span class="math inline">\(k :=\)</span> number of entries in <span class="math inline">\(L\)</span></p>
+<p><span class="math inline">\(EL^{i,i&#39;}_{j,j&#39; }= L^{i,i&#39;}_{j,j&#39;} + \sum_{i \neq (1 \leq i^* \leq k) \neq i&#39;} min(L^{i,i^*}_{j,j^*}, L^{i^*,i&#39;}_{j^*,j&#39;})\)</span></p>
+</div>
+</div>
 <div id="solution-1" class="section level5">
 <h5>Solution</h5>
 <div class="answer">
 <p>The original Library doesn’t change as there are no edges enforcing certain connections. Hence</p>
-<p><span class="math inline">\(EL^{s1,s2}_{i,j}=L^{s1,s2}_{i,j} \qquad \forall L^{s1,s2}_{i,j}\neq 0\)</span></p>
+<p><span class="math inline">\(EL^{i,i&#39;}_{j,j&#39; }=L^{i,i&#39;}_{j,j&#39;} \qquad \forall L^{i,i&#39;}_{j,j&#39; }\neq 0\)</span></p>
 <p>and the following weights are added:</p>
 <pre><code>a: CACCG_G     
     |||: |    
