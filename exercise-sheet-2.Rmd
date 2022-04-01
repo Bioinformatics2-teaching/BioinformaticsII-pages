@@ -22,8 +22,8 @@ Find the probability $P(\mathcal{O}|M)$ for $\mathcal{O}=1662$ and the given HMM
 
 ::: {.answer data-latex=""}
 \begin{align*}
-\alpha_{1}(i)   &= \pi_{i} \times b_{i,o_1}\\
-\alpha_{t+1}(j) &= \sum_{i\in\{F,L\}}\alpha_{t}(i)\times a_{i,j}\times b_{j,o_{t+1}}
+\alpha_{1}(i)   =& \pi_{i} \times b_{i,o_1}\\
+\alpha_{t+1}(j) =& \sum_{i\in\{F,L\}}\alpha_{t}(i)\times a_{i,j}\times b_{j,o_{t+1}}
 \end{align*}
 ::: 
 
@@ -90,16 +90,45 @@ $$
 Find the most probable path through the HMM that produces the sequence $\mathcal{O} = 1662$.
 ::: 
 
-##### Hint 1
+##### Hint 1 : Formulae
 
 ::: {.answer data-latex=""}
-todo
+\begin{align*}
+\delta_{1}(i)   =& \pi_{i} \times b_{i,o_1}\\
+\delta_{t+1}(j) =& max_{i\in\{F,L\}}\delta_{t}(i)\times a_{i,j} \times b_{j,o_{t+1}}\\
+q_{t}^{ * }     =& argmax_{1 \leq i \leq n}  \{ \delta_t(i) a_{i,q_{t+1}^{ * } } \}
+\end{align*}
+::: 
+
+##### Hint 2 : Intermediate calculations
+
+::: {.answer data-latex=""}
+\begin{align*}
+\delta_1(F) =& \pi_F \times b_{F,1} = 0.9 \times \frac{1}{6} = 0.15\\
+\delta_1(L) =& \pi_F \times b_{L,1} = 0.1 \times 0.1 = 0.01\\\\
+\delta_2(F) =& max(\delta_{1}(F) \times a_{F,F} \times b_{F,6}, \delta_{1}(L) \times a_{L,F} \times b_{F,6}) = max(0.02375 , 0.00016) = 0.02375 \\
+\delta_2(L) =& max(\delta_{1}(F) \times a_{F,L} \times b_{L,6}, \delta_{1}(L) \times a_{L,L} \times b_{L,6}) = max(0.00375, 0.0045) = 0.0045\\
+\delta_3(F) =& max(0.00376, 0.000075) = 0.00376\\
+\delta_3(L) =& max(0.00059375, 0.002025) = 0.002025\\
+\delta_4(F) =& max(0.0005953, 0.00003375) = 0.0005953\\
+\delta_4(L) =& max(0.0000188, 0.00018225) = 0.00018225\\\\
+P( \mathcal{P}^{*}, \mathcal{O}) =& max(\delta_4(F), \delta_4(L)) = 5.95 \times 10^{-4}
+\end{align*}
 ::: 
 
 ##### Solution
 
 ::: {.answer data-latex=""}
-todo
+
+\begin{align*}
+q_4^* =& argmax_{i\in\{F,L\}}(\delta_4(i)) = F\\
+q_3^* =& argmax_{i\in\{F,L\}}(\delta_3(i) \times a_{i,q_4^*}) = argmax(F:0.00376 \times 0.95, L:0.002025 \times 0.1) = F\\
+q_2^* =& argmax_{i\in\{F,L\}}(\delta_2(i) \times a_{i,q_3^*}) = argmax(F:0.02375 \times 0.95, L:0.0045 \times 0.1) = F\\
+q_1^* =& argmax_{i\in\{F,L\}}(\delta_1(i) \times a_{i,q_2^*}) = argmax(F:0.15 \times 0.95, L:0.01 \times 0.1) = F\\
+\Rightarrow& Q^*=FFFF
+\end{align*}
+
+The best path is therefore to stay in state F.
 ::: 
 
 #### {-}

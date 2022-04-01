@@ -393,8 +393,8 @@ the forward algorithm.</p>
 <h5>Hint 1 : Formulae</h5>
 <div class="answer">
 <p><span class="math display">\[\begin{align*}
-\alpha_{1}(i)   &amp;= \pi_{i} \times b_{i,o_1}\\
-\alpha_{t+1}(j) &amp;= \sum_{i\in\{F,L\}}\alpha_{t}(i)\times
+\alpha_{1}(i)   =&amp; \pi_{i} \times b_{i,o_1}\\
+\alpha_{t+1}(j) =&amp; \sum_{i\in\{F,L\}}\alpha_{t}(i)\times
 a_{i,j}\times b_{j,o_{t+1}}
 \end{align*}\]</span></p>
 </div>
@@ -478,16 +478,54 @@ P(\mathcal{O} = 1666) &gt; P(\mathcal{O} = 1662) &gt; P(\mathcal{O} =
 sequence <span class="math inline">\(\mathcal{O} = 1662\)</span>.</p>
 </div>
 </div>
-<div id="hint-1-1" class="section level5">
-<h5>Hint 1</h5>
+<div id="hint-1-formulae-1" class="section level5">
+<h5>Hint 1 : Formulae</h5>
 <div class="answer">
-<p>todo</p>
+<p><span class="math display">\[\begin{align*}
+\delta_{1}(i)   =&amp; \pi_{i} \times b_{i,o_1}\\
+\delta_{t+1}(j) =&amp; max_{i\in\{F,L\}}\delta_{t}(i)\times a_{i,j}
+\times b_{j,o_{t+1}}\\
+q_{t}^{ * }     =&amp; argmax_{1 \leq i \leq n}  \{ \delta_t(i)
+a_{i,q_{t+1}^{ * } } \}
+\end{align*}\]</span></p>
+</div>
+</div>
+<div id="hint-2-intermediate-calculations" class="section level5">
+<h5>Hint 2 : Intermediate calculations</h5>
+<div class="answer">
+<p><span class="math display">\[\begin{align*}
+\delta_1(F) =&amp; \pi_F \times b_{F,1} = 0.9 \times \frac{1}{6} =
+0.15\\
+\delta_1(L) =&amp; \pi_F \times b_{L,1} = 0.1 \times 0.1 = 0.01\\\\
+\delta_2(F) =&amp; max(\delta_{1}(F) \times a_{F,F} \times b_{F,6},
+\delta_{1}(L) \times a_{L,F} \times b_{F,6}) = max(0.02375 , 0.00016) =
+0.02375 \\
+\delta_2(L) =&amp; max(\delta_{1}(F) \times a_{F,L} \times b_{L,6},
+\delta_{1}(L) \times a_{L,L} \times b_{L,6}) = max(0.00375, 0.0045) =
+0.0045\\
+\delta_3(F) =&amp; max(0.00376, 0.000075) = 0.00376\\
+\delta_3(L) =&amp; max(0.00059375, 0.002025) = 0.002025\\
+\delta_4(F) =&amp; max(0.0005953, 0.00003375) = 0.0005953\\
+\delta_4(L) =&amp; max(0.0000188, 0.00018225) = 0.00018225\\\\
+P( \mathcal{P}^{*}, \mathcal{O}) =&amp; max(\delta_4(F), \delta_4(L)) =
+5.95 \times 10^{-4}
+\end{align*}\]</span></p>
 </div>
 </div>
 <div id="solution-2" class="section level5">
 <h5>Solution</h5>
 <div class="answer">
-<p>todo</p>
+<p><span class="math display">\[\begin{align*}
+q_4^* =&amp; argmax_{i\in\{F,L\}}(\delta_4(i)) = F\\
+q_3^* =&amp; argmax_{i\in\{F,L\}}(\delta_3(i) \times a_{i,q_4^*}) =
+argmax(F:0.00376 \times 0.95, L:0.002025 \times 0.1) = F\\
+q_2^* =&amp; argmax_{i\in\{F,L\}}(\delta_2(i) \times a_{i,q_3^*}) =
+argmax(F:0.02375 \times 0.95, L:0.0045 \times 0.1) = F\\
+q_1^* =&amp; argmax_{i\in\{F,L\}}(\delta_1(i) \times a_{i,q_2^*}) =
+argmax(F:0.15 \times 0.95, L:0.01 \times 0.1) = F\\
+\Rightarrow&amp; Q^*=FFFF
+\end{align*}\]</span></p>
+<p>The best path is therefore to stay in state F.</p>
 </div>
 </div>
 </div>
