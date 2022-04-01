@@ -35,7 +35,3 @@ Programming assignments are available via Github Classroom. Links to the appropr
 
 Exercises are designed for self-teaching. Every week there will be a exercise session where questions about the current exercise sheet will be answered and discussed. Please check the Bioinformatics II Ilias course page for more information about dates and times.
 
-
-```{r, include=knitr::is_html_output(), echo=F}
-knitr::asis_output('Download: <a href="index.pdf" title="Download PDF Version">PDF Version</a> of this page.')
-```

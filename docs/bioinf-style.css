@@ -13,3 +13,7 @@ table th {border-bottom: 1px solid;}
 .navbar img {
   height: 50px;
 }
+
+.title {
+  font-weight: bold;
+}

@@ -145,6 +145,7 @@ $$
 
 
 # Exercise 2 - The occasionally cheating casino
+
 ```{r, echo=FALSE, out.width="25%", fig.align='center'}
 knitr::include_graphics("figures/exercise-1/Dice-E2.png")
 ```
