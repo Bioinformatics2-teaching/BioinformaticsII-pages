@@ -14,11 +14,11 @@ $$
 
 The pairwise optimal alignments of Pool $P$ were calculated as:
 
-~~~
+```
 a: CACCG_G          a: __CACCGG     b: ACCAAG
     |||: |               ||||          |:||::
 b: _ACCAAG          c: AACACC__     c: AACACC
-~~~
+```
 
 #### {.tabset}
 
