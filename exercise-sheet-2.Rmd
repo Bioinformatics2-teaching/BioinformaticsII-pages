@@ -133,3 +133,45 @@ The best path is therefore to stay in state F.
 
 #### {-}
 
+-------------------------------------------
+
+
+# Exercise 2 - Profile HMMs
+
+Profile HMMs define a position specific scoring scheme which can be used to search databases for homologous sequences. 
+
+The following multiple alignment of DNA sequences is given:
+
+```
+                                        AC---A
+                                        A----A
+                                        AG---T
+                                        TTGGGT
+                                        **   *
+```
+
+#### {.tabset}
+
+##### Question 1A
+
+::: {.question data-latex=""}
+
+Draw the graphical representation of the profile HMM for the given multiple alignment.
+ 
+:::
+
+
+##### Solution
+
+::: {.answer data-latex=""}
+
+```{r, echo=FALSE, out.width="100%", fig.align='center'}
+knitr::include_graphics("figures/exercise-2/sheet2_exercise2.png")
+```
+:::
+#### {-}
+
+#### {.tabset}
+
+
+

@@ -1,0 +1,23 @@
+---
+title: "Exercise sheet 4: Pair-HMM"
+---
+
+# Exercise 1
+
+You are given the basic pair-HMM for sequence alignment between two sequences:
+
+
+```{r, echo=FALSE, out.width="50%", fig.align='center'}
+knitr::include_graphics("figures/exercise-4/HMM.png")
+```
+
+Let $\delta = 0.02$ and $\epsilon=0.79$. The initial probability distribution of the states is given by
+$\pi(M)=0.6$, $\pi(I_x) = 0.2$ and $\pi(I_y) = 0.2$. Furthermore, let all $p(x_i,y_j)$ and $q(x_i)$ (and $q(y_j)$)
+be given in matrix $p$ and vector $q$, respectively:
+
+
+-------------------------------------------
+
+```{r, include=knitr::is_html_output(), echo=F}
+knitr::asis_output('Download: <a href="exercise-sheet-4.pdf" title="Download PDF Version">PDF Version</a> of this page.')
+```
