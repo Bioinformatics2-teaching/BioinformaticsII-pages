@@ -13,7 +13,7 @@
 
 <title>Exercise sheet 3: T-Coffee</title>
 
-<script src="site_libs/header-attrs-2.12/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.11/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/cosmo.min.css" rel="stylesheet" />
@@ -60,7 +60,6 @@ if (window.hljs) {
 
 
 
-
 <link rel="stylesheet" href="bioinf-style.css" type="text/css" />
 
 
@@ -85,9 +84,6 @@ button.code-folding-btn:focus {
 }
 summary {
   display: list-item;
-}
-details > summary > p:only-child {
-  display: inline;
 }
 pre code {
   padding: 0;
@@ -325,6 +321,7 @@ div.tocify {
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
       </button>
       <a class="navbar-brand navbar-img" href="#">
         <div class="d-flex align-items-center h-25">
@@ -342,6 +339,7 @@ div.tocify {
         <li><a href="exercise-sheet-1.html">Sheet 1</a></li>
         <li><a href="exercise-sheet-2.html">Sheet 2</a></li>
         <li><a href="exercise-sheet-3.html">Sheet 3</a></li>
+        <li><a href="exercise-sheet-4.html">Sheet 4</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li><a href="http://www.bioinf.uni-freiburg.de/index.html?en2">Contact</a></li>
@@ -361,16 +359,13 @@ div.tocify {
 
 <div id="exercise-1" class="section level1">
 <h1>Exercise 1</h1>
-<p>You are given the sequences <span class="math inline">\(a\)</span>,
-<span class="math inline">\(b\)</span> and <span
-class="math inline">\(c\)</span></p>
+<p>You are given the sequences <span class="math inline">\(a\)</span>, <span class="math inline">\(b\)</span> and <span class="math inline">\(c\)</span></p>
 <p><span class="math display">\[
 a = CACCGG\\
 b = ACCAAG\\
 c = AACACC\\
 \]</span></p>
-<p>The pairwise optimal alignments of Pool <span
-class="math inline">\(P\)</span> were calculated as:</p>
+<p>The pairwise optimal alignments <span class="math inline">\(A(x, y)\)</span> of the set of sequences <span class="math inline">\(S\)</span> were calculated as:</p>
 <pre><code>a: CACCG_G          a: __CACCGG     b: ACCAAG
     |||: |               ||||          |:||::
 b: _ACCAAG          c: AACACC__     c: AACACC</code></pre>
@@ -379,40 +374,25 @@ b: _ACCAAG          c: AACACC__     c: AACACC</code></pre>
 <div id="question-1a" class="section level5">
 <h5>Question 1A</h5>
 <div class="question">
-<p>Calculate the primary library (<span
-class="math inline">\(L\)</span>)</p>
+<p>Calculate the primary library (<span class="math inline">\(L\)</span>)</p>
 </div>
 </div>
 <div id="formulae" class="section level5">
 <h5>Formulae</h5>
 <div class="answer">
-<p>init: <span
-class="math inline">\(L^{i,i&#39;}_{j,j&#39;}=0\)</span></p>
-<p><span class="math inline">\(\forall\)</span> alignments <span
-class="math inline">\(A\)</span> of sequence <span
-class="math inline">\(s^i\)</span> <span
-class="math inline">\(s^{i&#39;}\)</span> in pool <span
-class="math inline">\(P\)</span></p>
-<p><span class="math inline">\(weight(A) = \dfrac{number\ of\
-matches}{min(len(s^i), len(s^{i&#39;}))}\)</span></p>
-<p><span class="math inline">\(\forall\)</span> aligned positions <span
-class="math inline">\(i,j\)</span></p>
-<p><span class="math inline">\(L^{i,i&#39;}_{j,j&#39;} =
-L^{i,i&#39;}_{j,j&#39;} + weight(A)\)</span></p>
+<p>init: <span class="math inline">\(L^{x,y}_{i,j}=0\)</span></p>
+<p><span class="math inline">\(\forall\)</span> alignments <span class="math inline">\(A\)</span> of sequences <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> of the set <span class="math inline">\(S\)</span>.</p>
+<p><span class="math inline">\(weight(A) = \dfrac{number\ of\ matches}{min(len(x), len(y))} * 100\)</span></p>
+<p><span class="math inline">\(\forall\)</span> aligned positions <span class="math inline">\(i,j\)</span> with <span class="math inline">\(1 \leq i \leq len(x)\)</span> and <span class="math inline">\(1 \leq j \leq len(y)\)</span></p>
+<p><span class="math inline">\(L^{x,y}_{i,j} = L^{x,y}_{i,j} + weight(A)\)</span></p>
 </div>
 </div>
 <div id="solution" class="section level5">
 <h5>Solution</h5>
 <div class="answer">
-<p><span
-class="math inline">\(L^{a,b}_{2,1}=L^{a,b}_{3,2}=L^{a,b}_{4,3}=L^{a,b}_{6,6}=100*\frac{4}{6}=67\)</span>
-and all other <span class="math inline">\(L^{a,b}_{i,j}=0\)</span></p>
-<p><span
-class="math inline">\(L^{a,c}_{1,3}=L^{a,c}_{2,4}=L^{a,c}_{3,5}=L^{a,c}_{4,6}=100*\frac{4}{6}=67\)</span>
-and all other <span class="math inline">\(L^{a,c}_{i,j}=0\)</span></p>
-<p><span
-class="math inline">\(L^{b,c}_{1,1}=L^{b,c}_{3,3}=L^{b,c}_{4,4}=100*\frac{3}{6}=50\)</span>
-and all other <span class="math inline">\(L^{b,c}_{i,j}=0\)</span></p>
+<p><span class="math inline">\(L^{a,b}_{2,1}=L^{a,b}_{3,2}=L^{a,b}_{4,3}=L^{a,b}_{6,6}=100*\frac{4}{6}=67\)</span> and all other <span class="math inline">\(L^{a,b}_{i,j}=0\)</span></p>
+<p><span class="math inline">\(L^{a,c}_{1,3}=L^{a,c}_{2,4}=L^{a,c}_{3,5}=L^{a,c}_{4,6}=100*\frac{4}{6}=67\)</span> and all other <span class="math inline">\(L^{a,c}_{i,j}=0\)</span></p>
+<p><span class="math inline">\(L^{b,c}_{1,1}=L^{b,c}_{3,3}=L^{b,c}_{4,4}=100*\frac{3}{6}=50\)</span> and all other <span class="math inline">\(L^{b,c}_{i,j}=0\)</span></p>
 </div>
 </div>
 </div>
@@ -424,28 +404,20 @@ and all other <span class="math inline">\(L^{b,c}_{i,j}=0\)</span></p>
 <div id="question-1b" class="section level5">
 <h5>Question 1B</h5>
 <div class="question">
-<p>Calculate the extended library (<span
-class="math inline">\(EL\)</span>)</p>
+<p>Calculate the extended library (<span class="math inline">\(EL\)</span>)</p>
 </div>
 </div>
 <div id="formulae-1" class="section level5">
 <h5>Formulae</h5>
 <div class="answer">
-<p><span class="math inline">\(k :=\)</span> number of entries in <span
-class="math inline">\(L\)</span></p>
-<p><span class="math inline">\(EL^{i,i&#39;}_{j,j&#39; }=
-L^{i,i&#39;}_{j,j&#39;} + \sum_{i \neq (1 \leq i^* \leq k) \neq i&#39;}
-min(L^{i,i^*}_{j,j^*}, L^{i^*,i&#39;}_{j^*,j&#39;})\)</span></p>
+<p><span class="math inline">\(EL^{x,y}_{i,j}= L^{x,y}_{i,j} + \sum_{z \in S \setminus \{\ x, y\}\ } \sum_{1 \leq k \leq len(z)} min(L^{x,z}_{i,k}, L^{z,y}_{k,j})\)</span></p>
 </div>
 </div>
 <div id="solution-1" class="section level5">
 <h5>Solution</h5>
 <div class="answer">
-<p>The original Library doesn’t change as there are no edges enforcing
-certain connections. Hence</p>
-<p><span class="math inline">\(EL^{i,i&#39;}_{j,j&#39;
-}=L^{i,i&#39;}_{j,j&#39;} \qquad \forall L^{i,i&#39;}_{j,j&#39; }\neq
-0\)</span></p>
+<p>The original Library doesn’t change as there are no edges enforcing certain connections. Hence</p>
+<p><span class="math inline">\(EL^{x,y}_{i,j}= L^{x,y}_{i,j} \qquad \forall L^{x,y}_{i,j}\neq 0\)</span></p>
 <p>and the following weights are added:</p>
 <pre><code>a: CACCG_G     
     |||: |    
@@ -453,24 +425,21 @@ b: _ACCAAG
     |:||::
 c:  AACACC
     * *</code></pre>
-<p><span
-class="math inline">\(EL^{a,b}_{1,3}=EL^{a,b}_{2,4}=50\)</span></p>
+<p><span class="math inline">\(EL^{a,b}_{1,3}=EL^{a,b}_{2,4}=50\)</span></p>
 <pre><code>a: __CACCGG     
      ||||       
 c: AACACC__     
    |:||::
 b: ACCAAG
      **</code></pre>
-<p><span
-class="math inline">\(EL^{a,c}_{2,1}=EL^{a,c}_{4,3}=50\)</span></p>
+<p><span class="math inline">\(EL^{a,c}_{2,1}=EL^{a,c}_{4,3}=50\)</span></p>
 <pre><code>b:    ACCAAG
       |||: |    
 a:   CACCG_G     
      |||| 
 c: AACACC
       ***</code></pre>
-<p><span
-class="math inline">\(EL^{b,c}_{1,4}=EL^{b,c}_{2,5}=EL^{b,c}_{3,6}=67\)</span></p>
+<p><span class="math inline">\(EL^{b,c}_{1,4}=EL^{b,c}_{2,5}=EL^{b,c}_{3,6}=67\)</span></p>
 </div>
 </div>
 </div>
@@ -481,9 +450,7 @@ class="math inline">\(EL^{b,c}_{1,4}=EL^{b,c}_{2,5}=EL^{b,c}_{3,6}=67\)</span></
 <h4 class="tabset"></h4>
 <div id="question-1c" class="section level5">
 <h5>Question 1C</h5>
-<p>Realign the sequences <span class="math inline">\(b\)</span> and
-<span class="math inline">\(c\)</span> using EL for scoring and gap
-costs and mismatch costs of 0</p>
+<p>Realign the sequences <span class="math inline">\(b\)</span> and <span class="math inline">\(c\)</span> using <span class="math inline">\(EL\)</span> for scoring and gap costs and mismatch costs of 0</p>
 </div>
 <div id="solution-2" class="section level5">
 <h5>Solution</h5>
@@ -584,14 +551,11 @@ costs and mismatch costs of 0</p>
 <h4 class="tabset"></h4>
 <div id="question-1c-1" class="section level5">
 <h5>Question 1C</h5>
-<p>Do the other alignments a-b and a-c change? Provide arguments,
-without calculating new ali- gnments.</p>
+<p>Do the other alignments <span class="math inline">\(a\)</span>-<span class="math inline">\(b\)</span> and <span class="math inline">\(a\)</span>-<span class="math inline">\(c\)</span> change? Provide arguments, without calculating new alignments.</p>
 </div>
 <div id="solution-3" class="section level5">
 <h5>Solution</h5>
-<p>No. The newly added alignment scores in <span
-class="math inline">\(E\)</span>L represent edges that are incompatible
-with the current best alignments and can not score higher.</p>
+<p>No. The newly added alignment scores in <span class="math inline">\(EL\)</span> represent edges that are incompatible with the current best alignments and can not score higher.</p>
 </div>
 </div>
 <div id="section-7" class="section level4 unnumbered">
@@ -605,8 +569,7 @@ with the current best alignments and can not score higher.</p>
 </div>
 <div id="solution-4" class="section level5">
 <h5>Solution</h5>
-<p><span class="math inline">\(((a,c),b)\)</span> or <span
-class="math inline">\(((a,b),c)\)</span></p>
+<p><span class="math inline">\(((a,c),b)\)</span> or <span class="math inline">\(((a,b),c)\)</span></p>
 </div>
 </div>
 <div id="section-9" class="section level4 unnumbered">
@@ -616,29 +579,11 @@ class="math inline">\(((a,b),c)\)</span></p>
 <h4 class="tabset"></h4>
 <div id="question-1f" class="section level5">
 <h5>Question 1F</h5>
-<p>Perform a progressive alignment by aligning sequence b to the already
-existing alignment <span class="math inline">\(A(a, c)\)</span>. To
-score a match between <span class="math inline">\(b\)</span> and <span
-class="math inline">\(A(a, c)\)</span> use the sum <span
-class="math inline">\(EL^{a,b}\)</span> + <span
-class="math inline">\(EL^{b,c}\)</span> with the correct indices. Show
-the resulting multiple sequence alignment.</p>
+<p>Perform a progressive alignment by aligning sequence <span class="math inline">\(b\)</span> to the already existing alignment <span class="math inline">\(A(a, c)\)</span>. To score a match between <span class="math inline">\(b\)</span> and <span class="math inline">\(A(a, c)\)</span> use the sum <span class="math inline">\(EL^{a,b} + EL^{b,c}\)</span> with the correct indices. Show the resulting multiple sequence alignment.</p>
 </div>
 <div id="solution-5" class="section level5">
 <h5>Solution</h5>
-<table style="width:100%;">
-<colgroup>
-<col width="10%" />
-<col width="10%" />
-<col width="10%" />
-<col width="10%" />
-<col width="10%" />
-<col width="10%" />
-<col width="10%" />
-<col width="10%" />
-<col width="10%" />
-<col width="10%" />
-</colgroup>
+<table>
 <thead>
 <tr class="header">
 <th align="center">-<br />-</th>
@@ -745,9 +690,7 @@ the resulting multiple sequence alignment.</p>
 <div id="section-11" class="section level4 unnumbered">
 <h4 class="unnumbered"></h4>
 <hr />
-<p>Download:
-<a href="exercise-sheet-3.pdf" title="Download PDF Version">PDF
-Version</a> of this page.</p>
+<p>Download: <a href="exercise-sheet-3.pdf" title="Download PDF Version">PDF Version</a> of this page.</p>
 </div>
 </div>
 

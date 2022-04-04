@@ -12,7 +12,7 @@ b = ACCAAG\\
 c = AACACC\\
 $$
 
-The pairwise optimal alignments of Pool $P$ were calculated as:
+The pairwise optimal alignments $A(x, y)$ of the set of sequences $S$ were calculated as:
 
 ```
 a: CACCG_G          a: __CACCGG     b: ACCAAG
@@ -34,15 +34,16 @@ Calculate the primary library ($L$)
 
 ::: {.answer data-latex=""}
 
-init: $L^{i,i'}_{j,j'}=0$
+init: $L^{x,y}_{i,j}=0$
 
-$\forall$ alignments $A$ of sequence $s^i$ $s^{i'}$ in pool $P$
+$\forall$ alignments $A$ of sequences $x$ and $y$ of the set $S$. 
 
-$weight(A) = \dfrac{number\ of\ matches}{min(len(s^i), len(s^{i'}))}$
+$weight(A) = \dfrac{number\ of\ matches}{min(len(x), len(y))} * 100$
 
-$\forall$ aligned positions $i,j$
+$\forall$ aligned positions $i,j$ with $1 \leq i \leq len(x)$ and  $1 \leq j \leq len(y)$ 
 
-$L^{i,i'}_{j,j'} = L^{i,i'}_{j,j'} + weight(A)$
+$L^{x,y}_{i,j} = L^{x,y}_{i,j} + weight(A)$
+
 
 :::
 
@@ -71,10 +72,9 @@ Calculate the extended library ($EL$)
 ##### Formulae
 
 ::: {.answer data-latex=""}
-$k :=$ number of entries in $L$
 
 
-$EL^{i,i'}_{j,j' }= L^{i,i'}_{j,j'}  + \sum_{i \neq (1 \leq i^* \leq k) \neq i'}  min(L^{i,i^*}_{j,j^*}, L^{i^*,i'}_{j^*,j'})$
+$EL^{x,y}_{i,j}= L^{x,y}_{i,j}  + \sum_{z \in S \setminus \{\ x, y\}\ } \sum_{1 \leq k \leq len(z)}  min(L^{x,z}_{i,k}, L^{z,y}_{k,j})$
 
 :::
 
@@ -84,7 +84,7 @@ $EL^{i,i'}_{j,j' }= L^{i,i'}_{j,j'}  + \sum_{i \neq (1 \leq i^* \leq k) \neq i'}
 
 The original Library doesn't change as there are no edges enforcing certain connections. Hence
 
-$EL^{i,i'}_{j,j' }=L^{i,i'}_{j,j'} \qquad \forall L^{i,i'}_{j,j' }\neq 0$
+$EL^{x,y}_{i,j}= L^{x,y}_{i,j} \qquad \forall L^{x,y}_{i,j}\neq 0$
 
 and the following weights are added:
 
@@ -130,7 +130,7 @@ $EL^{b,c}_{1,4}=EL^{b,c}_{2,5}=EL^{b,c}_{3,6}=67$
 ##### Question 1C
 
 
-Realign the sequences $b$ and $c$ using EL for scoring and gap costs and mismatch costs of 0
+Realign the sequences $b$ and $c$ using $EL$ for scoring and gap costs and mismatch costs of 0
 
 ##### Solution
 
@@ -154,12 +154,11 @@ Realign the sequences $b$ and $c$ using EL for scoring and gap costs and mismatc
 
 ##### Question 1C
 
-Do the other alignments a-b and a-c change? Provide arguments, without calculating new ali-
-gnments.
+Do the other alignments $a$-$b$ and $a$-$c$ change? Provide arguments, without calculating new alignments.
 
 ##### Solution
 
-No. The newly added alignment scores in $E$L represent edges that are incompatible with the
+No. The newly added alignment scores in $EL$ represent edges that are incompatible with the
 current best alignments and can not score higher.
 
 #### {-}
@@ -181,8 +180,8 @@ $((a,c),b)$  or $((a,b),c)$
 
 ##### Question 1F
 
-Perform a progressive alignment by aligning sequence b to the already existing alignment $A(a, c)$.
-To score a match between $b$ and $A(a, c)$ use the sum $EL^{a,b}$ + $EL^{b,c}$ with the correct indices.
+Perform a progressive alignment by aligning sequence $b$ to the already existing alignment $A(a, c)$.
+To score a match between $b$ and $A(a, c)$ use the sum $EL^{a,b} + EL^{b,c}$ with the correct indices.
 Show the resulting multiple sequence alignment.
 
 ##### Solution
