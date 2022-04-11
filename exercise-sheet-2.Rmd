@@ -205,7 +205,13 @@ Compute the following emission probabilities with maximum likelihood estimation:
 ##### Formulae
 
 ::: {.answer data-latex=""}
-$\beta_t(i) = Pr[ {\cal O}^{>t}  | q_t = i, M] = \sum_{j=1}^n a_{i,j} \beta_{t+1}(j) b_{j,o_{t+1}}$
+$$
+b_{i,k} = Pr[r_t=k | q_t = i], \\
+\text{with } t \text{ a point in time } (t \in T)\\
+q_1 ... q_t ... q_T \text{ random variables for the states}\\
+r_1 ... r_t ... r_T \text{ random variables for the outputs}\\
+k \in \Sigma \text{ a finit output alphabet}
+$$
 :::
 
 ##### Solution
@@ -234,7 +240,9 @@ Compute the following transition probabilities with maximum likelihood estimatio
 ##### Formulae
 
 ::: {.answer data-latex=""}
-XXXX
+$$
+a_{i,j} = Pr[q_t = j | q_{t-1} = i]
+$$
 :::
 
 ##### Solution
