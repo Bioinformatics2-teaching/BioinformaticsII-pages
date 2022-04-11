@@ -11,7 +11,7 @@ Exercises are provided as a practical addition to the lectures and will help you
 
 Results will be discussed in the weekly exercise sessions.
 
-## Layout
+## Setup
 
 You can access individual exercise sheets using the navigation bar.
 
@@ -19,12 +19,13 @@ You can access individual exercise sheets using the navigation bar.
 knitr::include_graphics("figures/howto/navbar.png")
 ```
 
-There are no deadlines when exercises should finished.
+All exercise sheets are made for self-learning and provide questions, hints and a master-solution.
+
+There are no deadlines when exercises should be finished.
 Keep in mind though that exercise discussions will be held every week for a certain exercise sheet. We advise you to do one exercise-sheet every week to not lose track of the discussions.
 
 A detailed schedule is available on our Ilias page.
 
-All exercise sheets are made for self-learning and provide questions, hints and a master-solution.
 
 ```{r, echo=FALSE, out.width="100%", fig.align='left'}
 knitr::include_graphics("figures/howto/question.png")
