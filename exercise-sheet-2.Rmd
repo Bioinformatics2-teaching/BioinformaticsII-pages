@@ -166,7 +166,7 @@ Draw the graphical representation of the profile HMM for the given multiple alig
 ::: {.answer data-latex=""}
 
 ```{r, echo=FALSE, out.width="100%", fig.align='center'}
-knitr::include_graphics("figures/exercise-2/sheet2_exercise2.png")
+knitr::include_graphics("figures/sheet-2/sheet2_exercise2.png")
 ```
 :::
 #### {-}

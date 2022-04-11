@@ -11,7 +11,7 @@
 
 
 
-<title>Exercise sheet 1: Hidden Markov models</title>
+<title>Exercise sheet 5: Probalign</title>
 
 <script src="site_libs/header-attrs-2.12/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
@@ -357,297 +357,121 @@ div.tocify {
 
 
 
-<h1 class="title toc-ignore">Exercise sheet 1: Hidden Markov models</h1>
+<h1 class="title toc-ignore">Exercise sheet 5: Probalign</h1>
 
 </div>
 
 
 <hr />
-<div id="exercise-1---two-kinds-of-dice" class="section level1">
-<h1>Exercise 1 - Two kinds of dice</h1>
-<p><img src="figures/sheet-1/Dice-E1.png" width="100%" style="display: block; margin: auto;" /></p>
-<p>A casino uses two kinds of dice: <span
-class="math inline">\(98\%\)</span> of dice are fair and <span
-class="math inline">\(2\%\)</span> are loaded. The loaded die has a
-probability of <span class="math inline">\(0.5\)</span> to show number
-six and <span class="math inline">\(0.1\)</span> for the numbers one to
-five.</p>
+<p>For the following exercises on Probalign, we use an affine gap
+penalty with <span class="math inline">\(g(k) = \alpha + \beta k = -0.5
+- 0.25k\)</span>, there temperature <span
+class="math inline">\(T=1\)</span> and the similarity function <span
+class="math inline">\(\sigma(x_i, y_j)\)</span>:</p>
+<p><img src="figures/sheet-5/bordermatrix.png" width="50%" style="display: block; margin: auto;" /></p>
+<div id="exercise-1" class="section level1">
+<h1>Exercise 1</h1>
 <div id="section" class="section level4 tabset">
 <h4 class="tabset"></h4>
 <div id="question-1a" class="section level5">
 <h5>Question 1A</h5>
 <div class="question">
-<p>When we pick up a die from a table at random, what is the probability
-of rolling a six?</p>
+<p>Compute the Boltzmann-weighted score for the following
+alignments:</p>
+<pre><code>(a)  x: --AGCGG          (b) x: AGCGG------
+          ||:||                     :
+     y: ACAGGGG              y: ----ACAGGGG</code></pre>
 </div>
 </div>
 <div id="hint-1-formulae" class="section level5">
 <h5>Hint 1 : Formulae</h5>
 <div class="answer">
 <p><span class="math display">\[
-L= \text{Loaded} \quad F= \text{Fair}\quad \mathcal{O}=
-\text{Observation}\\
-P(\mathcal{O}) = P(F) \times P(\mathcal{O}|F) + P(L) \times
-P(\mathcal{O}|L)
+S(a) = \sum_{x_i \sim y_j \in a} \sigma(x_i,y_j) + \sum \text{gap
+penalties}\\
+e^{\frac{S(a)}{T}} = \Bigg(\prod_{x_i\sim y_j \in a}
+e^{\frac{\sigma(x_i,y_j)}{T}} \Bigg) \times e^{\frac{\sum \text{gap
+penalties}}{T}}\\
 \]</span></p>
 </div>
 </div>
-<div id="hint-2-calculation-method" class="section level5">
-<h5>Hint 2 : Calculation Method</h5>
+<div id="hint-2" class="section level5">
+<h5>Hint 2</h5>
 <div class="answer">
-<p><span class="math display">\[
-P(6) = 0.98 \times \frac{1}{6} + 0.02 \times \frac{1}{2}
-\]</span></p>
+<p>For each alignment you only need to calulate <span
+class="math inline">\(e^x\)</span> once.</p>
+</div>
+</div>
+<div id="hint-3-calculations" class="section level5">
+<h5>Hint 3: Calculations</h5>
+<div class="answer">
+<p><span class="math display">\[\begin{align*}
+\text{(a)} &amp;\qquad e^{\sigma(A,A)} \times e^{3\sigma(G,G)} \times
+e^{\sigma(C,G)} \times e^{g(2)} &amp;&amp;= e^2 \times e^6 \times e^{-1}
+\times e^{-0.5 +(-0.25\times 2)} = e^6 \\
+\text{(b)} &amp;\qquad e^{\sigma(G,A)} \times e^{g(4)} \times e^{g(6)}
+&amp;&amp;= e^{-1} \times e^{0.5 + (-0.25\times 4)} \times e^{0.5 +
+(-0.25\times 6)} = e^{-4.5}
+\end{align*}\]</span></p>
 </div>
 </div>
 <div id="solution" class="section level5">
 <h5>Solution</h5>
 <div class="answer">
-<p><span class="math display">\[
-P(6) = 0.173\bar{3}
-\]</span></p>
+<p><span class="math display">\[\begin{align*}
+e^6 &amp;= 403.43\\
+e^{-4.5} &amp;= 0.011
+\end{align*}\]</span></p>
 </div>
 </div>
 </div>
 <div id="section-1" class="section level4 unnumbered">
 <h4 class="unnumbered"></h4>
 </div>
+</div>
+<div id="exercise-2" class="section level1">
+<h1>Exercise 2</h1>
 <div id="section-2" class="section level4 tabset">
 <h4 class="tabset"></h4>
-<div id="question-1b" class="section level5">
-<h5>Question 1B</h5>
+<div id="question-2a" class="section level5">
+<h5>Question 2A</h5>
 <div class="question">
-<p>We pick up a die from a table at random and roll [⚅ ⚅ ⚅]. What is the
-probability, that the die is loaded.</p>
+<p>Derive the recursion formula for <span
+class="math inline">\(Z^{I}_{i,j}\)</span>. Allow insertions after
+deletions and vice versa.</p>
 </div>
 </div>
 <div id="hint-1-formulae-1" class="section level5">
 <h5>Hint 1 : Formulae</h5>
 <div class="answer">
 <p><span class="math display">\[
-P(L|\mathcal{O}) = \frac{P(L,\mathcal{O})}{P(\mathcal{O})}\\
-P(L,\mathcal{O}) = P(\mathcal{O}|L) \times P(L)
+Z^{I}_{i,j} = Z^{I}_{i,j-1} \times e^\frac{\beta}{T} + Z^{M}_{i,j-1}
+\times e^\frac{g(1)}{T}  + Z^{D}_{i,j-1} \times e^\frac{g(1)}{T}
 \]</span></p>
 </div>
 </div>
-<div id="hint-2-calculation-method-1" class="section level5">
-<h5>Hint 2 : Calculation Method</h5>
+<div id="hint-2-1" class="section level5">
+<h5>Hint 2</h5>
 <div class="answer">
-<p><span class="math display">\[\begin{align*}
-P(L|\mathcal{O}) &amp;= \frac{P(\mathcal{O}|L)\times
-P(L)}{P(\mathcal{O}|L)\times P(L) + P(\mathcal{O}|F)\times P(F)}\\
-       &amp;= \frac{(\frac{1}{2})^3 \times 0.02}{(\frac{1}{2})^3 \times
-0.02 + (\frac{1}{6})^3 \times 0.98}
-\end{align*}\]</span></p>
+<p>t</p>
+</div>
+</div>
+<div id="hint-3-calculations-1" class="section level5">
+<h5>Hint 3: Calculations</h5>
+<div class="answer">
+<p>t</p>
 </div>
 </div>
 <div id="solution-1" class="section level5">
 <h5>Solution</h5>
 <div class="answer">
-<p><span class="math display">\[
-P(L|\mathcal{O}) = 35.53\%
-\]</span></p>
+<p>t</p>
 </div>
 </div>
 </div>
 <div id="section-3" class="section level4 unnumbered">
 <h4 class="unnumbered"></h4>
 </div>
-<div id="section-4" class="section level4 tabset">
-<h4 class="tabset"></h4>
-<div id="question-1c" class="section level5">
-<h5>Question 1C</h5>
-<div class="question">
-<p>How many sixes in a row would we need to roll to be at least 90% sure
-that the die is loaded?</p>
-</div>
-</div>
-<div id="hint-1-formulae-2" class="section level5">
-<h5>Hint 1 : Formulae</h5>
-<div class="answer">
-<p><span class="math display">\[
-P(L|\mathcal{O}) = \frac{P(\mathcal{O}|L)\times
-P(L)}{P(\mathcal{O}|L)\times P(L) + P(\mathcal{O}|F)\times P(F)}\\
-\]</span></p>
-</div>
-</div>
-<div id="hint-2-calculation-method-2" class="section level5">
-<h5>Hint 2 : Calculation Method</h5>
-<div class="answer">
-<p><span class="math display">\[\begin{alignat}{3}
-&amp;P(L|\mathcal{O}) =
-\frac{\frac{2}{100}\times(\frac{1}{2})^n}{\frac{2}{100}\times(\frac{1}{2})^n
-+ \frac{98}{100}\times(\frac{1}{6})^n} &amp;&amp;\geq 0.9
-&amp;&amp;\quad| \text{ split } (\frac{1}{6})^n\\
-&amp;\iff
-\frac{\frac{2}{100}\times(\frac{1}{2})^n}{\frac{2}{100}\times(\frac{1}{2})^n
-+ \frac{98}{100}\times(\frac{1}{2})^n \times (\frac{1}{3})^n}
-&amp;&amp;\geq \frac{9}{10}  &amp;&amp;\quad| \text{ factorize}\\
-&amp;\iff
-\frac{\frac{2}{100}\times(\frac{1}{2})^n}{\frac{2}{100}\times(\frac{1}{2})^n
-\times (1 + 49 \times (\frac{1}{3})^n)} &amp;&amp;\geq \frac{9}{10}
-&amp;&amp;\quad| \text{ simplify, given } n &gt; 0\\
-&amp;\iff \frac{1}{1 + 49 \times (\frac{1}{3})^n} &amp;&amp;\geq
-\frac{9}{10} &amp;&amp;\quad| \text{ cross-multiply, given } n &gt; 0\\
-&amp;\iff \frac{9}{10} (1 + 49 \times (\frac{1}{3})^n) &amp;&amp;\leq
-1  &amp;&amp;\quad| \text{ rewrite }\\
-&amp;\iff (\frac{1}{3})^n &amp;&amp;\leq \frac{1}{441}  &amp;&amp;\quad|
-\text{ ln() }\\
-&amp;\iff n \times ln(\frac{1}{3}) &amp;&amp;\leq ln(\frac{1}{441})
-&amp;&amp;\quad| \times\frac{1}{ln(\frac{1}{3})} \\
-&amp;\iff n &amp;&amp;\geq \frac{ln(\frac{1}{441})}{ln(\frac{1}{3})}\\
-&amp;\iff n &amp;&amp;\geq 5.542487...
-\end{alignat}\]</span></p>
-</div>
-</div>
-<div id="solution-2" class="section level5">
-<h5>Solution</h5>
-<div class="answer">
-<p><span class="math display">\[
-n = 6 \text{, as only Integers make sense here (just trying would also
-work)}
-\]</span></p>
-</div>
-</div>
-</div>
-<div id="section-5" class="section level4 unnumbered">
-<h4 class="unnumbered"></h4>
-<hr />
-</div>
-</div>
-<div id="exercise-2---the-occasionally-cheating-casino"
-class="section level1">
-<h1>Exercise 2 - The occasionally cheating casino</h1>
-<p><img src="figures/sheet-1/Dice-E2.png" width="25%" style="display: block; margin: auto;" /></p>
-<p>In a casino they use a fair die most of the time, but occasionally
-they switch to a loaded die. The loaded die has a probability <span
-class="math inline">\(0.5\)</span> to show number six and probability
-<span class="math inline">\(0.1\)</span> for the numbers one to five.
-Assume that the casino switches from a fair to a loaded die with
-probability <span class="math inline">\(0.05\)</span> before each roll,
-and that the probability of switching back is <span
-class="math inline">\(0.1\)</span>. The probability to start a game with
-the fair die is <span class="math inline">\(0.9\)</span>.</p>
-<div id="section-6" class="section level4 tabset">
-<h4 class="tabset"></h4>
-<div id="question-2a" class="section level5">
-<h5>Question 2A</h5>
-<div class="question">
-<p>Draw a graphical representation of the described Hidden Markov
-model.</p>
-</div>
-</div>
-<div id="solution-3" class="section level5">
-<h5>Solution</h5>
-<div class="answer">
-<p><img src="figures/sheet-1/sheet01-exercise2-a-HMM-solution.png" width="100%" style="display: block; margin: auto;" /></p>
-</div>
-</div>
-</div>
-<div id="section-7" class="section level4 unnumbered">
-<h4 class="unnumbered"></h4>
-</div>
-<div id="section-8" class="section level4 tabset">
-<h4 class="tabset"></h4>
-<div id="question-2b" class="section level5">
-<h5>Question 2B</h5>
-<div class="question">
-<p>Given an observed sequence of outcomes <span
-class="math inline">\(\mathcal{O} = 3661634\)</span> and two possible
-state sequences <span class="math inline">\(s_1 = LLLFFFF\)</span> and
-<span class="math inline">\(s_2 = FFFFFFF\)</span> (where <span
-class="math inline">\(F\)</span> = Fair and <span
-class="math inline">\(L\)</span> = Loaded), what are the joint
-probabilities <span class="math inline">\(P(\mathcal{O}, p_1)\)</span>
-and <span class="math inline">\(P(\mathcal{O}, p_2)\)</span> in the HMM
-described above?</p>
-</div>
-</div>
-<div id="hint-1-formulae-3" class="section level5">
-<h5>Hint 1 : Formulae</h5>
-<div class="answer">
-<p><span class="math display">\[
-P(\mathcal{O}, p_x) = P(\mathcal{O}|p_x) \times P(p_x)
-\]</span></p>
-</div>
-</div>
-<div id="hint-2-calculation-method-3" class="section level5">
-<h5>Hint 2 : Calculation Method</h5>
-<div class="answer">
-<p><span class="math display">\[\begin{align*}
-P(s_1)   =&amp; \pi_L \times t_{LL}^2 \times t_{LF} \times t_{FF}^3 =
-0.1 \times 0.9^2 \times 0.1 \times (0.95)^3 = 0.0069 \\
-P(s_2)   =&amp; \pi_F \times t_{FF}^6  = 0.9 \times 0.95^6 = 0.6616 \\
-P(\mathcal{O}|s_1) =&amp; t_{L,3} \times t_{L,6}^2 \times t_{F,1} \times
-t_{F,6} \times t_{F,3} \times t_{F,4} = 0.1 \times 0.5^2 \times
-(\frac{1}{6})^4 = 1.9 \times 10^{-5} \\
-P(\mathcal{O}|s_2) =&amp; t_{F,3} \times t_{F,6}^2 \times t_{F,1} \times
-t_{F,6} \times t_{F,3} \times t_{F,4} = (\frac{1}{6})^7 = 3.57 \times
-10^{-6} \\
-P(\mathcal{O},s_1) =&amp; P(\mathcal{O}|s_1) \times P(s_1)= 1.9 \times
-10^{-5} \times 0.0069 \\
-P(\mathcal{O},s_2) =&amp; P(\mathcal{O}|s_2) \times P(s_2)= 3.57 \times
-10^{-6} \times 0.6616
-\end{align*}\]</span></p>
-</div>
-</div>
-<div id="solution-4" class="section level5">
-<h5>Solution</h5>
-<div class="answer">
-<p><span class="math display">\[\begin{align*}
-P(\mathcal{O},s_1) &amp;= 1.34 \times 10^{-7}\\
-P(\mathcal{O},s_2) &amp;= 2.36 \times 10^{-6}
-\end{align*}\]</span></p>
-</div>
-</div>
-</div>
-<div id="section-9" class="section level4 unnumbered">
-<h4 class="unnumbered"></h4>
-</div>
-<div id="section-10" class="section level4 tabset">
-<h4 class="tabset"></h4>
-<div id="question-2c" class="section level5">
-<h5>Question 2C</h5>
-<div class="question">
-<p>Give an observation <span class="math inline">\(\mathcal{O} =
-1662\)</span>, how many possible state sequences exist in the described
-HMM?</p>
-</div>
-</div>
-<div id="hint-1" class="section level5">
-<h5>Hint 1</h5>
-<div class="answer">
-<p>The actual observation does not matter in this case because all
-emission probabilities are <span class="math inline">\(&gt;0\)</span>.
-This there are <span class="math inline">\(2^4\)</span> possible state
-sequences.</p>
-</div>
-</div>
-<div id="solution-5" class="section level5">
-<h5>Solution</h5>
-<div class="answer">
-<p>There are <span class="math inline">\(16\)</span> possible state
-sequences.</p>
-</div>
-</div>
-</div>
-<div id="section-11" class="section level4 unnumbered">
-<h4 class="unnumbered"></h4>
-<hr />
-</div>
-</div>
-<div id="exercise-3---programming-assignment" class="section level1">
-<h1>Exercise 3 - Programming assignment</h1>
-<p>Programming assignments are available via Github Classroom and
-contain automatic tests.</p>
-<p>We recommend doing these assignments as they will help you further
-your understanding of this topic.</p>
-<p>Access the Github Classroom link: <a href="">Programming Assignment:
-Sheet 01</a>.</p>
-<hr />
-<p>Download:
-<a href="exercise-sheet-1.pdf" title="Download PDF Version">PDF
-Version</a> of this page.</p>
 </div>
 
 

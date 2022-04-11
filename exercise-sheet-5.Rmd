@@ -1,0 +1,106 @@
+---
+title: "Exercise sheet 5: Probalign"
+---
+
+---------------------------------
+
+
+For the following exercises on Probalign, we use an affine gap penalty with $g(k) = \alpha + \beta k = -0.5 - 0.25k$, there temperature $T=1$ and the similarity function $\sigma(x_i, y_j)$:
+
+```{r, echo=FALSE, out.width="50%", fig.align='center'}
+knitr::include_graphics("figures/sheet-5/bordermatrix.png")
+```
+
+# Exercise 1
+
+#### {.tabset}
+
+##### Question 1A
+
+::: {.question data-latex=""}
+Compute the Boltzmann-weighted score for the following alignments:
+
+```
+(a)  x: --AGCGG          (b) x: AGCGG------
+          ||:||                     :
+     y: ACAGGGG              y: ----ACAGGGG
+```
+:::
+
+
+##### Hint 1 : Formulae 
+
+::: {.answer data-latex=""}
+
+
+$$
+S(a) = \sum_{x_i \sim y_j \in a} \sigma(x_i,y_j) + \sum \text{gap penalties}\\
+e^{\frac{S(a)}{T}} = \Bigg(\prod_{x_i\sim y_j \in a} e^{\frac{\sigma(x_i,y_j)}{T}} \Bigg) \times e^{\frac{\sum \text{gap penalties}}{T}}\\
+$$
+::: 
+
+##### Hint 2
+
+::: {.answer data-latex=""}
+For each alignment you only need to calulate $e^x$ once.
+::: 
+
+##### Hint 3: Calculations 
+
+::: {.answer data-latex=""}
+\begin{align*}
+\text{(a)} &\qquad e^{\sigma(A,A)} \times e^{3\sigma(G,G)} \times e^{\sigma(C,G)} \times e^{g(2)} &&= e^2 \times e^6 \times e^{-1} \times e^{-0.5 +(-0.25\times 2)} = e^6 \\
+\text{(b)} &\qquad e^{\sigma(G,A)} \times e^{g(4)} \times e^{g(6)} &&= e^{-1} \times e^{0.5 + (-0.25\times 4)} \times e^{0.5 + (-0.25\times 6)} = e^{-4.5}
+\end{align*}
+::: 
+
+##### Solution
+
+::: {.answer data-latex=""}
+\begin{align*}
+e^6 &= 403.43\\
+e^{-4.5} &= 0.011
+\end{align*}
+::: 
+
+#### {-}
+
+# Exercise 2
+
+
+#### {.tabset}
+
+##### Question 2A
+
+::: {.question data-latex=""}
+Derive the recursion formula for $Z^{I}_{i,j}$. Allow insertions after deletions and vice versa.
+:::
+
+
+##### Hint 1 : Formulae 
+
+::: {.answer data-latex=""}
+$$
+Z^{I}_{i,j} = Z^{I}_{i,j-1} \times e^\frac{\beta}{T} + Z^{M}_{i,j-1} \times e^\frac{g(1)}{T}  + Z^{D}_{i,j-1} \times e^\frac{g(1)}{T}
+$$
+::: 
+
+##### Hint 2
+
+::: {.answer data-latex=""}
+t
+::: 
+
+##### Hint 3: Calculations 
+
+::: {.answer data-latex=""}
+t
+::: 
+
+##### Solution
+
+::: {.answer data-latex=""}
+t
+::: 
+
+#### {-}

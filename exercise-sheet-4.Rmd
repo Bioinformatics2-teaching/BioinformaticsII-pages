@@ -8,7 +8,7 @@ You are given the basic pair-HMM for sequence alignment between two sequences:
 
 
 ```{r, echo=FALSE, out.width="50%", fig.align='center'}
-knitr::include_graphics("figures/exercise-4/HMM.png")
+knitr::include_graphics("figures/sheet-4/HMM.png")
 ```
 
 Let $\delta = 0.02$ and $\epsilon=0.79$. The initial probability distribution of the states is given by
