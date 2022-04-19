@@ -132,6 +132,31 @@ $EL^{b,c}_{1,4}=EL^{b,c}_{2,5}=EL^{b,c}_{3,6}=67$
 
 Realign the sequences $b$ and $c$ using $EL$ for scoring and gap costs and mismatch costs of 0
 
+
+##### Formulae
+
+::: {.answer data-latex=""}
+
+\begin{eqnarray*}
+i &\in& [1,|x|] \\
+j &\in& [1,|y|] \\
+L(0,0) &=& 0 \\
+L(i,0) &=& w(x_i,-)*i \quad \text{ or } = L(i-1,0)+w(x_i,-)\\
+L(0,j) &=& w(-,y_j)*j \quad \text{ or } = L(0,j-1)+w(-,y_j)\\
+L(i,j) &=& max \begin{cases}
+	L(i-1,j)+w(x_i,-)  \\
+	L(i,j-1)+w(-,y_j)  \\
+	L(i-1,j-1)+w(x_i,y_j) 
+	\end{cases}\\
+w(x_i,y_j) &=& \begin{cases}
+ EL^{x, y}_{i, j} & \text{match-score if } (x_i=y_j)\\
+ 0 & \text{insert/deletion-score if } (x_i = - \lor  y_j =-)\\
+ 0 & \text{mismatch-score else } (x_i\neq y_j) \\
+	\end{cases} \\
+\end{eqnarray*}
+
+:::
+
 ##### Solution
 
 ::: {.answer data-latex=""}
@@ -152,7 +177,7 @@ Realign the sequences $b$ and $c$ using $EL$ for scoring and gap costs and misma
 
 #### {.tabset}
 
-##### Question 1C
+##### Question 1D
 
 Do the other alignments $a$-$b$ and $a$-$c$ change? Provide arguments, without calculating new alignments.
 
@@ -168,11 +193,11 @@ current best alignments and can not score higher.
 
 ##### Question 1E
 
-Sketch the Guide Tree
+Sketch a Guide Tree (either Sketch or Newick format)
 
 ##### Solution
 
-$((a,c),b)$  or $((a,b),c)$
+Newick: $((a,c),b)$  or $((a,b),c)$
 
 #### {-}
 

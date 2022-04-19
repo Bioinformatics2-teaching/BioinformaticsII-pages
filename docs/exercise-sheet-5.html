@@ -13,7 +13,7 @@
 
 <title>Exercise sheet 5: Probalign</title>
 
-<script src="site_libs/header-attrs-2.12/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.11/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/cosmo.min.css" rel="stylesheet" />
@@ -60,7 +60,6 @@ if (window.hljs) {
 
 
 
-
 <link rel="stylesheet" href="bioinf-style.css" type="text/css" />
 
 
@@ -85,9 +84,6 @@ button.code-folding-btn:focus {
 }
 summary {
   display: list-item;
-}
-details > summary > p:only-child {
-  display: inline;
 }
 pre code {
   padding: 0;
@@ -363,11 +359,7 @@ div.tocify {
 
 
 <hr />
-<p>For the following exercises on Probalign, we use an affine gap
-penalty with <span class="math inline">\(g(k) = \alpha + \beta k = -0.5
-- 0.25k\)</span>, there temperature <span
-class="math inline">\(T=1\)</span> and the similarity function <span
-class="math inline">\(\sigma(x_i, y_j)\)</span>:</p>
+<p>For the following exercises on Probalign, we use an affine gap penalty with <span class="math inline">\(g(k) = \alpha + \beta k = -0.5 - 0.25k\)</span>, there temperature <span class="math inline">\(T=1\)</span> and the similarity function <span class="math inline">\(\sigma(x_i, y_j)\)</span>:</p>
 <p><img src="figures/sheet-5/bordermatrix.png" width="50%" style="display: block; margin: auto;" /></p>
 <div id="exercise-1" class="section level1">
 <h1>Exercise 1</h1>
@@ -376,8 +368,7 @@ class="math inline">\(\sigma(x_i, y_j)\)</span>:</p>
 <div id="question-1a" class="section level5">
 <h5>Question 1A</h5>
 <div class="question">
-<p>Compute the Boltzmann-weighted score for the following
-alignments:</p>
+<p>Compute the Boltzmann-weighted score for the following alignments:</p>
 <pre><code>(a)  x: --AGCGG          (b) x: AGCGG------
           ||:||                     :
      y: ACAGGGG              y: ----ACAGGGG</code></pre>
@@ -387,31 +378,23 @@ alignments:</p>
 <h5>Hint 1 : Formulae</h5>
 <div class="answer">
 <p><span class="math display">\[
-S(a) = \sum_{x_i \sim y_j \in a} \sigma(x_i,y_j) + \sum \text{gap
-penalties}\\
-e^{\frac{S(a)}{T}} = \Bigg(\prod_{x_i\sim y_j \in a}
-e^{\frac{\sigma(x_i,y_j)}{T}} \Bigg) \times e^{\frac{\sum \text{gap
-penalties}}{T}}\\
+S(a) = \sum_{x_i \sim y_j \in a} \sigma(x_i,y_j) + \sum \text{gap penalties}\\
+e^{\frac{S(a)}{T}} = \Bigg(\prod_{x_i\sim y_j \in a} e^{\frac{\sigma(x_i,y_j)}{T}} \Bigg) \times e^{\frac{\sum \text{gap penalties}}{T}}\\
 \]</span></p>
 </div>
 </div>
 <div id="hint-2" class="section level5">
 <h5>Hint 2</h5>
 <div class="answer">
-<p>For each alignment you only need to calulate <span
-class="math inline">\(e^x\)</span> once.</p>
+<p>For each alignment you only need to calulate <span class="math inline">\(e^x\)</span> once.</p>
 </div>
 </div>
 <div id="hint-3-calculations" class="section level5">
 <h5>Hint 3: Calculations</h5>
 <div class="answer">
 <p><span class="math display">\[\begin{align*}
-\text{(a)} &amp;\qquad e^{\sigma(A,A)} \times e^{3\sigma(G,G)} \times
-e^{\sigma(C,G)} \times e^{g(2)} &amp;&amp;= e^2 \times e^6 \times e^{-1}
-\times e^{-0.5 +(-0.25\times 2)} = e^6 \\
-\text{(b)} &amp;\qquad e^{\sigma(G,A)} \times e^{g(4)} \times e^{g(6)}
-&amp;&amp;= e^{-1} \times e^{0.5 + (-0.25\times 4)} \times e^{0.5 +
-(-0.25\times 6)} = e^{-4.5}
+\text{(a)} &amp;\qquad e^{\sigma(A,A)} \times e^{3\sigma(G,G)} \times e^{\sigma(C,G)} \times e^{g(2)} &amp;&amp;= e^2 \times e^6 \times e^{-1} \times e^{-0.5 +(-0.25\times 2)} = e^6 \\
+\text{(b)} &amp;\qquad e^{\sigma(G,A)} \times e^{g(4)} \times e^{g(6)} &amp;&amp;= e^{-1} \times e^{0.5 + (-0.25\times 4)} \times e^{0.5 + (-0.25\times 6)} = e^{-4.5}
 \end{align*}\]</span></p>
 </div>
 </div>
@@ -436,17 +419,14 @@ e^{-4.5} &amp;= 0.011
 <div id="question-2a" class="section level5">
 <h5>Question 2A</h5>
 <div class="question">
-<p>Derive the recursion formula for <span
-class="math inline">\(Z^{I}_{i,j}\)</span>. Allow insertions after
-deletions and vice versa.</p>
+<p>Derive the recursion formula for <span class="math inline">\(Z^{I}_{i,j}\)</span>. Allow insertions after deletions and vice versa.</p>
 </div>
 </div>
 <div id="hint-1-formulae-1" class="section level5">
 <h5>Hint 1 : Formulae</h5>
 <div class="answer">
 <p><span class="math display">\[
-Z^{I}_{i,j} = Z^{I}_{i,j-1} \times e^\frac{\beta}{T} + Z^{M}_{i,j-1}
-\times e^\frac{g(1)}{T}  + Z^{D}_{i,j-1} \times e^\frac{g(1)}{T}
+Z^{I}_{i,j} = Z^{I}_{i,j-1} \times e^\frac{\beta}{T} + Z^{M}_{i,j-1} \times e^\frac{g(1)}{T}  + Z^{D}_{i,j-1} \times e^\frac{g(1)}{T}
 \]</span></p>
 </div>
 </div>
