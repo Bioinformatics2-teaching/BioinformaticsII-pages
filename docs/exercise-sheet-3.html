@@ -488,6 +488,28 @@ class="math inline">\(EL^{b,c}_{1,4}=EL^{b,c}_{2,5}=EL^{b,c}_{3,6}=67\)</span></
 class="math inline">\(EL\)</span> for scoring and gap costs and mismatch
 costs of 0</p>
 </div>
+<div id="formulae-2" class="section level5">
+<h5>Formulae</h5>
+<div class="answer">
+<p><span class="math display">\[\begin{eqnarray*}
+i &amp;\in&amp; [1,|x|] \\
+j &amp;\in&amp; [1,|y|] \\
+L(0,0) &amp;=&amp; 0 \\
+L(i,0) &amp;=&amp; w(x_i,-)*i \quad \text{ or } = L(i-1,0)+w(x_i,-)\\
+L(0,j) &amp;=&amp; w(-,y_j)*j \quad \text{ or } = L(0,j-1)+w(-,y_j)\\
+L(i,j) &amp;=&amp; max \begin{cases}
+    L(i-1,j)+w(x_i,-)  \\
+    L(i,j-1)+w(-,y_j)  \\
+    L(i-1,j-1)+w(x_i,y_j)
+    \end{cases}\\
+w(x_i,y_j) &amp;=&amp; \begin{cases}
+EL^{x, y}_{i, j} &amp; \text{match-score if } (x_i=y_j)\\
+0 &amp; \text{insert/deletion-score if } (x_i = - \lor  y_j =-)\\
+0 &amp; \text{mismatch-score else } (x_i\neq y_j) \\
+    \end{cases} \\
+\end{eqnarray*}\]</span></p>
+</div>
+</div>
 <div id="solution-2" class="section level5">
 <h5>Solution</h5>
 <div class="answer">
@@ -585,8 +607,8 @@ costs of 0</p>
 </div>
 <div id="section-6" class="section level4 tabset">
 <h4 class="tabset"></h4>
-<div id="question-1c-1" class="section level5">
-<h5>Question 1C</h5>
+<div id="question-1d" class="section level5">
+<h5>Question 1D</h5>
 <p>Do the other alignments <span class="math inline">\(a\)</span>-<span
 class="math inline">\(b\)</span> and <span
 class="math inline">\(a\)</span>-<span class="math inline">\(c\)</span>
@@ -606,11 +628,11 @@ with the current best alignments and can not score higher.</p>
 <h4 class="tabset"></h4>
 <div id="question-1e" class="section level5">
 <h5>Question 1E</h5>
-<p>Sketch the Guide Tree</p>
+<p>Sketch a Guide Tree (either Sketch or Newick format)</p>
 </div>
 <div id="solution-4" class="section level5">
 <h5>Solution</h5>
-<p><span class="math inline">\(((a,c),b)\)</span> or <span
+<p>Newick: <span class="math inline">\(((a,c),b)\)</span> or <span
 class="math inline">\(((a,b),c)\)</span></p>
 </div>
 </div>
