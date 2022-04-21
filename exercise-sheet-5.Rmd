@@ -42,7 +42,7 @@ $$
 ##### Hint 2
 
 ::: {.answer data-latex=""}
-For each alignment you only need to calulate $e^x$ once.
+For each alignment you only need to calculate $e^x$ once.
 ::: 
 
 ##### Hint 3: Calculations 
@@ -58,12 +58,15 @@ For each alignment you only need to calulate $e^x$ once.
 
 ::: {.answer data-latex=""}
 \begin{align*}
-e^6 &= 403.43\\
-e^{-4.5} &= 0.011
+\text{(a)} &\qquad e^6 = 403.43\\
+\text{(b)} &\qquad e^{-4.5} = 0.011
 \end{align*}
 ::: 
 
 #### {-}
+
+---------------------------------
+
 
 # Exercise 2
 
@@ -77,7 +80,7 @@ Derive the recursion formula for $Z^{I}_{i,j}$. Allow insertions after deletions
 :::
 
 
-##### Hint 1 : Formulae 
+##### Solution 
 
 ::: {.answer data-latex=""}
 $$
@@ -85,22 +88,245 @@ Z^{I}_{i,j} = Z^{I}_{i,j-1} \times e^\frac{\beta}{T} + Z^{M}_{i,j-1} \times e^\f
 $$
 ::: 
 
-##### Hint 2
+#### {-}
+
+---------------------------------
+
+#### {.tabset}
+
+##### Question 2B
+
+::: {.question data-latex=""}
+Compute the partition function Z(T) by dynamic programming for the sequences `x=ACC` and `y=AC`. Allow insertions after deletions and vice versa. In order to simplify the computations, you can round to two digits after the decimal point. 
+:::
+
+
+##### Hint 1: Formulae 
 
 ::: {.answer data-latex=""}
-t
+Initialization:
+\begin{align*}
+Z^M_{i,0} &= Z^M_{0,j} = 0, Z^M_{0,0} = 1\\
+Z^I_{i,0} &= 0\\
+Z^D_{0,j} &= 0
+\end{align*}
+
+Recursion:
+\begin{align*}
+Z^{M}_{i,j} &= Z_{i-1,j-1} \times e^{\frac{\sigma(x_i,y_j)}{T}}\\
+Z^{I}_{i,j} &= Z^{I}_{i,j-1} \times e^\frac{\beta}{T} + Z^{M}_{i,j-1} \times e^\frac{g(1)}{T}  + Z^{D}_{i,j-1} \times e^\frac{g(1)}{T}\\
+Z^{D}_{i,j} &= Z^{D}_{i-1,j} \times e^\frac{\beta}{T} + Z^{M}_{i-1,j} \times e^\frac{g(1)}{T}  + Z^{I}_{i-1,j} \times e^\frac{g(1)}{T}\\
+Z_{i,j} &= Z^{M}_{i,j} + Z^{I}_{i,j} + Z^{D}_{i,j} 
+\end{align*}
 ::: 
 
-##### Hint 3: Calculations 
+##### Solution
+```{r, include=FALSE}
+library(flextable)
+library(officer)
+custom_theme <- function(x) {
+  x <- set_table_properties(x, layout = "fixed")
+  x <- border_remove(x)
+  std_border <- fp_border(width = 1, color = "black")
+  x <- border_outer(x, part="all", border = std_border)
+  x <- border_inner_h(x, border = std_border, part="all")
+  x <- border_inner_v(x, border = std_border, part="all")
+  x <- align(x, align = "center", part = "all")
+  x <- bold(x, bold = TRUE, part = "header")
+  x <- bold(x, bold = TRUE, j=1)
+  width(x, width=2, unit="cm")
+} 
+zm <- data.frame(a = c( "-",  "A",   "C",   "C"),
+                 b = c(1.00, 0.00,  0.00,  0.00),
+                 c = c(0.00, 7.39,  0.17,  0.14),
+                 d = c(0.00, 0.17, 57.90, 30.42))
+names(zm) <- c("Z^M", "-", "A", "C")
+
+zi <- data.frame(a = c( "-",  "A",   "C",   "C"),
+                 b = c(0.00, 0.00,  0.00,  0.00),
+                 c = c(0.47, 0.22,  0.17,  0.14),
+                 d = c(0.37, 3.77,  2.00,  1.63))
+names(zi) <- c("Z^I", "-", "A", "C")
+
+zd <- data.frame(a = c( "-",  "A",   "C",   "C"),
+                 b = c(0.00, 0.47,  0.37,  0.29),
+                 c = c(0.00, 0.22,  3.68,  3.10),
+                 d = c(0.00, 0.17,  2.00, 29.85))
+names(zd) <- c("Z^D", "-", "A", "C")
+
+z <- data.frame(a = c( "-",  "A",   "C",   "C"),
+                b = c(1.00, 0.47,  0.37,  0.29),
+                c = c(0.47, 7.84,  4.12,  3.37),
+                d = c(0.37, 4.12, 61.89, 61.90))
+names(z) <- c("Z", "-", "A", "C")
+```
+
 
 ::: {.answer data-latex=""}
-t
+
+```{r, results="asis", include=knitr::is_html_output(), echo=FALSE}
+
+zm_ft <- flextable(zm)
+zm_ft <- compose(zm_ft, part="header", j=1, value = as_paragraph("Z", as_sup("M")))
+custom_theme(zm_ft)
+
+zi_ft <- flextable(zi)
+zi_ft <- compose(zi_ft, part="header", j=1, value = as_paragraph("Z", as_sup("I")))
+custom_theme(zi_ft)
+
+zd_ft <- flextable(zd)
+zd_ft <- compose(zd_ft, part="header", j=1, value = as_paragraph("Z", as_sup("D")))
+custom_theme(zd_ft)
+
+z_ft <- flextable(z)
+custom_theme(z_ft)
+```
+
+```{r, results="asis", include=knitr::is_latex_output(), echo=FALSE}
+knitr::kable(zm)
+knitr::kable(zi)
+knitr::kable(zd)
+knitr::kable(z)
+```
+
+:::
+
+#### {-}
+
+---------------------------------
+
+# Exercise 3
+
+The partition function of the reverse sequences $x^* = CA$ and $y^* = CCA$ is given in the matrix $Z^*$:
+```{r, include=FALSE}
+zstar <- data.frame(a = c( "-",  "A",   "C",   "C"),
+                    b = c(1.00, 0.47,  0.37,  0.29),
+                    c = c(0.47, 7.84,  7.43,  4.94),
+                    d = c(0.37, 4.12,  8.45, 61.90))
+names(zstar) <- c("Z^*", "-", "A", "C")
+
+zstar_pos <- data.frame(a = c(    "-",     "A",     "C",     "C"),
+                        b = c("(0,0)", "(1,0)", "(2,0)", "(3,0)"),
+                        c = c("(0,1)", "(1,1)", "(2,1)", "(3,1)"),
+                        d = c("(0,2)", "(1,2)", "(2,2)", "(3,2)"))
+names(zstar_pos) <- c("Z^*", "-", "C", "A")
+
+zprime_pos <- data.frame(a = c(    "-",     "A",     "C",     "C",     "-"),
+                         b = c("(0,0)", "(1,0)", "(2,0)", "(3,0)", "(4,0)"),
+                         c = c("(0,1)", "(1,1)", "(2,1)", "(3,1)", "(4,1)"),
+                         d = c("(0,2)", "(1,2)", "(2,2)", "(3,2)", "(4,2)"),
+                         e = c("(0,3)", "(1,3)", "(2,3)", "(3,3)", "(4,3)"))
+names(zprime_pos) <- c("Z^'", "-", "A", "C", "--")
+```
+
+```{r, results="asis", include=knitr::is_html_output(), echo=FALSE}
+
+zstar_ft <- flextable(zstar)
+zstar_ft <- compose(zstar_ft, part="header", j=1, value = as_paragraph("Z", as_sup("*")))
+custom_theme(zstar_ft)
+```
+
+```{r, results="asis", include=knitr::is_latex_output(), echo=FALSE}
+knitr::kable(zstar)
+```
+
+#### {.tabset}
+
+##### Question 3A
+
+::: {.question data-latex=""}
+Find a mapping from matrix $Z^{*}_{k,l}$ to $Z^{\prime}_{i,j}$. Which position in matrix $Z^{*}$ corresponds to which position in matrix $Z^{\prime}$?
+:::
+
+
+##### Solution
+
+::: {.answer data-latex=""}
+$Z^{\prime}_{i,j}$ is the partition function of the alignment $x_j ... x_{|x|}$ with $y_i ... y_{|y|}$.
+
+$Z^{*}_{k,l}$ is the partition function of the alignment $x_{|x|} ... x_{|x|-k+1}$ with $y_{|y|}...y_{|y|-l+1}$.
+
+\begin{align*}
+j &= |x| -l +1 \Leftrightarrow l = |x| -j +1\\
+i &= |y| -k +1 \Leftrightarrow k = |y| -i +1
+\end{align*}
+
+```{r, results="asis", include=knitr::is_html_output(), echo=FALSE}
+
+zstar_pos_ft <- flextable(zstar_pos)
+zstar_pos_ft <- compose(zstar_pos_ft, part="header", j=1, value = as_paragraph("Z", as_sup("*")))
+custom_theme(zstar_ft)
+
+zprime_pos_ft <- flextable(zprime_pos)
+zprime_pos_ft <- compose(zprime_pos_ft, part="header", j=1, value = as_paragraph("Z", as_sup("'")))
+zprime_pos_ft <- compose(zprime_pos_ft, part="header", j=5, value = as_paragraph("-"))
+custom_theme(zprime_pos_ft)
+```
+
+```{r, results="asis", include=knitr::is_latex_output(), echo=FALSE}
+knitr::kable(zstar_pos)
+knitr::kable(zprime_pos)
+```
+:::
+
+#### {-}
+
+---------------------------------
+#### {.tabset}
+
+##### Question 3B
+
+::: {.question data-latex=""}
+Use $Z,Z^*$ and the mapping from $Z^*$ to $Z^\prime$ to compute the probability of the alignment edges $(1,1)$, $(2,2)$, $(3,1)$ and $(3,2)$ between $x$ and $y$.
+:::
+
+
+
+##### Hint 1: Formulae 
+
+::: {.answer data-latex=""}
+$$
+P(x_i \sim y_j | x,y) = \frac{Z_{i-1,j-1}\times e^{\frac{\sigma(x_i,y_j)}{T}} \times Z^{\prime}_{i+1,j+1}}{Z(T)}\\
+Z^M_{i,j} = Z_{i-1,j-1} \times  e^{\frac{\sigma(x_i,y_j)}{T}}
+$$
+::: 
+
+
+##### Hint 2 
+
+::: {.answer data-latex=""}
+Mapped positions:
+\begin{align*}
+Z^{\prime}_{2,2} &\Longleftrightarrow Z^{\ast}_{2,1}\\
+Z^{\prime}_{3,3} &\Longleftrightarrow Z^{\ast}_{1,0}\\
+Z^{\prime}_{4,2} &\Longleftrightarrow Z^{\ast}_{0,1}\\
+Z^{\prime}_{4,3} &\Longleftrightarrow Z^{\ast}_{0,0}
+\end{align*}
 ::: 
 
 ##### Solution
 
 ::: {.answer data-latex=""}
-t
-::: 
+Alignment edge $(1,1)$:
+$$
+P(x_1 \sim y_1 | x,y) = \frac{Z_{0,0}\times e^{\frac{\sigma(x_1,y_1)}{T}} \times Z^{\prime}_{2,2}}{Z(T)} =\frac{Z_{0,0}\times e^{\frac{\sigma(x_1,y_1)}{T}} \times Z^{\ast}_{2,1}}{Z(T)} = \frac{Z^M_{1,1} \times Z^{\ast}_{2,1}}{Z(T)} = \frac{7.39 \times 7.43}{61.90} = 0.89
+$$
+Alignment edge $(2,2)$:
+$$
+P(x_2 \sim y_2 | x,y) = \frac{Z_{1,1}\times e^{\frac{\sigma(x_2,y_2)}{T}} \times Z^{\prime}_{3,3}}{Z(T)} =\frac{Z_{1,1}\times e^{\frac{\sigma(x_2,y_2)}{T}} \times Z^{\ast}_{1,0}}{Z(T)} = \frac{Z^M_{2,2} \times Z^{\ast}_{1,0}}{Z(T)} = \frac{57.90 \times 0.47}{61.90} = 0.44
+$$
+Alignment edge $(3,1)$:
+$$
+P(x_3 \sim y_1 | x,y) = \frac{Z^M_{3,1} \times Z^{\prime}_{4,2}}{Z(T)} =  \frac{Z^M_{3,1} \times Z^{\ast}_{0,1}}{Z(T)} = \frac{0.14 \times 0.47}{61.90} = 0.001
+$$
+Alignment edge $(3,2)$:
+$$
+P(x_3 \sim y_2 | x,y) = \frac{Z^M_{3,2} \times Z^{\prime}_{4,3}}{Z(T)} =  \frac{Z^M_{3,1} \times Z^{\ast}_{0,0}}{Z(T)} = \frac{30.42 \times 1}{61.90} = 0.49
+$$
+:::
 
 #### {-}
+```{r, include=knitr::is_html_output(), echo=F}
+knitr::asis_output('Download: <a href="exercise-sheet-5.pdf" title="Download PDF Version">PDF Version</a> of this page.')
+```
+

@@ -35,6 +35,7 @@
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<link href="site_libs/tabwid-1.0.0/tabwid.css" rel="stylesheet" />
 
 <style type="text/css">
   code{white-space: pre-wrap;}
@@ -398,7 +399,7 @@ penalties}}{T}}\\
 <div id="hint-2" class="section level5">
 <h5>Hint 2</h5>
 <div class="answer">
-<p>For each alignment you only need to calulate <span
+<p>For each alignment you only need to calculate <span
 class="math inline">\(e^x\)</span> once.</p>
 </div>
 </div>
@@ -419,14 +420,15 @@ e^{\sigma(C,G)} \times e^{g(2)} &amp;&amp;= e^2 \times e^6 \times e^{-1}
 <h5>Solution</h5>
 <div class="answer">
 <p><span class="math display">\[\begin{align*}
-e^6 &amp;= 403.43\\
-e^{-4.5} &amp;= 0.011
+\text{(a)} &amp;\qquad e^6 = 403.43\\
+\text{(b)} &amp;\qquad e^{-4.5} = 0.011
 \end{align*}\]</span></p>
 </div>
 </div>
 </div>
 <div id="section-1" class="section level4 unnumbered">
 <h4 class="unnumbered"></h4>
+<hr />
 </div>
 </div>
 <div id="exercise-2" class="section level1">
@@ -441,8 +443,8 @@ class="math inline">\(Z^{I}_{i,j}\)</span>. Allow insertions after
 deletions and vice versa.</p>
 </div>
 </div>
-<div id="hint-1-formulae-1" class="section level5">
-<h5>Hint 1 : Formulae</h5>
+<div id="solution-1" class="section level5">
+<h5>Solution</h5>
 <div class="answer">
 <p><span class="math display">\[
 Z^{I}_{i,j} = Z^{I}_{i,j-1} \times e^\frac{\beta}{T} + Z^{M}_{i,j-1}
@@ -450,27 +452,530 @@ Z^{I}_{i,j} = Z^{I}_{i,j-1} \times e^\frac{\beta}{T} + Z^{M}_{i,j-1}
 \]</span></p>
 </div>
 </div>
-<div id="hint-2-1" class="section level5">
-<h5>Hint 2</h5>
-<div class="answer">
-<p>t</p>
-</div>
-</div>
-<div id="hint-3-calculations-1" class="section level5">
-<h5>Hint 3: Calculations</h5>
-<div class="answer">
-<p>t</p>
-</div>
-</div>
-<div id="solution-1" class="section level5">
-<h5>Solution</h5>
-<div class="answer">
-<p>t</p>
-</div>
-</div>
 </div>
 <div id="section-3" class="section level4 unnumbered">
 <h4 class="unnumbered"></h4>
+<hr />
+</div>
+<div id="section-4" class="section level4 tabset">
+<h4 class="tabset"></h4>
+<div id="question-2b" class="section level5">
+<h5>Question 2B</h5>
+<div class="question">
+<p>Compute the partition function Z(T) by dynamic programming for the
+sequences <code>x=ACC</code> and <code>y=AC</code>. Allow insertions
+after deletions and vice versa. In order to simplify the computations,
+you can round to two digits after the decimal point.</p>
+</div>
+</div>
+<div id="hint-1-formulae-1" class="section level5">
+<h5>Hint 1: Formulae</h5>
+<div class="answer">
+<p>Initialization: <span class="math display">\[\begin{align*}
+Z^M_{i,0} &amp;= Z^M_{0,j} = 0, Z^M_{0,0} = 1\\
+Z^I_{i,0} &amp;= 0\\
+Z^D_{0,j} &amp;= 0
+\end{align*}\]</span></p>
+<p>Recursion: <span class="math display">\[\begin{align*}
+Z^{M}_{i,j} &amp;= Z_{i-1,j-1} \times e^{\frac{\sigma(x_i,y_j)}{T}}\\
+Z^{I}_{i,j} &amp;= Z^{I}_{i,j-1} \times e^\frac{\beta}{T} +
+Z^{M}_{i,j-1} \times e^\frac{g(1)}{T}  + Z^{D}_{i,j-1} \times
+e^\frac{g(1)}{T}\\
+Z^{D}_{i,j} &amp;= Z^{D}_{i-1,j} \times e^\frac{\beta}{T} +
+Z^{M}_{i-1,j} \times e^\frac{g(1)}{T}  + Z^{I}_{i-1,j} \times
+e^\frac{g(1)}{T}\\
+Z_{i,j} &amp;= Z^{M}_{i,j} + Z^{I}_{i,j} + Z^{D}_{i,j}
+\end{align*}\]</span></p>
+</div>
+</div>
+<div id="solution-2" class="section level5">
+<h5>Solution</h5>
+<div class="answer">
+<template id="b66c1f71-df75-4476-a556-88ecf1f139c4"><style>
+.tabwid table{
+  border-spacing:0px !important;
+  border-collapse:collapse;
+  line-height:1;
+  margin-left:auto;
+  margin-right:auto;
+  border-width: 0;
+  display: table;
+  margin-top: 1.275em;
+  margin-bottom: 1.275em;
+  border-color: transparent;
+}
+.tabwid_left table{
+  margin-left:0;
+}
+.tabwid_right table{
+  margin-right:0;
+}
+.tabwid td {
+    padding: 0;
+}
+.tabwid a {
+  text-decoration: none;
+}
+.tabwid thead {
+    background-color: transparent;
+}
+.tabwid tfoot {
+    background-color: transparent;
+}
+.tabwid table tr {
+background-color: transparent;
+}
+</style><div class="tabwid"><style>.cl-b98f7d3c{}.cl-b9896ad2{font-family:'DejaVu Sans';font-size:11pt;font-weight:bold;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-b9896adc{font-family:'DejaVu Sans';font-size:6.6pt;font-weight:bold;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;position: relative;bottom:3.3pt;}.cl-b9896ae6{font-family:'DejaVu Sans';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-b989842c{margin:0;text-align:center;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-b989bab4{width:56.7pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 1pt solid rgba(0, 0, 0, 1.00);border-right: 1pt solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-b989bac8{width:56.7pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(0, 0, 0, 1.00);border-top: 1pt solid rgba(0, 0, 0, 1.00);border-left: 1pt solid rgba(0, 0, 0, 1.00);border-right: 1pt solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style><table class='cl-b98f7d3c'>
+<thead><tr style="overflow-wrap:break-word;"><td class="cl-b989bac8"><p class="cl-b989842c"><span class="cl-b9896ad2">Z</span><span class="cl-b9896adc">M</span></p></td><td class="cl-b989bac8"><p class="cl-b989842c"><span class="cl-b9896ad2">-</span></p></td><td class="cl-b989bac8"><p class="cl-b989842c"><span class="cl-b9896ad2">A</span></p></td><td class="cl-b989bac8"><p class="cl-b989842c"><span class="cl-b9896ad2">C</span></p></td></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td class="cl-b989bab4"><p class="cl-b989842c"><span class="cl-b9896ad2">-</span></p></td><td class="cl-b989bab4"><p class="cl-b989842c"><span class="cl-b9896ae6">1</span></p></td><td class="cl-b989bab4"><p class="cl-b989842c"><span class="cl-b9896ae6">0.00</span></p></td><td class="cl-b989bab4"><p class="cl-b989842c"><span class="cl-b9896ae6">0.00</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-b989bac8"><p class="cl-b989842c"><span class="cl-b9896ad2">A</span></p></td><td class="cl-b989bac8"><p class="cl-b989842c"><span class="cl-b9896ae6">0</span></p></td><td class="cl-b989bac8"><p class="cl-b989842c"><span class="cl-b9896ae6">7.39</span></p></td><td class="cl-b989bac8"><p class="cl-b989842c"><span class="cl-b9896ae6">0.17</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-b989bac8"><p class="cl-b989842c"><span class="cl-b9896ad2">C</span></p></td><td class="cl-b989bac8"><p class="cl-b989842c"><span class="cl-b9896ae6">0</span></p></td><td class="cl-b989bac8"><p class="cl-b989842c"><span class="cl-b9896ae6">0.17</span></p></td><td class="cl-b989bac8"><p class="cl-b989842c"><span class="cl-b9896ae6">57.90</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-b989bac8"><p class="cl-b989842c"><span class="cl-b9896ad2">C</span></p></td><td class="cl-b989bac8"><p class="cl-b989842c"><span class="cl-b9896ae6">0</span></p></td><td class="cl-b989bac8"><p class="cl-b989842c"><span class="cl-b9896ae6">0.14</span></p></td><td class="cl-b989bac8"><p class="cl-b989842c"><span class="cl-b9896ae6">30.42</span></p></td></tr></tbody></table></div></template>
+<div class="flextable-shadow-host" id="ee261302-1502-4be0-a853-4b850d4588f9"></div>
+<script>
+var dest = document.getElementById("ee261302-1502-4be0-a853-4b850d4588f9");
+var template = document.getElementById("b66c1f71-df75-4476-a556-88ecf1f139c4");
+var caption = template.content.querySelector("caption");
+if(caption) {
+  caption.style.cssText = "display:block;text-align:center;";
+  var newcapt = document.createElement("p");
+  newcapt.appendChild(caption)
+  dest.parentNode.insertBefore(newcapt, dest.previousSibling);
+}
+var fantome = dest.attachShadow({mode: 'open'});
+var templateContent = template.content;
+fantome.appendChild(templateContent);
+</script>
+
+<template id="8d7dd8f0-23b6-49ca-bcb4-72ea6e07924f"><style>
+.tabwid table{
+  border-spacing:0px !important;
+  border-collapse:collapse;
+  line-height:1;
+  margin-left:auto;
+  margin-right:auto;
+  border-width: 0;
+  display: table;
+  margin-top: 1.275em;
+  margin-bottom: 1.275em;
+  border-color: transparent;
+}
+.tabwid_left table{
+  margin-left:0;
+}
+.tabwid_right table{
+  margin-right:0;
+}
+.tabwid td {
+    padding: 0;
+}
+.tabwid a {
+  text-decoration: none;
+}
+.tabwid thead {
+    background-color: transparent;
+}
+.tabwid tfoot {
+    background-color: transparent;
+}
+.tabwid table tr {
+background-color: transparent;
+}
+</style><div class="tabwid"><style>.cl-b99e84f8{}.cl-b99a0b12{font-family:'DejaVu Sans';font-size:11pt;font-weight:bold;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-b99a0b1c{font-family:'DejaVu Sans';font-size:6.6pt;font-weight:bold;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;position: relative;bottom:3.3pt;}.cl-b99a0b26{font-family:'DejaVu Sans';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-b99a1760{margin:0;text-align:center;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-b99a38f8{width:56.7pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 1pt solid rgba(0, 0, 0, 1.00);border-right: 1pt solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-b99a38f9{width:56.7pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(0, 0, 0, 1.00);border-top: 1pt solid rgba(0, 0, 0, 1.00);border-left: 1pt solid rgba(0, 0, 0, 1.00);border-right: 1pt solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style><table class='cl-b99e84f8'>
+<thead><tr style="overflow-wrap:break-word;"><td class="cl-b99a38f9"><p class="cl-b99a1760"><span class="cl-b99a0b12">Z</span><span class="cl-b99a0b1c">I</span></p></td><td class="cl-b99a38f9"><p class="cl-b99a1760"><span class="cl-b99a0b12">-</span></p></td><td class="cl-b99a38f9"><p class="cl-b99a1760"><span class="cl-b99a0b12">A</span></p></td><td class="cl-b99a38f9"><p class="cl-b99a1760"><span class="cl-b99a0b12">C</span></p></td></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td class="cl-b99a38f8"><p class="cl-b99a1760"><span class="cl-b99a0b12">-</span></p></td><td class="cl-b99a38f8"><p class="cl-b99a1760"><span class="cl-b99a0b26">0</span></p></td><td class="cl-b99a38f8"><p class="cl-b99a1760"><span class="cl-b99a0b26">0.47</span></p></td><td class="cl-b99a38f8"><p class="cl-b99a1760"><span class="cl-b99a0b26">0.37</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-b99a38f9"><p class="cl-b99a1760"><span class="cl-b99a0b12">A</span></p></td><td class="cl-b99a38f9"><p class="cl-b99a1760"><span class="cl-b99a0b26">0</span></p></td><td class="cl-b99a38f9"><p class="cl-b99a1760"><span class="cl-b99a0b26">0.22</span></p></td><td class="cl-b99a38f9"><p class="cl-b99a1760"><span class="cl-b99a0b26">3.77</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-b99a38f9"><p class="cl-b99a1760"><span class="cl-b99a0b12">C</span></p></td><td class="cl-b99a38f9"><p class="cl-b99a1760"><span class="cl-b99a0b26">0</span></p></td><td class="cl-b99a38f9"><p class="cl-b99a1760"><span class="cl-b99a0b26">0.17</span></p></td><td class="cl-b99a38f9"><p class="cl-b99a1760"><span class="cl-b99a0b26">2.00</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-b99a38f9"><p class="cl-b99a1760"><span class="cl-b99a0b12">C</span></p></td><td class="cl-b99a38f9"><p class="cl-b99a1760"><span class="cl-b99a0b26">0</span></p></td><td class="cl-b99a38f9"><p class="cl-b99a1760"><span class="cl-b99a0b26">0.14</span></p></td><td class="cl-b99a38f9"><p class="cl-b99a1760"><span class="cl-b99a0b26">1.63</span></p></td></tr></tbody></table></div></template>
+<div class="flextable-shadow-host" id="fc2545ec-2cce-4d8a-ab3d-391a1f900b31"></div>
+<script>
+var dest = document.getElementById("fc2545ec-2cce-4d8a-ab3d-391a1f900b31");
+var template = document.getElementById("8d7dd8f0-23b6-49ca-bcb4-72ea6e07924f");
+var caption = template.content.querySelector("caption");
+if(caption) {
+  caption.style.cssText = "display:block;text-align:center;";
+  var newcapt = document.createElement("p");
+  newcapt.appendChild(caption)
+  dest.parentNode.insertBefore(newcapt, dest.previousSibling);
+}
+var fantome = dest.attachShadow({mode: 'open'});
+var templateContent = template.content;
+fantome.appendChild(templateContent);
+</script>
+
+<template id="55d1104b-73fc-4c89-9fd4-7479375a2536"><style>
+.tabwid table{
+  border-spacing:0px !important;
+  border-collapse:collapse;
+  line-height:1;
+  margin-left:auto;
+  margin-right:auto;
+  border-width: 0;
+  display: table;
+  margin-top: 1.275em;
+  margin-bottom: 1.275em;
+  border-color: transparent;
+}
+.tabwid_left table{
+  margin-left:0;
+}
+.tabwid_right table{
+  margin-right:0;
+}
+.tabwid td {
+    padding: 0;
+}
+.tabwid a {
+  text-decoration: none;
+}
+.tabwid thead {
+    background-color: transparent;
+}
+.tabwid tfoot {
+    background-color: transparent;
+}
+.tabwid table tr {
+background-color: transparent;
+}
+</style><div class="tabwid"><style>.cl-b9adbc0c{}.cl-b9a90c3e{font-family:'DejaVu Sans';font-size:11pt;font-weight:bold;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-b9a90c48{font-family:'DejaVu Sans';font-size:6.6pt;font-weight:bold;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;position: relative;bottom:3.3pt;}.cl-b9a90c52{font-family:'DejaVu Sans';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-b9a918dc{margin:0;text-align:center;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-b9a93cae{width:56.7pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 1pt solid rgba(0, 0, 0, 1.00);border-right: 1pt solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-b9a93cb8{width:56.7pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(0, 0, 0, 1.00);border-top: 1pt solid rgba(0, 0, 0, 1.00);border-left: 1pt solid rgba(0, 0, 0, 1.00);border-right: 1pt solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style><table class='cl-b9adbc0c'>
+<thead><tr style="overflow-wrap:break-word;"><td class="cl-b9a93cb8"><p class="cl-b9a918dc"><span class="cl-b9a90c3e">Z</span><span class="cl-b9a90c48">D</span></p></td><td class="cl-b9a93cb8"><p class="cl-b9a918dc"><span class="cl-b9a90c3e">-</span></p></td><td class="cl-b9a93cb8"><p class="cl-b9a918dc"><span class="cl-b9a90c3e">A</span></p></td><td class="cl-b9a93cb8"><p class="cl-b9a918dc"><span class="cl-b9a90c3e">C</span></p></td></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td class="cl-b9a93cae"><p class="cl-b9a918dc"><span class="cl-b9a90c3e">-</span></p></td><td class="cl-b9a93cae"><p class="cl-b9a918dc"><span class="cl-b9a90c52">0.00</span></p></td><td class="cl-b9a93cae"><p class="cl-b9a918dc"><span class="cl-b9a90c52">0.00</span></p></td><td class="cl-b9a93cae"><p class="cl-b9a918dc"><span class="cl-b9a90c52">0.00</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-b9a93cb8"><p class="cl-b9a918dc"><span class="cl-b9a90c3e">A</span></p></td><td class="cl-b9a93cb8"><p class="cl-b9a918dc"><span class="cl-b9a90c52">0.47</span></p></td><td class="cl-b9a93cb8"><p class="cl-b9a918dc"><span class="cl-b9a90c52">0.22</span></p></td><td class="cl-b9a93cb8"><p class="cl-b9a918dc"><span class="cl-b9a90c52">0.17</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-b9a93cb8"><p class="cl-b9a918dc"><span class="cl-b9a90c3e">C</span></p></td><td class="cl-b9a93cb8"><p class="cl-b9a918dc"><span class="cl-b9a90c52">0.37</span></p></td><td class="cl-b9a93cb8"><p class="cl-b9a918dc"><span class="cl-b9a90c52">3.68</span></p></td><td class="cl-b9a93cb8"><p class="cl-b9a918dc"><span class="cl-b9a90c52">2.00</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-b9a93cb8"><p class="cl-b9a918dc"><span class="cl-b9a90c3e">C</span></p></td><td class="cl-b9a93cb8"><p class="cl-b9a918dc"><span class="cl-b9a90c52">0.29</span></p></td><td class="cl-b9a93cb8"><p class="cl-b9a918dc"><span class="cl-b9a90c52">3.10</span></p></td><td class="cl-b9a93cb8"><p class="cl-b9a918dc"><span class="cl-b9a90c52">29.85</span></p></td></tr></tbody></table></div></template>
+<div class="flextable-shadow-host" id="28eace80-a7cb-4e30-9d6d-3407e88fefd8"></div>
+<script>
+var dest = document.getElementById("28eace80-a7cb-4e30-9d6d-3407e88fefd8");
+var template = document.getElementById("55d1104b-73fc-4c89-9fd4-7479375a2536");
+var caption = template.content.querySelector("caption");
+if(caption) {
+  caption.style.cssText = "display:block;text-align:center;";
+  var newcapt = document.createElement("p");
+  newcapt.appendChild(caption)
+  dest.parentNode.insertBefore(newcapt, dest.previousSibling);
+}
+var fantome = dest.attachShadow({mode: 'open'});
+var templateContent = template.content;
+fantome.appendChild(templateContent);
+</script>
+
+<template id="17ed9f4d-e458-4fcc-9ab7-89bdf60ac995"><style>
+.tabwid table{
+  border-spacing:0px !important;
+  border-collapse:collapse;
+  line-height:1;
+  margin-left:auto;
+  margin-right:auto;
+  border-width: 0;
+  display: table;
+  margin-top: 1.275em;
+  margin-bottom: 1.275em;
+  border-color: transparent;
+}
+.tabwid_left table{
+  margin-left:0;
+}
+.tabwid_right table{
+  margin-right:0;
+}
+.tabwid td {
+    padding: 0;
+}
+.tabwid a {
+  text-decoration: none;
+}
+.tabwid thead {
+    background-color: transparent;
+}
+.tabwid tfoot {
+    background-color: transparent;
+}
+.tabwid table tr {
+background-color: transparent;
+}
+</style><div class="tabwid"><style>.cl-b9be52c4{}.cl-b9b9ae9a{font-family:'DejaVu Sans';font-size:11pt;font-weight:bold;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-b9b9aea4{font-family:'DejaVu Sans';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-b9b9bc0a{margin:0;text-align:center;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-b9b9e0f4{width:56.7pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 1pt solid rgba(0, 0, 0, 1.00);border-right: 1pt solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-b9b9e0fe{width:56.7pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(0, 0, 0, 1.00);border-top: 1pt solid rgba(0, 0, 0, 1.00);border-left: 1pt solid rgba(0, 0, 0, 1.00);border-right: 1pt solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style><table class='cl-b9be52c4'>
+<thead><tr style="overflow-wrap:break-word;"><td class="cl-b9b9e0fe"><p class="cl-b9b9bc0a"><span class="cl-b9b9ae9a">Z</span></p></td><td class="cl-b9b9e0fe"><p class="cl-b9b9bc0a"><span class="cl-b9b9ae9a">-</span></p></td><td class="cl-b9b9e0fe"><p class="cl-b9b9bc0a"><span class="cl-b9b9ae9a">A</span></p></td><td class="cl-b9b9e0fe"><p class="cl-b9b9bc0a"><span class="cl-b9b9ae9a">C</span></p></td></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td class="cl-b9b9e0f4"><p class="cl-b9b9bc0a"><span class="cl-b9b9ae9a">-</span></p></td><td class="cl-b9b9e0f4"><p class="cl-b9b9bc0a"><span class="cl-b9b9aea4">1.00</span></p></td><td class="cl-b9b9e0f4"><p class="cl-b9b9bc0a"><span class="cl-b9b9aea4">0.47</span></p></td><td class="cl-b9b9e0f4"><p class="cl-b9b9bc0a"><span class="cl-b9b9aea4">0.37</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-b9b9e0fe"><p class="cl-b9b9bc0a"><span class="cl-b9b9ae9a">A</span></p></td><td class="cl-b9b9e0fe"><p class="cl-b9b9bc0a"><span class="cl-b9b9aea4">0.47</span></p></td><td class="cl-b9b9e0fe"><p class="cl-b9b9bc0a"><span class="cl-b9b9aea4">7.84</span></p></td><td class="cl-b9b9e0fe"><p class="cl-b9b9bc0a"><span class="cl-b9b9aea4">4.12</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-b9b9e0fe"><p class="cl-b9b9bc0a"><span class="cl-b9b9ae9a">C</span></p></td><td class="cl-b9b9e0fe"><p class="cl-b9b9bc0a"><span class="cl-b9b9aea4">0.37</span></p></td><td class="cl-b9b9e0fe"><p class="cl-b9b9bc0a"><span class="cl-b9b9aea4">4.12</span></p></td><td class="cl-b9b9e0fe"><p class="cl-b9b9bc0a"><span class="cl-b9b9aea4">61.89</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-b9b9e0fe"><p class="cl-b9b9bc0a"><span class="cl-b9b9ae9a">C</span></p></td><td class="cl-b9b9e0fe"><p class="cl-b9b9bc0a"><span class="cl-b9b9aea4">0.29</span></p></td><td class="cl-b9b9e0fe"><p class="cl-b9b9bc0a"><span class="cl-b9b9aea4">3.37</span></p></td><td class="cl-b9b9e0fe"><p class="cl-b9b9bc0a"><span class="cl-b9b9aea4">61.90</span></p></td></tr></tbody></table></div></template>
+<div class="flextable-shadow-host" id="072a3415-0ff4-4c14-b9d2-ec4895e44b66"></div>
+<script>
+var dest = document.getElementById("072a3415-0ff4-4c14-b9d2-ec4895e44b66");
+var template = document.getElementById("17ed9f4d-e458-4fcc-9ab7-89bdf60ac995");
+var caption = template.content.querySelector("caption");
+if(caption) {
+  caption.style.cssText = "display:block;text-align:center;";
+  var newcapt = document.createElement("p");
+  newcapt.appendChild(caption)
+  dest.parentNode.insertBefore(newcapt, dest.previousSibling);
+}
+var fantome = dest.attachShadow({mode: 'open'});
+var templateContent = template.content;
+fantome.appendChild(templateContent);
+</script>
+
+</div>
+</div>
+</div>
+<div id="section-5" class="section level4 unnumbered">
+<h4 class="unnumbered"></h4>
+<hr />
+</div>
+</div>
+<div id="exercise-3" class="section level1">
+<h1>Exercise 3</h1>
+<p>The partition function of the reverse sequences <span
+class="math inline">\(x^* = CA\)</span> and <span
+class="math inline">\(y^* = CCA\)</span> is given in the matrix <span
+class="math inline">\(Z^*\)</span>:</p>
+<template id="5d413c48-4652-4621-bea5-f7599a5ad03b"><style>
+.tabwid table{
+  border-spacing:0px !important;
+  border-collapse:collapse;
+  line-height:1;
+  margin-left:auto;
+  margin-right:auto;
+  border-width: 0;
+  display: table;
+  margin-top: 1.275em;
+  margin-bottom: 1.275em;
+  border-color: transparent;
+}
+.tabwid_left table{
+  margin-left:0;
+}
+.tabwid_right table{
+  margin-right:0;
+}
+.tabwid td {
+    padding: 0;
+}
+.tabwid a {
+  text-decoration: none;
+}
+.tabwid thead {
+    background-color: transparent;
+}
+.tabwid tfoot {
+    background-color: transparent;
+}
+.tabwid table tr {
+background-color: transparent;
+}
+</style><div class="tabwid"><style>.cl-b9d51392{}.cl-b9d077b0{font-family:'DejaVu Sans';font-size:11pt;font-weight:bold;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-b9d077c4{font-family:'DejaVu Sans';font-size:6.6pt;font-weight:bold;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;position: relative;bottom:3.3pt;}.cl-b9d077c5{font-family:'DejaVu Sans';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-b9d08890{margin:0;text-align:center;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-b9d0bb26{width:56.7pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 1pt solid rgba(0, 0, 0, 1.00);border-right: 1pt solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-b9d0bb30{width:56.7pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(0, 0, 0, 1.00);border-top: 1pt solid rgba(0, 0, 0, 1.00);border-left: 1pt solid rgba(0, 0, 0, 1.00);border-right: 1pt solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style><table class='cl-b9d51392'>
+<thead><tr style="overflow-wrap:break-word;"><td class="cl-b9d0bb30"><p class="cl-b9d08890"><span class="cl-b9d077b0">Z</span><span class="cl-b9d077c4">*</span></p></td><td class="cl-b9d0bb30"><p class="cl-b9d08890"><span class="cl-b9d077b0">-</span></p></td><td class="cl-b9d0bb30"><p class="cl-b9d08890"><span class="cl-b9d077b0">A</span></p></td><td class="cl-b9d0bb30"><p class="cl-b9d08890"><span class="cl-b9d077b0">C</span></p></td></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td class="cl-b9d0bb26"><p class="cl-b9d08890"><span class="cl-b9d077b0">-</span></p></td><td class="cl-b9d0bb26"><p class="cl-b9d08890"><span class="cl-b9d077c5">1.00</span></p></td><td class="cl-b9d0bb26"><p class="cl-b9d08890"><span class="cl-b9d077c5">0.47</span></p></td><td class="cl-b9d0bb26"><p class="cl-b9d08890"><span class="cl-b9d077c5">0.37</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-b9d0bb30"><p class="cl-b9d08890"><span class="cl-b9d077b0">A</span></p></td><td class="cl-b9d0bb30"><p class="cl-b9d08890"><span class="cl-b9d077c5">0.47</span></p></td><td class="cl-b9d0bb30"><p class="cl-b9d08890"><span class="cl-b9d077c5">7.84</span></p></td><td class="cl-b9d0bb30"><p class="cl-b9d08890"><span class="cl-b9d077c5">4.12</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-b9d0bb30"><p class="cl-b9d08890"><span class="cl-b9d077b0">C</span></p></td><td class="cl-b9d0bb30"><p class="cl-b9d08890"><span class="cl-b9d077c5">0.37</span></p></td><td class="cl-b9d0bb30"><p class="cl-b9d08890"><span class="cl-b9d077c5">7.43</span></p></td><td class="cl-b9d0bb30"><p class="cl-b9d08890"><span class="cl-b9d077c5">8.45</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-b9d0bb30"><p class="cl-b9d08890"><span class="cl-b9d077b0">C</span></p></td><td class="cl-b9d0bb30"><p class="cl-b9d08890"><span class="cl-b9d077c5">0.29</span></p></td><td class="cl-b9d0bb30"><p class="cl-b9d08890"><span class="cl-b9d077c5">4.94</span></p></td><td class="cl-b9d0bb30"><p class="cl-b9d08890"><span class="cl-b9d077c5">61.90</span></p></td></tr></tbody></table></div></template>
+<div class="flextable-shadow-host" id="1b10c022-7ae1-455f-abf8-15c6591009cc"></div>
+<script>
+var dest = document.getElementById("1b10c022-7ae1-455f-abf8-15c6591009cc");
+var template = document.getElementById("5d413c48-4652-4621-bea5-f7599a5ad03b");
+var caption = template.content.querySelector("caption");
+if(caption) {
+  caption.style.cssText = "display:block;text-align:center;";
+  var newcapt = document.createElement("p");
+  newcapt.appendChild(caption)
+  dest.parentNode.insertBefore(newcapt, dest.previousSibling);
+}
+var fantome = dest.attachShadow({mode: 'open'});
+var templateContent = template.content;
+fantome.appendChild(templateContent);
+</script>
+
+<div id="section-6" class="section level4 tabset">
+<h4 class="tabset"></h4>
+<div id="question-3a" class="section level5">
+<h5>Question 3A</h5>
+<div class="question">
+<p>Find a mapping from matrix <span
+class="math inline">\(Z^{*}_{k,l}\)</span> to <span
+class="math inline">\(Z^{\prime}_{i,j}\)</span>. Which position in
+matrix <span class="math inline">\(Z^{*}\)</span> corresponds to which
+position in matrix <span class="math inline">\(Z^{\prime}\)</span>?</p>
+</div>
+</div>
+<div id="solution-3" class="section level5">
+<h5>Solution</h5>
+<div class="answer">
+<p><span class="math inline">\(Z^{\prime}_{i,j}\)</span> is the
+partition function of the alignment <span class="math inline">\(x_j ...
+x_{|x|}\)</span> with <span class="math inline">\(y_i ...
+y_{|y|}\)</span>.</p>
+<p><span class="math inline">\(Z^{*}_{k,l}\)</span> is the partition
+function of the alignment <span class="math inline">\(x_{|x|} ...
+x_{|x|-k+1}\)</span> with <span
+class="math inline">\(y_{|y|}...y_{|y|-l+1}\)</span>.</p>
+<p><span class="math display">\[\begin{align*}
+j &amp;= |x| -l +1 \Leftrightarrow l = |x| -j +1\\
+i &amp;= |y| -k +1 \Leftrightarrow k = |y| -i +1
+\end{align*}\]</span></p>
+<template id="fad3b7a1-7a76-4e58-b2e8-3d6d631d2eca"><style>
+.tabwid table{
+  border-spacing:0px !important;
+  border-collapse:collapse;
+  line-height:1;
+  margin-left:auto;
+  margin-right:auto;
+  border-width: 0;
+  display: table;
+  margin-top: 1.275em;
+  margin-bottom: 1.275em;
+  border-color: transparent;
+}
+.tabwid_left table{
+  margin-left:0;
+}
+.tabwid_right table{
+  margin-right:0;
+}
+.tabwid td {
+    padding: 0;
+}
+.tabwid a {
+  text-decoration: none;
+}
+.tabwid thead {
+    background-color: transparent;
+}
+.tabwid tfoot {
+    background-color: transparent;
+}
+.tabwid table tr {
+background-color: transparent;
+}
+</style><div class="tabwid"><style>.cl-b9e76ef2{}.cl-b9e26b32{font-family:'DejaVu Sans';font-size:11pt;font-weight:bold;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-b9e26b3c{font-family:'DejaVu Sans';font-size:6.6pt;font-weight:bold;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;position: relative;bottom:3.3pt;}.cl-b9e26b3d{font-family:'DejaVu Sans';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-b9e278de{margin:0;text-align:center;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-b9e29e5e{width:56.7pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 1pt solid rgba(0, 0, 0, 1.00);border-right: 1pt solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-b9e29e68{width:56.7pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(0, 0, 0, 1.00);border-top: 1pt solid rgba(0, 0, 0, 1.00);border-left: 1pt solid rgba(0, 0, 0, 1.00);border-right: 1pt solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style><table class='cl-b9e76ef2'>
+<thead><tr style="overflow-wrap:break-word;"><td class="cl-b9e29e68"><p class="cl-b9e278de"><span class="cl-b9e26b32">Z</span><span class="cl-b9e26b3c">*</span></p></td><td class="cl-b9e29e68"><p class="cl-b9e278de"><span class="cl-b9e26b32">-</span></p></td><td class="cl-b9e29e68"><p class="cl-b9e278de"><span class="cl-b9e26b32">A</span></p></td><td class="cl-b9e29e68"><p class="cl-b9e278de"><span class="cl-b9e26b32">C</span></p></td></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td class="cl-b9e29e5e"><p class="cl-b9e278de"><span class="cl-b9e26b32">-</span></p></td><td class="cl-b9e29e5e"><p class="cl-b9e278de"><span class="cl-b9e26b3d">1.00</span></p></td><td class="cl-b9e29e5e"><p class="cl-b9e278de"><span class="cl-b9e26b3d">0.47</span></p></td><td class="cl-b9e29e5e"><p class="cl-b9e278de"><span class="cl-b9e26b3d">0.37</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-b9e29e68"><p class="cl-b9e278de"><span class="cl-b9e26b32">A</span></p></td><td class="cl-b9e29e68"><p class="cl-b9e278de"><span class="cl-b9e26b3d">0.47</span></p></td><td class="cl-b9e29e68"><p class="cl-b9e278de"><span class="cl-b9e26b3d">7.84</span></p></td><td class="cl-b9e29e68"><p class="cl-b9e278de"><span class="cl-b9e26b3d">4.12</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-b9e29e68"><p class="cl-b9e278de"><span class="cl-b9e26b32">C</span></p></td><td class="cl-b9e29e68"><p class="cl-b9e278de"><span class="cl-b9e26b3d">0.37</span></p></td><td class="cl-b9e29e68"><p class="cl-b9e278de"><span class="cl-b9e26b3d">7.43</span></p></td><td class="cl-b9e29e68"><p class="cl-b9e278de"><span class="cl-b9e26b3d">8.45</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-b9e29e68"><p class="cl-b9e278de"><span class="cl-b9e26b32">C</span></p></td><td class="cl-b9e29e68"><p class="cl-b9e278de"><span class="cl-b9e26b3d">0.29</span></p></td><td class="cl-b9e29e68"><p class="cl-b9e278de"><span class="cl-b9e26b3d">4.94</span></p></td><td class="cl-b9e29e68"><p class="cl-b9e278de"><span class="cl-b9e26b3d">61.90</span></p></td></tr></tbody></table></div></template>
+<div class="flextable-shadow-host" id="d222e932-6f2e-4aa4-96ce-504a97d6c226"></div>
+<script>
+var dest = document.getElementById("d222e932-6f2e-4aa4-96ce-504a97d6c226");
+var template = document.getElementById("fad3b7a1-7a76-4e58-b2e8-3d6d631d2eca");
+var caption = template.content.querySelector("caption");
+if(caption) {
+  caption.style.cssText = "display:block;text-align:center;";
+  var newcapt = document.createElement("p");
+  newcapt.appendChild(caption)
+  dest.parentNode.insertBefore(newcapt, dest.previousSibling);
+}
+var fantome = dest.attachShadow({mode: 'open'});
+var templateContent = template.content;
+fantome.appendChild(templateContent);
+</script>
+
+<template id="ae0dd6d5-0b92-478c-b012-6ad51afe76a9"><style>
+.tabwid table{
+  border-spacing:0px !important;
+  border-collapse:collapse;
+  line-height:1;
+  margin-left:auto;
+  margin-right:auto;
+  border-width: 0;
+  display: table;
+  margin-top: 1.275em;
+  margin-bottom: 1.275em;
+  border-color: transparent;
+}
+.tabwid_left table{
+  margin-left:0;
+}
+.tabwid_right table{
+  margin-right:0;
+}
+.tabwid td {
+    padding: 0;
+}
+.tabwid a {
+  text-decoration: none;
+}
+.tabwid thead {
+    background-color: transparent;
+}
+.tabwid tfoot {
+    background-color: transparent;
+}
+.tabwid table tr {
+background-color: transparent;
+}
+</style><div class="tabwid"><style>.cl-b9f8e70e{}.cl-b9f3c7ec{font-family:'DejaVu Sans';font-size:11pt;font-weight:bold;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-b9f3c7f6{font-family:'DejaVu Sans';font-size:6.6pt;font-weight:bold;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;position: relative;bottom:3.3pt;}.cl-b9f3c800{font-family:'DejaVu Sans';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-b9f3d5ac{margin:0;text-align:center;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-b9f3fc6c{width:56.7pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 1pt solid rgba(0, 0, 0, 1.00);border-right: 1pt solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-b9f3fc76{width:56.7pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(0, 0, 0, 1.00);border-top: 1pt solid rgba(0, 0, 0, 1.00);border-left: 1pt solid rgba(0, 0, 0, 1.00);border-right: 1pt solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style><table class='cl-b9f8e70e'>
+<thead><tr style="overflow-wrap:break-word;"><td class="cl-b9f3fc76"><p class="cl-b9f3d5ac"><span class="cl-b9f3c7ec">Z</span><span class="cl-b9f3c7f6">'</span></p></td><td class="cl-b9f3fc76"><p class="cl-b9f3d5ac"><span class="cl-b9f3c7ec">-</span></p></td><td class="cl-b9f3fc76"><p class="cl-b9f3d5ac"><span class="cl-b9f3c7ec">A</span></p></td><td class="cl-b9f3fc76"><p class="cl-b9f3d5ac"><span class="cl-b9f3c7ec">C</span></p></td><td class="cl-b9f3fc76"><p class="cl-b9f3d5ac"><span class="cl-b9f3c7ec">-</span></p></td></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td class="cl-b9f3fc6c"><p class="cl-b9f3d5ac"><span class="cl-b9f3c7ec">-</span></p></td><td class="cl-b9f3fc6c"><p class="cl-b9f3d5ac"><span class="cl-b9f3c800">(0,0)</span></p></td><td class="cl-b9f3fc6c"><p class="cl-b9f3d5ac"><span class="cl-b9f3c800">(0,1)</span></p></td><td class="cl-b9f3fc6c"><p class="cl-b9f3d5ac"><span class="cl-b9f3c800">(0,2)</span></p></td><td class="cl-b9f3fc6c"><p class="cl-b9f3d5ac"><span class="cl-b9f3c800">(0,3)</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-b9f3fc76"><p class="cl-b9f3d5ac"><span class="cl-b9f3c7ec">A</span></p></td><td class="cl-b9f3fc76"><p class="cl-b9f3d5ac"><span class="cl-b9f3c800">(1,0)</span></p></td><td class="cl-b9f3fc76"><p class="cl-b9f3d5ac"><span class="cl-b9f3c800">(1,1)</span></p></td><td class="cl-b9f3fc76"><p class="cl-b9f3d5ac"><span class="cl-b9f3c800">(1,2)</span></p></td><td class="cl-b9f3fc76"><p class="cl-b9f3d5ac"><span class="cl-b9f3c800">(1,3)</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-b9f3fc76"><p class="cl-b9f3d5ac"><span class="cl-b9f3c7ec">C</span></p></td><td class="cl-b9f3fc76"><p class="cl-b9f3d5ac"><span class="cl-b9f3c800">(2,0)</span></p></td><td class="cl-b9f3fc76"><p class="cl-b9f3d5ac"><span class="cl-b9f3c800">(2,1)</span></p></td><td class="cl-b9f3fc76"><p class="cl-b9f3d5ac"><span class="cl-b9f3c800">(2,2)</span></p></td><td class="cl-b9f3fc76"><p class="cl-b9f3d5ac"><span class="cl-b9f3c800">(2,3)</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-b9f3fc76"><p class="cl-b9f3d5ac"><span class="cl-b9f3c7ec">C</span></p></td><td class="cl-b9f3fc76"><p class="cl-b9f3d5ac"><span class="cl-b9f3c800">(3,0)</span></p></td><td class="cl-b9f3fc76"><p class="cl-b9f3d5ac"><span class="cl-b9f3c800">(3,1)</span></p></td><td class="cl-b9f3fc76"><p class="cl-b9f3d5ac"><span class="cl-b9f3c800">(3,2)</span></p></td><td class="cl-b9f3fc76"><p class="cl-b9f3d5ac"><span class="cl-b9f3c800">(3,3)</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-b9f3fc76"><p class="cl-b9f3d5ac"><span class="cl-b9f3c7ec">-</span></p></td><td class="cl-b9f3fc76"><p class="cl-b9f3d5ac"><span class="cl-b9f3c800">(4,0)</span></p></td><td class="cl-b9f3fc76"><p class="cl-b9f3d5ac"><span class="cl-b9f3c800">(4,1)</span></p></td><td class="cl-b9f3fc76"><p class="cl-b9f3d5ac"><span class="cl-b9f3c800">(4,2)</span></p></td><td class="cl-b9f3fc76"><p class="cl-b9f3d5ac"><span class="cl-b9f3c800">(4,3)</span></p></td></tr></tbody></table></div></template>
+<div class="flextable-shadow-host" id="489a69a7-e536-42a7-a42a-91c1bcce48c9"></div>
+<script>
+var dest = document.getElementById("489a69a7-e536-42a7-a42a-91c1bcce48c9");
+var template = document.getElementById("ae0dd6d5-0b92-478c-b012-6ad51afe76a9");
+var caption = template.content.querySelector("caption");
+if(caption) {
+  caption.style.cssText = "display:block;text-align:center;";
+  var newcapt = document.createElement("p");
+  newcapt.appendChild(caption)
+  dest.parentNode.insertBefore(newcapt, dest.previousSibling);
+}
+var fantome = dest.attachShadow({mode: 'open'});
+var templateContent = template.content;
+fantome.appendChild(templateContent);
+</script>
+
+</div>
+</div>
+</div>
+<div id="section-7" class="section level4 unnumbered">
+<h4 class="unnumbered"></h4>
+<hr />
+</div>
+<div id="section-8" class="section level4 tabset">
+<h4 class="tabset"></h4>
+<div id="question-3b" class="section level5">
+<h5>Question 3B</h5>
+<div class="question">
+<p>Use <span class="math inline">\(Z,Z^*\)</span> and the mapping from
+<span class="math inline">\(Z^*\)</span> to <span
+class="math inline">\(Z^\prime\)</span> to compute the probability of
+the alignment edges <span class="math inline">\((1,1)\)</span>, <span
+class="math inline">\((2,2)\)</span>, <span
+class="math inline">\((3,1)\)</span> and <span
+class="math inline">\((3,2)\)</span> between <span
+class="math inline">\(x\)</span> and <span
+class="math inline">\(y\)</span>.</p>
+</div>
+</div>
+<div id="hint-1-formulae-2" class="section level5">
+<h5>Hint 1: Formulae</h5>
+<div class="answer">
+<p><span class="math display">\[
+P(x_i \sim y_j | x,y) = \frac{Z_{i-1,j-1}\times
+e^{\frac{\sigma(x_i,y_j)}{T}} \times Z^{\prime}_{i+1,j+1}}{Z(T)}\\
+Z^M_{i,j} = Z_{i-1,j-1} \times  e^{\frac{\sigma(x_i,y_j)}{T}}
+\]</span></p>
+</div>
+</div>
+<div id="hint-2-1" class="section level5">
+<h5>Hint 2</h5>
+<div class="answer">
+<p>Mapped positions: <span class="math display">\[\begin{align*}
+Z^{\prime}_{2,2} &amp;\Longleftrightarrow Z^{\ast}_{2,1}\\
+Z^{\prime}_{3,3} &amp;\Longleftrightarrow Z^{\ast}_{1,0}\\
+Z^{\prime}_{4,2} &amp;\Longleftrightarrow Z^{\ast}_{0,1}\\
+Z^{\prime}_{4,3} &amp;\Longleftrightarrow Z^{\ast}_{0,0}
+\end{align*}\]</span></p>
+</div>
+</div>
+<div id="solution-4" class="section level5">
+<h5>Solution</h5>
+<div class="answer">
+<p>Alignment edge <span class="math inline">\((1,1)\)</span>: <span
+class="math display">\[
+P(x_1 \sim y_1 | x,y) = \frac{Z_{0,0}\times
+e^{\frac{\sigma(x_1,y_1)}{T}} \times Z^{\prime}_{2,2}}{Z(T)}
+=\frac{Z_{0,0}\times e^{\frac{\sigma(x_1,y_1)}{T}} \times
+Z^{\ast}_{2,1}}{Z(T)} = \frac{Z^M_{1,1} \times Z^{\ast}_{2,1}}{Z(T)} =
+\frac{7.39 \times 7.43}{61.90} = 0.89
+\]</span> Alignment edge <span class="math inline">\((2,2)\)</span>:
+<span class="math display">\[
+P(x_2 \sim y_2 | x,y) = \frac{Z_{1,1}\times
+e^{\frac{\sigma(x_2,y_2)}{T}} \times Z^{\prime}_{3,3}}{Z(T)}
+=\frac{Z_{1,1}\times e^{\frac{\sigma(x_2,y_2)}{T}} \times
+Z^{\ast}_{1,0}}{Z(T)} = \frac{Z^M_{2,2} \times Z^{\ast}_{1,0}}{Z(T)} =
+\frac{57.90 \times 0.47}{61.90} = 0.44
+\]</span> Alignment edge <span class="math inline">\((3,1)\)</span>:
+<span class="math display">\[
+P(x_3 \sim y_1 | x,y) = \frac{Z^M_{3,1} \times Z^{\prime}_{4,2}}{Z(T)}
+=  \frac{Z^M_{3,1} \times Z^{\ast}_{0,1}}{Z(T)} = \frac{0.14 \times
+0.47}{61.90} = 0.001
+\]</span> Alignment edge <span class="math inline">\((3,2)\)</span>:
+<span class="math display">\[
+P(x_3 \sim y_2 | x,y) = \frac{Z^M_{3,2} \times Z^{\prime}_{4,3}}{Z(T)}
+=  \frac{Z^M_{3,1} \times Z^{\ast}_{0,0}}{Z(T)} = \frac{30.42 \times
+1}{61.90} = 0.49
+\]</span></p>
+</div>
+</div>
+</div>
+<div id="section-9" class="section level4 unnumbered">
+<h4 class="unnumbered"></h4>
+<p>Download:
+<a href="exercise-sheet-5.pdf" title="Download PDF Version">PDF
+Version</a> of this page.</p>
 </div>
 </div>
 

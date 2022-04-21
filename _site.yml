@@ -18,3 +18,4 @@ output:
 urlcolor: blue
 linkcolor: blue
 exclude: ["*.tex", "*.log"]
+
