@@ -231,7 +231,41 @@ Show the resulting multiple sequence alignment.
 
 ##### Solution
 
-| -<br />- | -<br />- | -<br />A  | -<br />A  | C<br />C   | A<br />A   | C<br />C   | C<br />C   | G<br />-   | G<br />-   |
+
+
+
+##### Solution
+
+```{r, include=FALSE}
+
+
+onec <- data.frame(a = c("-", "A", "C", "C", "A", "A", "G"),
+                   b = c(0, 0, 0, 0, 0, 0, 0 ),
+                   b = c(0, 50, 50, 50, 50, 50, 50 ),
+                   b = c(0, 50, 50, 50, 50, 50, 50 ),
+                   b = c(0, 50, 50, 150, 150, 150, 150 ),
+                   b = c(0, 133, 133, 150, 250, 250, 250 ),
+                   b = c(0, 133, 267, 267, 267, 267, 267 ),
+                   b = c(0, 133, 267, 400, 400, 400, 400 ),
+                   b = c(0, 133, 267, 400, 400, 400, 400 ),
+                   b = c(0, 133, 267, 400, 400, 400, 467 )
+
+                   
+                   )
+names(onec) <-c("-1","-2", "-3", "-4", "C5", "A6", "C7", "C8", "G9", "G10")
+
+```
+```{r, results="asis", include=knitr::is_html_output(), echo=FALSE}
+onec_ft <- flextable(onec)
+header = c("-", "-", "A", "A", "C", "A", "C", "C", "-", "-")
+onec_ft <- custom_theme2headers(onec_ft, header)
+index_replace(onec_ft)
+
+```
+
+::: {.answer data-latex="", include=knitr::is_latex_output()}
+
+| -\\\\- | -\\\\- | -\\\\A  | -\\\\A  | C\\\\C   | A\\\\A   | C\\\\C   | C\\\\C   | G\\\\>-   | G\\\\-   |
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
 | __-__ | 0 | 0  | 0  | 0   | 0   | 0   | 0   | 0   | 0   |
 | __A__ | 0 | 50 | 50 | 50  | 133 | 133 | 133 | 133 | 133 |
@@ -241,33 +275,7 @@ Show the resulting multiple sequence alignment.
 | __A__ | 0 | 50 | 50 | 150 | 250 | 267 | 400 | 400 | 400 |
 | __G__ | 0 | 50 | 50 | 150 | 250 | 267 | 400 | 400 | 467 |
 
-
-##### Solution
-
-```{r, include=FALSE}
-
-
-onec <- data.frame(a = c("-", "A", "A", "C", "A", "C", "C"),
-                   b = c(0, 0, 0, 0, 0, 0, 0),
-                   c = c(0, 50, 50, 50, 67, 67, 67),
-                   d = c(0, 50, 50, 50, 67, 133, 133),
-                   e = c(0, 50, 50, 100, 100, 133, 200),
-                   f = c(0, 50, 50, 100, 150, 150, 200),
-                   g = c(0, 50, 50, 100, 150, 150, 200),
-                   h = c(0, 50, 50, 100, 150, 150, 0))
-names(onec) <- c("-1",  "-", "A1",   "C2", "C3",  "A4",   "A5",   "G6")
-
-```
-```{r, results="asis", include=knitr::is_html_output(), echo=FALSE}
-onec_ft <- flextable(onec)
-header = c("-", "-", "-", "-", "-", "-", "-", "-")
-onec_ft <- custom_theme2headers(onec_ft, header)
-index_replace(onec_ft)
-
-```
-```{r, results="asis", include=knitr::is_latex_output(), echo=FALSE}
-knitr::kable(onec)
-```
+:::
 
 #### {-}
 
