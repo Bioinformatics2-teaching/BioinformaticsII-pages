@@ -13,7 +13,7 @@
 
 <title>Exercise sheet 5: Probalign</title>
 
-<script src="site_libs/header-attrs-2.12/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.11/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/cosmo.min.css" rel="stylesheet" />
@@ -61,7 +61,6 @@ if (window.hljs) {
 
 
 
-
 <link rel="stylesheet" href="bioinf-style.css" type="text/css" />
 
 
@@ -86,9 +85,6 @@ button.code-folding-btn:focus {
 }
 summary {
   display: list-item;
-}
-details > summary > p:only-child {
-  display: inline;
 }
 pre code {
   padding: 0;
@@ -364,11 +360,7 @@ div.tocify {
 
 
 <hr />
-<p>For the following exercises on Probalign, we use an affine gap
-penalty with <span class="math inline">\(g(k) = \alpha + \beta k = -0.5
-- 0.25k\)</span>, there temperature <span
-class="math inline">\(T=1\)</span> and the similarity function <span
-class="math inline">\(\sigma(x_i, y_j)\)</span>:</p>
+<p>For the following exercises on Probalign, we use an affine gap penalty with <span class="math inline">\(g(k) = \alpha + \beta k = -0.5 - 0.25k\)</span>, there temperature <span class="math inline">\(T=1\)</span> and the similarity function <span class="math inline">\(\sigma(x_i, y_j)\)</span>:</p>
 <p><img src="figures/sheet-5/bordermatrix.png" width="50%" style="display: block; margin: auto;" /></p>
 <div id="exercise-1" class="section level1">
 <h1>Exercise 1</h1>
@@ -377,8 +369,7 @@ class="math inline">\(\sigma(x_i, y_j)\)</span>:</p>
 <div id="question-1a" class="section level5">
 <h5>Question 1A</h5>
 <div class="question">
-<p>Compute the Boltzmann-weighted score for the following
-alignments:</p>
+<p>Compute the Boltzmann-weighted score for the following alignments:</p>
 <pre><code>(a)  x: --AGCGG          (b) x: AGCGG------
           ||:||                     :
      y: ACAGGGG              y: ----ACAGGGG</code></pre>
@@ -388,31 +379,23 @@ alignments:</p>
 <h5>Hint 1 : Formulae</h5>
 <div class="answer">
 <p><span class="math display">\[
-S(a) = \sum_{x_i \sim y_j \in a} \sigma(x_i,y_j) + \sum \text{gap
-penalties}\\
-e^{\frac{S(a)}{T}} = \Bigg(\prod_{x_i\sim y_j \in a}
-e^{\frac{\sigma(x_i,y_j)}{T}} \Bigg) \times e^{\frac{\sum \text{gap
-penalties}}{T}}\\
+S(a) = \sum_{x_i \sim y_j \in a} \sigma(x_i,y_j) + \sum \text{gap penalties}\\
+e^{\frac{S(a)}{T}} = \Bigg(\prod_{x_i\sim y_j \in a} e^{\frac{\sigma(x_i,y_j)}{T}} \Bigg) \times e^{\frac{\sum \text{gap penalties}}{T}}\\
 \]</span></p>
 </div>
 </div>
 <div id="hint-2" class="section level5">
 <h5>Hint 2</h5>
 <div class="answer">
-<p>For each alignment you only need to calculate <span
-class="math inline">\(e^x\)</span> once.</p>
+<p>For each alignment you only need to calculate <span class="math inline">\(e^x\)</span> once.</p>
 </div>
 </div>
 <div id="hint-3-calculations" class="section level5">
 <h5>Hint 3: Calculations</h5>
 <div class="answer">
 <p><span class="math display">\[\begin{align*}
-\text{(a)} &amp;\qquad e^{\sigma(A,A)} \times e^{3\sigma(G,G)} \times
-e^{\sigma(C,G)} \times e^{g(2)} &amp;&amp;= e^2 \times e^6 \times e^{-1}
-\times e^{-0.5 +(-0.25\times 2)} = e^6 \\
-\text{(b)} &amp;\qquad e^{\sigma(G,A)} \times e^{g(4)} \times e^{g(6)}
-&amp;&amp;= e^{-1} \times e^{0.5 + (-0.25\times 4)} \times e^{0.5 +
-(-0.25\times 6)} = e^{-4.5}
+\text{(a)} &amp;\qquad e^{\sigma(A,A)} \times e^{3\sigma(G,G)} \times e^{\sigma(C,G)} \times e^{g(2)} &amp;&amp;= e^2 \times e^6 \times e^{-1} \times e^{-0.5 +(-0.25\times 2)} = e^6 \\
+\text{(b)} &amp;\qquad e^{\sigma(G,A)} \times e^{g(4)} \times e^{g(6)} &amp;&amp;= e^{-1} \times e^{0.5 + (-0.25\times 4)} \times e^{0.5 + (-0.25\times 6)} = e^{-4.5}
 \end{align*}\]</span></p>
 </div>
 </div>
@@ -438,17 +421,14 @@ e^{\sigma(C,G)} \times e^{g(2)} &amp;&amp;= e^2 \times e^6 \times e^{-1}
 <div id="question-2a" class="section level5">
 <h5>Question 2A</h5>
 <div class="question">
-<p>Derive the recursion formula for <span
-class="math inline">\(Z^{I}_{i,j}\)</span>. Allow insertions after
-deletions and vice versa.</p>
+<p>Derive the recursion formula for <span class="math inline">\(Z^{I}_{i,j}\)</span>. Allow insertions after deletions and vice versa.</p>
 </div>
 </div>
 <div id="solution-1" class="section level5">
 <h5>Solution</h5>
 <div class="answer">
 <p><span class="math display">\[
-Z^{I}_{i,j} = Z^{I}_{i,j-1} \times e^\frac{\beta}{T} + Z^{M}_{i,j-1}
-\times e^\frac{g(1)}{T}  + Z^{D}_{i,j-1} \times e^\frac{g(1)}{T}
+Z^{I}_{i,j} = Z^{I}_{i,j-1} \times e^\frac{\beta}{T} + Z^{M}_{i,j-1} \times e^\frac{g(1)}{T}  + Z^{D}_{i,j-1} \times e^\frac{g(1)}{T}
 \]</span></p>
 </div>
 </div>
@@ -462,10 +442,7 @@ Z^{I}_{i,j} = Z^{I}_{i,j-1} \times e^\frac{\beta}{T} + Z^{M}_{i,j-1}
 <div id="question-2b" class="section level5">
 <h5>Question 2B</h5>
 <div class="question">
-<p>Compute the partition function Z(T) by dynamic programming for the
-sequences <code>x=ACC</code> and <code>y=AC</code>. Allow insertions
-after deletions and vice versa. In order to simplify the computations,
-you can round to two digits after the decimal point.</p>
+<p>Compute the partition function Z(T) by dynamic programming for the sequences <code>x=ACC</code> and <code>y=AC</code>. Allow insertions after deletions and vice versa. In order to simplify the computations, you can round to two digits after the decimal point.</p>
 </div>
 </div>
 <div id="hint-1-formulae-1" class="section level5">
@@ -478,20 +455,16 @@ Z^D_{0,j} &amp;= 0
 \end{align*}\]</span></p>
 <p>Recursion: <span class="math display">\[\begin{align*}
 Z^{M}_{i,j} &amp;= Z_{i-1,j-1} \times e^{\frac{\sigma(x_i,y_j)}{T}}\\
-Z^{I}_{i,j} &amp;= Z^{I}_{i,j-1} \times e^\frac{\beta}{T} +
-Z^{M}_{i,j-1} \times e^\frac{g(1)}{T}  + Z^{D}_{i,j-1} \times
-e^\frac{g(1)}{T}\\
-Z^{D}_{i,j} &amp;= Z^{D}_{i-1,j} \times e^\frac{\beta}{T} +
-Z^{M}_{i-1,j} \times e^\frac{g(1)}{T}  + Z^{I}_{i-1,j} \times
-e^\frac{g(1)}{T}\\
-Z_{i,j} &amp;= Z^{M}_{i,j} + Z^{I}_{i,j} + Z^{D}_{i,j}
+Z^{I}_{i,j} &amp;= Z^{I}_{i,j-1} \times e^\frac{\beta}{T} + Z^{M}_{i,j-1} \times e^\frac{g(1)}{T}  + Z^{D}_{i,j-1} \times e^\frac{g(1)}{T}\\
+Z^{D}_{i,j} &amp;= Z^{D}_{i-1,j} \times e^\frac{\beta}{T} + Z^{M}_{i-1,j} \times e^\frac{g(1)}{T}  + Z^{I}_{i-1,j} \times e^\frac{g(1)}{T}\\
+Z_{i,j} &amp;= Z^{M}_{i,j} + Z^{I}_{i,j} + Z^{D}_{i,j} 
 \end{align*}\]</span></p>
 </div>
 </div>
 <div id="solution-2" class="section level5">
 <h5>Solution</h5>
 <div class="answer">
-<template id="b060a1b4-c6f6-493a-8d04-3cdafdb6ba2c"><style>
+<template id="1b840bcb-bbca-488e-b32d-1ee155f461ed"><style>
 .tabwid table{
   border-spacing:0px !important;
   border-collapse:collapse;
@@ -525,12 +498,12 @@ Z_{i,j} &amp;= Z^{M}_{i,j} + Z^{I}_{i,j} + Z^{D}_{i,j}
 .tabwid table tr {
 background-color: transparent;
 }
-</style><div class="tabwid"><style>.cl-062ca5b6{}.cl-062723a2{font-family:'DejaVu Sans';font-size:11pt;font-weight:bold;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-062723ac{font-family:'DejaVu Sans';font-size:6.6pt;font-weight:bold;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;position: relative;bottom:3.3pt;}.cl-062723ad{font-family:'DejaVu Sans';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-06273540{margin:0;text-align:center;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-062760ec{width:56.7pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 1pt solid rgba(0, 0, 0, 1.00);border-right: 1pt solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-062760f6{width:56.7pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(0, 0, 0, 1.00);border-top: 1pt solid rgba(0, 0, 0, 1.00);border-left: 1pt solid rgba(0, 0, 0, 1.00);border-right: 1pt solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style><table class='cl-062ca5b6'>
-<thead><tr style="overflow-wrap:break-word;"><td class="cl-062760f6"><p class="cl-06273540"><span class="cl-062723a2">Z</span><span class="cl-062723ac">M</span></p></td><td class="cl-062760f6"><p class="cl-06273540"><span class="cl-062723a2">-</span></p></td><td class="cl-062760f6"><p class="cl-06273540"><span class="cl-062723a2">A</span></p></td><td class="cl-062760f6"><p class="cl-06273540"><span class="cl-062723a2">C</span></p></td></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td class="cl-062760ec"><p class="cl-06273540"><span class="cl-062723a2">-</span></p></td><td class="cl-062760ec"><p class="cl-06273540"><span class="cl-062723ad">1</span></p></td><td class="cl-062760ec"><p class="cl-06273540"><span class="cl-062723ad">0.00</span></p></td><td class="cl-062760ec"><p class="cl-06273540"><span class="cl-062723ad">0.00</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-062760f6"><p class="cl-06273540"><span class="cl-062723a2">A</span></p></td><td class="cl-062760f6"><p class="cl-06273540"><span class="cl-062723ad">0</span></p></td><td class="cl-062760f6"><p class="cl-06273540"><span class="cl-062723ad">7.39</span></p></td><td class="cl-062760f6"><p class="cl-06273540"><span class="cl-062723ad">0.17</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-062760f6"><p class="cl-06273540"><span class="cl-062723a2">C</span></p></td><td class="cl-062760f6"><p class="cl-06273540"><span class="cl-062723ad">0</span></p></td><td class="cl-062760f6"><p class="cl-06273540"><span class="cl-062723ad">0.17</span></p></td><td class="cl-062760f6"><p class="cl-06273540"><span class="cl-062723ad">57.90</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-062760f6"><p class="cl-06273540"><span class="cl-062723a2">C</span></p></td><td class="cl-062760f6"><p class="cl-06273540"><span class="cl-062723ad">0</span></p></td><td class="cl-062760f6"><p class="cl-06273540"><span class="cl-062723ad">0.14</span></p></td><td class="cl-062760f6"><p class="cl-06273540"><span class="cl-062723ad">30.42</span></p></td></tr></tbody></table></div></template>
-<div class="flextable-shadow-host" id="b12acc9c-a885-4e30-9c49-741a97acfc9d"></div>
+</style><div class="tabwid"><style>.cl-68be3744{}.cl-68b8d394{font-family:'DejaVu Sans';font-size:11pt;font-weight:bold;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-68b8d3bc{font-family:'DejaVu Sans';font-size:6.6pt;font-weight:bold;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;position: relative;bottom:3.3pt;}.cl-68b8d3d0{font-family:'DejaVu Sans';font-size:6.6pt;font-weight:bold;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;position: relative;top:3.3pt;}.cl-68b8d3da{font-family:'DejaVu Sans';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-68b8e42e{margin:0;text-align:center;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-68b9196c{width:56.7pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 1pt solid rgba(0, 0, 0, 1.00);border-right: 1pt solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-68b9199e{width:56.7pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(0, 0, 0, 1.00);border-top: 1pt solid rgba(0, 0, 0, 1.00);border-left: 1pt solid rgba(0, 0, 0, 1.00);border-right: 1pt solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style><table class='cl-68be3744'>
+<thead><tr style="overflow-wrap:break-word;"><td class="cl-68b9199e"><p class="cl-68b8e42e"><span class="cl-68b8d394">Z</span><span class="cl-68b8d3bc">M</span><span class="cl-68b8d3d0"></span></p></td><td class="cl-68b9199e"><p class="cl-68b8e42e"><span class="cl-68b8d394">-</span><span class="cl-68b8d3bc"></span><span class="cl-68b8d3d0"></span></p></td><td class="cl-68b9199e"><p class="cl-68b8e42e"><span class="cl-68b8d394">A</span><span class="cl-68b8d3bc"></span><span class="cl-68b8d3d0"></span></p></td><td class="cl-68b9199e"><p class="cl-68b8e42e"><span class="cl-68b8d394">C</span><span class="cl-68b8d3bc"></span><span class="cl-68b8d3d0"></span></p></td></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td class="cl-68b9196c"><p class="cl-68b8e42e"><span class="cl-68b8d394">-</span></p></td><td class="cl-68b9196c"><p class="cl-68b8e42e"><span class="cl-68b8d3da">1</span></p></td><td class="cl-68b9196c"><p class="cl-68b8e42e"><span class="cl-68b8d3da">0.00</span></p></td><td class="cl-68b9196c"><p class="cl-68b8e42e"><span class="cl-68b8d3da">0.00</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-68b9199e"><p class="cl-68b8e42e"><span class="cl-68b8d394">A</span></p></td><td class="cl-68b9199e"><p class="cl-68b8e42e"><span class="cl-68b8d3da">0</span></p></td><td class="cl-68b9199e"><p class="cl-68b8e42e"><span class="cl-68b8d3da">7.39</span></p></td><td class="cl-68b9199e"><p class="cl-68b8e42e"><span class="cl-68b8d3da">0.17</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-68b9199e"><p class="cl-68b8e42e"><span class="cl-68b8d394">C</span></p></td><td class="cl-68b9199e"><p class="cl-68b8e42e"><span class="cl-68b8d3da">0</span></p></td><td class="cl-68b9199e"><p class="cl-68b8e42e"><span class="cl-68b8d3da">0.17</span></p></td><td class="cl-68b9199e"><p class="cl-68b8e42e"><span class="cl-68b8d3da">57.90</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-68b9199e"><p class="cl-68b8e42e"><span class="cl-68b8d394">C</span></p></td><td class="cl-68b9199e"><p class="cl-68b8e42e"><span class="cl-68b8d3da">0</span></p></td><td class="cl-68b9199e"><p class="cl-68b8e42e"><span class="cl-68b8d3da">0.14</span></p></td><td class="cl-68b9199e"><p class="cl-68b8e42e"><span class="cl-68b8d3da">30.42</span></p></td></tr></tbody></table></div></template>
+<div class="flextable-shadow-host" id="81f76ffa-f42b-47b8-bd54-c77b56f78534"></div>
 <script>
-var dest = document.getElementById("b12acc9c-a885-4e30-9c49-741a97acfc9d");
-var template = document.getElementById("b060a1b4-c6f6-493a-8d04-3cdafdb6ba2c");
+var dest = document.getElementById("81f76ffa-f42b-47b8-bd54-c77b56f78534");
+var template = document.getElementById("1b840bcb-bbca-488e-b32d-1ee155f461ed");
 var caption = template.content.querySelector("caption");
 if(caption) {
   caption.style.cssText = "display:block;text-align:center;";
@@ -543,7 +516,7 @@ var templateContent = template.content;
 fantome.appendChild(templateContent);
 </script>
 
-<template id="8428057b-8cbe-46be-a8c6-135fa05dbced"><style>
+<template id="9770c982-5d89-43e0-9932-c896580b9f0c"><style>
 .tabwid table{
   border-spacing:0px !important;
   border-collapse:collapse;
@@ -577,12 +550,12 @@ fantome.appendChild(templateContent);
 .tabwid table tr {
 background-color: transparent;
 }
-</style><div class="tabwid"><style>.cl-063b7bae{}.cl-0637185c{font-family:'DejaVu Sans';font-size:11pt;font-weight:bold;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-06371866{font-family:'DejaVu Sans';font-size:6.6pt;font-weight:bold;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;position: relative;bottom:3.3pt;}.cl-06371867{font-family:'DejaVu Sans';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-063724e6{margin:0;text-align:center;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-06374688{width:56.7pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 1pt solid rgba(0, 0, 0, 1.00);border-right: 1pt solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-06374692{width:56.7pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(0, 0, 0, 1.00);border-top: 1pt solid rgba(0, 0, 0, 1.00);border-left: 1pt solid rgba(0, 0, 0, 1.00);border-right: 1pt solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style><table class='cl-063b7bae'>
-<thead><tr style="overflow-wrap:break-word;"><td class="cl-06374692"><p class="cl-063724e6"><span class="cl-0637185c">Z</span><span class="cl-06371866">I</span></p></td><td class="cl-06374692"><p class="cl-063724e6"><span class="cl-0637185c">-</span></p></td><td class="cl-06374692"><p class="cl-063724e6"><span class="cl-0637185c">A</span></p></td><td class="cl-06374692"><p class="cl-063724e6"><span class="cl-0637185c">C</span></p></td></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td class="cl-06374688"><p class="cl-063724e6"><span class="cl-0637185c">-</span></p></td><td class="cl-06374688"><p class="cl-063724e6"><span class="cl-06371867">0</span></p></td><td class="cl-06374688"><p class="cl-063724e6"><span class="cl-06371867">0.47</span></p></td><td class="cl-06374688"><p class="cl-063724e6"><span class="cl-06371867">0.37</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-06374692"><p class="cl-063724e6"><span class="cl-0637185c">A</span></p></td><td class="cl-06374692"><p class="cl-063724e6"><span class="cl-06371867">0</span></p></td><td class="cl-06374692"><p class="cl-063724e6"><span class="cl-06371867">0.22</span></p></td><td class="cl-06374692"><p class="cl-063724e6"><span class="cl-06371867">3.77</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-06374692"><p class="cl-063724e6"><span class="cl-0637185c">C</span></p></td><td class="cl-06374692"><p class="cl-063724e6"><span class="cl-06371867">0</span></p></td><td class="cl-06374692"><p class="cl-063724e6"><span class="cl-06371867">0.17</span></p></td><td class="cl-06374692"><p class="cl-063724e6"><span class="cl-06371867">2.00</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-06374692"><p class="cl-063724e6"><span class="cl-0637185c">C</span></p></td><td class="cl-06374692"><p class="cl-063724e6"><span class="cl-06371867">0</span></p></td><td class="cl-06374692"><p class="cl-063724e6"><span class="cl-06371867">0.14</span></p></td><td class="cl-06374692"><p class="cl-063724e6"><span class="cl-06371867">1.63</span></p></td></tr></tbody></table></div></template>
-<div class="flextable-shadow-host" id="3498ab7d-9efe-4437-bcb1-1d5bf19dfa98"></div>
+</style><div class="tabwid"><style>.cl-68cd6f98{}.cl-68c8e176{font-family:'DejaVu Sans';font-size:11pt;font-weight:bold;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-68c8e19e{font-family:'DejaVu Sans';font-size:6.6pt;font-weight:bold;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;position: relative;bottom:3.3pt;}.cl-68c8e1a8{font-family:'DejaVu Sans';font-size:6.6pt;font-weight:bold;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;position: relative;top:3.3pt;}.cl-68c8e1b2{font-family:'DejaVu Sans';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-68c8ef04{margin:0;text-align:center;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-68c914de{width:56.7pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 1pt solid rgba(0, 0, 0, 1.00);border-right: 1pt solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-68c914fc{width:56.7pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(0, 0, 0, 1.00);border-top: 1pt solid rgba(0, 0, 0, 1.00);border-left: 1pt solid rgba(0, 0, 0, 1.00);border-right: 1pt solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style><table class='cl-68cd6f98'>
+<thead><tr style="overflow-wrap:break-word;"><td class="cl-68c914fc"><p class="cl-68c8ef04"><span class="cl-68c8e176">Z</span><span class="cl-68c8e19e">I</span><span class="cl-68c8e1a8"></span></p></td><td class="cl-68c914fc"><p class="cl-68c8ef04"><span class="cl-68c8e176">-</span><span class="cl-68c8e19e"></span><span class="cl-68c8e1a8"></span></p></td><td class="cl-68c914fc"><p class="cl-68c8ef04"><span class="cl-68c8e176">A</span><span class="cl-68c8e19e"></span><span class="cl-68c8e1a8"></span></p></td><td class="cl-68c914fc"><p class="cl-68c8ef04"><span class="cl-68c8e176">C</span><span class="cl-68c8e19e"></span><span class="cl-68c8e1a8"></span></p></td></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td class="cl-68c914de"><p class="cl-68c8ef04"><span class="cl-68c8e176">-</span></p></td><td class="cl-68c914de"><p class="cl-68c8ef04"><span class="cl-68c8e1b2">0</span></p></td><td class="cl-68c914de"><p class="cl-68c8ef04"><span class="cl-68c8e1b2">0.47</span></p></td><td class="cl-68c914de"><p class="cl-68c8ef04"><span class="cl-68c8e1b2">0.37</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-68c914fc"><p class="cl-68c8ef04"><span class="cl-68c8e176">A</span></p></td><td class="cl-68c914fc"><p class="cl-68c8ef04"><span class="cl-68c8e1b2">0</span></p></td><td class="cl-68c914fc"><p class="cl-68c8ef04"><span class="cl-68c8e1b2">0.22</span></p></td><td class="cl-68c914fc"><p class="cl-68c8ef04"><span class="cl-68c8e1b2">3.77</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-68c914fc"><p class="cl-68c8ef04"><span class="cl-68c8e176">C</span></p></td><td class="cl-68c914fc"><p class="cl-68c8ef04"><span class="cl-68c8e1b2">0</span></p></td><td class="cl-68c914fc"><p class="cl-68c8ef04"><span class="cl-68c8e1b2">0.17</span></p></td><td class="cl-68c914fc"><p class="cl-68c8ef04"><span class="cl-68c8e1b2">2.00</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-68c914fc"><p class="cl-68c8ef04"><span class="cl-68c8e176">C</span></p></td><td class="cl-68c914fc"><p class="cl-68c8ef04"><span class="cl-68c8e1b2">0</span></p></td><td class="cl-68c914fc"><p class="cl-68c8ef04"><span class="cl-68c8e1b2">0.14</span></p></td><td class="cl-68c914fc"><p class="cl-68c8ef04"><span class="cl-68c8e1b2">1.63</span></p></td></tr></tbody></table></div></template>
+<div class="flextable-shadow-host" id="71b2eeb6-4666-4654-8976-60874605b79e"></div>
 <script>
-var dest = document.getElementById("3498ab7d-9efe-4437-bcb1-1d5bf19dfa98");
-var template = document.getElementById("8428057b-8cbe-46be-a8c6-135fa05dbced");
+var dest = document.getElementById("71b2eeb6-4666-4654-8976-60874605b79e");
+var template = document.getElementById("9770c982-5d89-43e0-9932-c896580b9f0c");
 var caption = template.content.querySelector("caption");
 if(caption) {
   caption.style.cssText = "display:block;text-align:center;";
@@ -595,7 +568,7 @@ var templateContent = template.content;
 fantome.appendChild(templateContent);
 </script>
 
-<template id="01028393-22a1-45a8-87f4-de5e2cb36319"><style>
+<template id="059d5fc9-edde-458b-8e00-a40a96a32dca"><style>
 .tabwid table{
   border-spacing:0px !important;
   border-collapse:collapse;
@@ -629,12 +602,12 @@ fantome.appendChild(templateContent);
 .tabwid table tr {
 background-color: transparent;
 }
-</style><div class="tabwid"><style>.cl-064acdfc{}.cl-0646359e{font-family:'DejaVu Sans';font-size:11pt;font-weight:bold;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-064635a8{font-family:'DejaVu Sans';font-size:6.6pt;font-weight:bold;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;position: relative;bottom:3.3pt;}.cl-064635b2{font-family:'DejaVu Sans';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-064642d2{margin:0;text-align:center;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-06466550{width:56.7pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 1pt solid rgba(0, 0, 0, 1.00);border-right: 1pt solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-0646655a{width:56.7pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(0, 0, 0, 1.00);border-top: 1pt solid rgba(0, 0, 0, 1.00);border-left: 1pt solid rgba(0, 0, 0, 1.00);border-right: 1pt solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style><table class='cl-064acdfc'>
-<thead><tr style="overflow-wrap:break-word;"><td class="cl-0646655a"><p class="cl-064642d2"><span class="cl-0646359e">Z</span><span class="cl-064635a8">D</span></p></td><td class="cl-0646655a"><p class="cl-064642d2"><span class="cl-0646359e">-</span></p></td><td class="cl-0646655a"><p class="cl-064642d2"><span class="cl-0646359e">A</span></p></td><td class="cl-0646655a"><p class="cl-064642d2"><span class="cl-0646359e">C</span></p></td></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td class="cl-06466550"><p class="cl-064642d2"><span class="cl-0646359e">-</span></p></td><td class="cl-06466550"><p class="cl-064642d2"><span class="cl-064635b2">0.00</span></p></td><td class="cl-06466550"><p class="cl-064642d2"><span class="cl-064635b2">0.00</span></p></td><td class="cl-06466550"><p class="cl-064642d2"><span class="cl-064635b2">0.00</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-0646655a"><p class="cl-064642d2"><span class="cl-0646359e">A</span></p></td><td class="cl-0646655a"><p class="cl-064642d2"><span class="cl-064635b2">0.47</span></p></td><td class="cl-0646655a"><p class="cl-064642d2"><span class="cl-064635b2">0.22</span></p></td><td class="cl-0646655a"><p class="cl-064642d2"><span class="cl-064635b2">0.17</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-0646655a"><p class="cl-064642d2"><span class="cl-0646359e">C</span></p></td><td class="cl-0646655a"><p class="cl-064642d2"><span class="cl-064635b2">0.37</span></p></td><td class="cl-0646655a"><p class="cl-064642d2"><span class="cl-064635b2">3.68</span></p></td><td class="cl-0646655a"><p class="cl-064642d2"><span class="cl-064635b2">2.00</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-0646655a"><p class="cl-064642d2"><span class="cl-0646359e">C</span></p></td><td class="cl-0646655a"><p class="cl-064642d2"><span class="cl-064635b2">0.29</span></p></td><td class="cl-0646655a"><p class="cl-064642d2"><span class="cl-064635b2">3.10</span></p></td><td class="cl-0646655a"><p class="cl-064642d2"><span class="cl-064635b2">29.85</span></p></td></tr></tbody></table></div></template>
-<div class="flextable-shadow-host" id="1ff1d228-9af0-459f-a814-c4fb6b8dd1c3"></div>
+</style><div class="tabwid"><style>.cl-68dceaea{}.cl-68d84a58{font-family:'DejaVu Sans';font-size:11pt;font-weight:bold;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-68d84a6c{font-family:'DejaVu Sans';font-size:6.6pt;font-weight:bold;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;position: relative;bottom:3.3pt;}.cl-68d84a80{font-family:'DejaVu Sans';font-size:6.6pt;font-weight:bold;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;position: relative;top:3.3pt;}.cl-68d84a8a{font-family:'DejaVu Sans';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-68d857aa{margin:0;text-align:center;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-68d87c12{width:56.7pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 1pt solid rgba(0, 0, 0, 1.00);border-right: 1pt solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-68d87c26{width:56.7pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(0, 0, 0, 1.00);border-top: 1pt solid rgba(0, 0, 0, 1.00);border-left: 1pt solid rgba(0, 0, 0, 1.00);border-right: 1pt solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style><table class='cl-68dceaea'>
+<thead><tr style="overflow-wrap:break-word;"><td class="cl-68d87c26"><p class="cl-68d857aa"><span class="cl-68d84a58">Z</span><span class="cl-68d84a6c">D</span><span class="cl-68d84a80"></span></p></td><td class="cl-68d87c26"><p class="cl-68d857aa"><span class="cl-68d84a58">-</span><span class="cl-68d84a6c"></span><span class="cl-68d84a80"></span></p></td><td class="cl-68d87c26"><p class="cl-68d857aa"><span class="cl-68d84a58">A</span><span class="cl-68d84a6c"></span><span class="cl-68d84a80"></span></p></td><td class="cl-68d87c26"><p class="cl-68d857aa"><span class="cl-68d84a58">C</span><span class="cl-68d84a6c"></span><span class="cl-68d84a80"></span></p></td></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td class="cl-68d87c12"><p class="cl-68d857aa"><span class="cl-68d84a58">-</span></p></td><td class="cl-68d87c12"><p class="cl-68d857aa"><span class="cl-68d84a8a">0.00</span></p></td><td class="cl-68d87c12"><p class="cl-68d857aa"><span class="cl-68d84a8a">0.00</span></p></td><td class="cl-68d87c12"><p class="cl-68d857aa"><span class="cl-68d84a8a">0.00</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-68d87c26"><p class="cl-68d857aa"><span class="cl-68d84a58">A</span></p></td><td class="cl-68d87c26"><p class="cl-68d857aa"><span class="cl-68d84a8a">0.47</span></p></td><td class="cl-68d87c26"><p class="cl-68d857aa"><span class="cl-68d84a8a">0.22</span></p></td><td class="cl-68d87c26"><p class="cl-68d857aa"><span class="cl-68d84a8a">0.17</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-68d87c26"><p class="cl-68d857aa"><span class="cl-68d84a58">C</span></p></td><td class="cl-68d87c26"><p class="cl-68d857aa"><span class="cl-68d84a8a">0.37</span></p></td><td class="cl-68d87c26"><p class="cl-68d857aa"><span class="cl-68d84a8a">3.68</span></p></td><td class="cl-68d87c26"><p class="cl-68d857aa"><span class="cl-68d84a8a">2.00</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-68d87c26"><p class="cl-68d857aa"><span class="cl-68d84a58">C</span></p></td><td class="cl-68d87c26"><p class="cl-68d857aa"><span class="cl-68d84a8a">0.29</span></p></td><td class="cl-68d87c26"><p class="cl-68d857aa"><span class="cl-68d84a8a">3.10</span></p></td><td class="cl-68d87c26"><p class="cl-68d857aa"><span class="cl-68d84a8a">29.85</span></p></td></tr></tbody></table></div></template>
+<div class="flextable-shadow-host" id="11db3213-8675-485f-ae6b-a2e2e71cbfa7"></div>
 <script>
-var dest = document.getElementById("1ff1d228-9af0-459f-a814-c4fb6b8dd1c3");
-var template = document.getElementById("01028393-22a1-45a8-87f4-de5e2cb36319");
+var dest = document.getElementById("11db3213-8675-485f-ae6b-a2e2e71cbfa7");
+var template = document.getElementById("059d5fc9-edde-458b-8e00-a40a96a32dca");
 var caption = template.content.querySelector("caption");
 if(caption) {
   caption.style.cssText = "display:block;text-align:center;";
@@ -647,7 +620,7 @@ var templateContent = template.content;
 fantome.appendChild(templateContent);
 </script>
 
-<template id="00a49747-f560-46a0-8ab6-51d2ba08bd87"><style>
+<template id="eb388172-0ea5-4916-870b-56faa9b3ac48"><style>
 .tabwid table{
   border-spacing:0px !important;
   border-collapse:collapse;
@@ -681,12 +654,12 @@ fantome.appendChild(templateContent);
 .tabwid table tr {
 background-color: transparent;
 }
-</style><div class="tabwid"><style>.cl-065af6dc{}.cl-06566c84{font-family:'DejaVu Sans';font-size:11pt;font-weight:bold;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-06566c98{font-family:'DejaVu Sans';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-065679ea{margin:0;text-align:center;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-06569f24{width:56.7pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 1pt solid rgba(0, 0, 0, 1.00);border-right: 1pt solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-06569f2e{width:56.7pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(0, 0, 0, 1.00);border-top: 1pt solid rgba(0, 0, 0, 1.00);border-left: 1pt solid rgba(0, 0, 0, 1.00);border-right: 1pt solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style><table class='cl-065af6dc'>
-<thead><tr style="overflow-wrap:break-word;"><td class="cl-06569f2e"><p class="cl-065679ea"><span class="cl-06566c84">Z</span></p></td><td class="cl-06569f2e"><p class="cl-065679ea"><span class="cl-06566c84">-</span></p></td><td class="cl-06569f2e"><p class="cl-065679ea"><span class="cl-06566c84">A</span></p></td><td class="cl-06569f2e"><p class="cl-065679ea"><span class="cl-06566c84">C</span></p></td></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td class="cl-06569f24"><p class="cl-065679ea"><span class="cl-06566c84">-</span></p></td><td class="cl-06569f24"><p class="cl-065679ea"><span class="cl-06566c98">1.00</span></p></td><td class="cl-06569f24"><p class="cl-065679ea"><span class="cl-06566c98">0.47</span></p></td><td class="cl-06569f24"><p class="cl-065679ea"><span class="cl-06566c98">0.37</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-06569f2e"><p class="cl-065679ea"><span class="cl-06566c84">A</span></p></td><td class="cl-06569f2e"><p class="cl-065679ea"><span class="cl-06566c98">0.47</span></p></td><td class="cl-06569f2e"><p class="cl-065679ea"><span class="cl-06566c98">7.84</span></p></td><td class="cl-06569f2e"><p class="cl-065679ea"><span class="cl-06566c98">4.12</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-06569f2e"><p class="cl-065679ea"><span class="cl-06566c84">C</span></p></td><td class="cl-06569f2e"><p class="cl-065679ea"><span class="cl-06566c98">0.37</span></p></td><td class="cl-06569f2e"><p class="cl-065679ea"><span class="cl-06566c98">4.12</span></p></td><td class="cl-06569f2e"><p class="cl-065679ea"><span class="cl-06566c98">61.89</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-06569f2e"><p class="cl-065679ea"><span class="cl-06566c84">C</span></p></td><td class="cl-06569f2e"><p class="cl-065679ea"><span class="cl-06566c98">0.29</span></p></td><td class="cl-06569f2e"><p class="cl-065679ea"><span class="cl-06566c98">3.37</span></p></td><td class="cl-06569f2e"><p class="cl-065679ea"><span class="cl-06566c98">61.90</span></p></td></tr></tbody></table></div></template>
-<div class="flextable-shadow-host" id="af7fd7c9-7fa4-416e-b223-ea2abd5e0c8a"></div>
+</style><div class="tabwid"><style>.cl-68f006fc{}.cl-68ea65bc{font-family:'DejaVu Sans';font-size:11pt;font-weight:bold;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-68ea6620{font-family:'DejaVu Sans';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-68ea7b38{margin:0;text-align:center;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-68eaad92{width:56.7pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 1pt solid rgba(0, 0, 0, 1.00);border-right: 1pt solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-68eaadb0{width:56.7pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(0, 0, 0, 1.00);border-top: 1pt solid rgba(0, 0, 0, 1.00);border-left: 1pt solid rgba(0, 0, 0, 1.00);border-right: 1pt solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style><table class='cl-68f006fc'>
+<thead><tr style="overflow-wrap:break-word;"><td class="cl-68eaadb0"><p class="cl-68ea7b38"><span class="cl-68ea65bc">Z</span></p></td><td class="cl-68eaadb0"><p class="cl-68ea7b38"><span class="cl-68ea65bc">-</span></p></td><td class="cl-68eaadb0"><p class="cl-68ea7b38"><span class="cl-68ea65bc">A</span></p></td><td class="cl-68eaadb0"><p class="cl-68ea7b38"><span class="cl-68ea65bc">C</span></p></td></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td class="cl-68eaad92"><p class="cl-68ea7b38"><span class="cl-68ea65bc">-</span></p></td><td class="cl-68eaad92"><p class="cl-68ea7b38"><span class="cl-68ea6620">1.00</span></p></td><td class="cl-68eaad92"><p class="cl-68ea7b38"><span class="cl-68ea6620">0.47</span></p></td><td class="cl-68eaad92"><p class="cl-68ea7b38"><span class="cl-68ea6620">0.37</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-68eaadb0"><p class="cl-68ea7b38"><span class="cl-68ea65bc">A</span></p></td><td class="cl-68eaadb0"><p class="cl-68ea7b38"><span class="cl-68ea6620">0.47</span></p></td><td class="cl-68eaadb0"><p class="cl-68ea7b38"><span class="cl-68ea6620">7.84</span></p></td><td class="cl-68eaadb0"><p class="cl-68ea7b38"><span class="cl-68ea6620">4.12</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-68eaadb0"><p class="cl-68ea7b38"><span class="cl-68ea65bc">C</span></p></td><td class="cl-68eaadb0"><p class="cl-68ea7b38"><span class="cl-68ea6620">0.37</span></p></td><td class="cl-68eaadb0"><p class="cl-68ea7b38"><span class="cl-68ea6620">4.12</span></p></td><td class="cl-68eaadb0"><p class="cl-68ea7b38"><span class="cl-68ea6620">61.89</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-68eaadb0"><p class="cl-68ea7b38"><span class="cl-68ea65bc">C</span></p></td><td class="cl-68eaadb0"><p class="cl-68ea7b38"><span class="cl-68ea6620">0.29</span></p></td><td class="cl-68eaadb0"><p class="cl-68ea7b38"><span class="cl-68ea6620">3.37</span></p></td><td class="cl-68eaadb0"><p class="cl-68ea7b38"><span class="cl-68ea6620">61.90</span></p></td></tr></tbody></table></div></template>
+<div class="flextable-shadow-host" id="7fb99420-d37c-4687-8dc6-a34efa5e3865"></div>
 <script>
-var dest = document.getElementById("af7fd7c9-7fa4-416e-b223-ea2abd5e0c8a");
-var template = document.getElementById("00a49747-f560-46a0-8ab6-51d2ba08bd87");
+var dest = document.getElementById("7fb99420-d37c-4687-8dc6-a34efa5e3865");
+var template = document.getElementById("eb388172-0ea5-4916-870b-56faa9b3ac48");
 var caption = template.content.querySelector("caption");
 if(caption) {
   caption.style.cssText = "display:block;text-align:center;";
@@ -709,11 +682,8 @@ fantome.appendChild(templateContent);
 </div>
 <div id="exercise-3" class="section level1">
 <h1>Exercise 3</h1>
-<p>The partition function of the reverse sequences <span
-class="math inline">\(x^* = CA\)</span> and <span
-class="math inline">\(y^* = CCA\)</span> is given in the matrix <span
-class="math inline">\(Z^*\)</span>:</p>
-<template id="e510765b-168c-4001-97f5-cb6daec5d05d"><style>
+<p>The partition function of the reverse sequences <span class="math inline">\(x^* = CA\)</span> and <span class="math inline">\(y^* = CCA\)</span> is given in the matrix <span class="math inline">\(Z^*\)</span>:</p>
+<template id="c4514222-27b5-45c6-b05a-8e4079ebbe8d"><style>
 .tabwid table{
   border-spacing:0px !important;
   border-collapse:collapse;
@@ -747,12 +717,12 @@ class="math inline">\(Z^*\)</span>:</p>
 .tabwid table tr {
 background-color: transparent;
 }
-</style><div class="tabwid"><style>.cl-0671e0cc{}.cl-066c8eb0{font-family:'DejaVu Sans';font-size:11pt;font-weight:bold;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-066c8eba{font-family:'DejaVu Sans';font-size:6.6pt;font-weight:bold;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;position: relative;bottom:3.3pt;}.cl-066c8ebb{font-family:'DejaVu Sans';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-066d0958{margin:0;text-align:center;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-066d40ee{width:56.7pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 1pt solid rgba(0, 0, 0, 1.00);border-right: 1pt solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-066d4102{width:56.7pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(0, 0, 0, 1.00);border-top: 1pt solid rgba(0, 0, 0, 1.00);border-left: 1pt solid rgba(0, 0, 0, 1.00);border-right: 1pt solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style><table class='cl-0671e0cc'>
-<thead><tr style="overflow-wrap:break-word;"><td class="cl-066d4102"><p class="cl-066d0958"><span class="cl-066c8eb0">Z</span><span class="cl-066c8eba">*</span></p></td><td class="cl-066d4102"><p class="cl-066d0958"><span class="cl-066c8eb0">-</span></p></td><td class="cl-066d4102"><p class="cl-066d0958"><span class="cl-066c8eb0">A</span></p></td><td class="cl-066d4102"><p class="cl-066d0958"><span class="cl-066c8eb0">C</span></p></td></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td class="cl-066d40ee"><p class="cl-066d0958"><span class="cl-066c8eb0">-</span></p></td><td class="cl-066d40ee"><p class="cl-066d0958"><span class="cl-066c8ebb">1.00</span></p></td><td class="cl-066d40ee"><p class="cl-066d0958"><span class="cl-066c8ebb">0.47</span></p></td><td class="cl-066d40ee"><p class="cl-066d0958"><span class="cl-066c8ebb">0.37</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-066d4102"><p class="cl-066d0958"><span class="cl-066c8eb0">A</span></p></td><td class="cl-066d4102"><p class="cl-066d0958"><span class="cl-066c8ebb">0.47</span></p></td><td class="cl-066d4102"><p class="cl-066d0958"><span class="cl-066c8ebb">7.84</span></p></td><td class="cl-066d4102"><p class="cl-066d0958"><span class="cl-066c8ebb">4.12</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-066d4102"><p class="cl-066d0958"><span class="cl-066c8eb0">C</span></p></td><td class="cl-066d4102"><p class="cl-066d0958"><span class="cl-066c8ebb">0.37</span></p></td><td class="cl-066d4102"><p class="cl-066d0958"><span class="cl-066c8ebb">7.43</span></p></td><td class="cl-066d4102"><p class="cl-066d0958"><span class="cl-066c8ebb">8.45</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-066d4102"><p class="cl-066d0958"><span class="cl-066c8eb0">C</span></p></td><td class="cl-066d4102"><p class="cl-066d0958"><span class="cl-066c8ebb">0.29</span></p></td><td class="cl-066d4102"><p class="cl-066d0958"><span class="cl-066c8ebb">4.94</span></p></td><td class="cl-066d4102"><p class="cl-066d0958"><span class="cl-066c8ebb">61.90</span></p></td></tr></tbody></table></div></template>
-<div class="flextable-shadow-host" id="ce0351f9-8ded-4a44-89ad-608a6961e2e0"></div>
+</style><div class="tabwid"><style>.cl-690e484c{}.cl-69068a4e{font-family:'DejaVu Sans';font-size:11pt;font-weight:bold;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-69068abc{font-family:'DejaVu Sans';font-size:6.6pt;font-weight:bold;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;position: relative;bottom:3.3pt;}.cl-69068ad0{font-family:'DejaVu Sans';font-size:6.6pt;font-weight:bold;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;position: relative;top:3.3pt;}.cl-69068ada{font-family:'DejaVu Sans';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-6906a0a6{margin:0;text-align:center;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-6906e1e2{width:56.7pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 1pt solid rgba(0, 0, 0, 1.00);border-right: 1pt solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-6906e21e{width:56.7pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(0, 0, 0, 1.00);border-top: 1pt solid rgba(0, 0, 0, 1.00);border-left: 1pt solid rgba(0, 0, 0, 1.00);border-right: 1pt solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style><table class='cl-690e484c'>
+<thead><tr style="overflow-wrap:break-word;"><td class="cl-6906e21e"><p class="cl-6906a0a6"><span class="cl-69068a4e">Z</span><span class="cl-69068abc">*</span><span class="cl-69068ad0"></span></p></td><td class="cl-6906e21e"><p class="cl-6906a0a6"><span class="cl-69068a4e">-</span><span class="cl-69068abc"></span><span class="cl-69068ad0"></span></p></td><td class="cl-6906e21e"><p class="cl-6906a0a6"><span class="cl-69068a4e">A</span><span class="cl-69068abc"></span><span class="cl-69068ad0"></span></p></td><td class="cl-6906e21e"><p class="cl-6906a0a6"><span class="cl-69068a4e">C</span><span class="cl-69068abc"></span><span class="cl-69068ad0"></span></p></td></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td class="cl-6906e1e2"><p class="cl-6906a0a6"><span class="cl-69068a4e">-</span></p></td><td class="cl-6906e1e2"><p class="cl-6906a0a6"><span class="cl-69068ada">1.00</span></p></td><td class="cl-6906e1e2"><p class="cl-6906a0a6"><span class="cl-69068ada">0.47</span></p></td><td class="cl-6906e1e2"><p class="cl-6906a0a6"><span class="cl-69068ada">0.37</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-6906e21e"><p class="cl-6906a0a6"><span class="cl-69068a4e">A</span></p></td><td class="cl-6906e21e"><p class="cl-6906a0a6"><span class="cl-69068ada">0.47</span></p></td><td class="cl-6906e21e"><p class="cl-6906a0a6"><span class="cl-69068ada">7.84</span></p></td><td class="cl-6906e21e"><p class="cl-6906a0a6"><span class="cl-69068ada">4.12</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-6906e21e"><p class="cl-6906a0a6"><span class="cl-69068a4e">C</span></p></td><td class="cl-6906e21e"><p class="cl-6906a0a6"><span class="cl-69068ada">0.37</span></p></td><td class="cl-6906e21e"><p class="cl-6906a0a6"><span class="cl-69068ada">7.43</span></p></td><td class="cl-6906e21e"><p class="cl-6906a0a6"><span class="cl-69068ada">8.45</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-6906e21e"><p class="cl-6906a0a6"><span class="cl-69068a4e">C</span></p></td><td class="cl-6906e21e"><p class="cl-6906a0a6"><span class="cl-69068ada">0.29</span></p></td><td class="cl-6906e21e"><p class="cl-6906a0a6"><span class="cl-69068ada">4.94</span></p></td><td class="cl-6906e21e"><p class="cl-6906a0a6"><span class="cl-69068ada">61.90</span></p></td></tr></tbody></table></div></template>
+<div class="flextable-shadow-host" id="bccfedbf-c695-4bd7-8c93-c192dbc00c95"></div>
 <script>
-var dest = document.getElementById("ce0351f9-8ded-4a44-89ad-608a6961e2e0");
-var template = document.getElementById("e510765b-168c-4001-97f5-cb6daec5d05d");
+var dest = document.getElementById("bccfedbf-c695-4bd7-8c93-c192dbc00c95");
+var template = document.getElementById("c4514222-27b5-45c6-b05a-8e4079ebbe8d");
 var caption = template.content.querySelector("caption");
 if(caption) {
   caption.style.cssText = "display:block;text-align:center;";
@@ -770,29 +740,19 @@ fantome.appendChild(templateContent);
 <div id="question-3a" class="section level5">
 <h5>Question 3A</h5>
 <div class="question">
-<p>Find a mapping from matrix <span
-class="math inline">\(Z^{*}_{k,l}\)</span> to <span
-class="math inline">\(Z^{\prime}_{i,j}\)</span>. Which position in
-matrix <span class="math inline">\(Z^{*}\)</span> corresponds to which
-position in matrix <span class="math inline">\(Z^{\prime}\)</span>?</p>
+<p>Find a mapping from matrix <span class="math inline">\(Z^{*}_{k,l}\)</span> to <span class="math inline">\(Z^{\prime}_{i,j}\)</span>. Which position in matrix <span class="math inline">\(Z^{*}\)</span> corresponds to which position in matrix <span class="math inline">\(Z^{\prime}\)</span>?</p>
 </div>
 </div>
 <div id="solution-3" class="section level5">
 <h5>Solution</h5>
 <div class="answer">
-<p><span class="math inline">\(Z^{\prime}_{i,j}\)</span> is the
-partition function of the alignment <span class="math inline">\(x_j ...
-x_{|x|}\)</span> with <span class="math inline">\(y_i ...
-y_{|y|}\)</span>.</p>
-<p><span class="math inline">\(Z^{*}_{k,l}\)</span> is the partition
-function of the alignment <span class="math inline">\(x_{|x|} ...
-x_{|x|-k+1}\)</span> with <span
-class="math inline">\(y_{|y|}...y_{|y|-l+1}\)</span>.</p>
+<p><span class="math inline">\(Z^{\prime}_{i,j}\)</span> is the partition function of the alignment <span class="math inline">\(x_j ... x_{|x|}\)</span> with <span class="math inline">\(y_i ... y_{|y|}\)</span>.</p>
+<p><span class="math inline">\(Z^{*}_{k,l}\)</span> is the partition function of the alignment <span class="math inline">\(x_{|x|} ... x_{|x|-k+1}\)</span> with <span class="math inline">\(y_{|y|}...y_{|y|-l+1}\)</span>.</p>
 <p><span class="math display">\[\begin{align*}
 j &amp;= |x| -l +1 \Leftrightarrow l = |x| -j +1\\
 i &amp;= |y| -k +1 \Leftrightarrow k = |y| -i +1
 \end{align*}\]</span></p>
-<template id="96313e93-b8ac-4e9a-998c-b4fd97ee1f7f"><style>
+<template id="cf00ebed-d55a-4c90-9a11-6b8cc8f9fdb6"><style>
 .tabwid table{
   border-spacing:0px !important;
   border-collapse:collapse;
@@ -826,12 +786,12 @@ i &amp;= |y| -k +1 \Leftrightarrow k = |y| -i +1
 .tabwid table tr {
 background-color: transparent;
 }
-</style><div class="tabwid"><style>.cl-0683f258{}.cl-067f45be{font-family:'DejaVu Sans';font-size:11pt;font-weight:bold;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-067f45c8{font-family:'DejaVu Sans';font-size:6.6pt;font-weight:bold;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;position: relative;bottom:3.3pt;}.cl-067f45d2{font-family:'DejaVu Sans';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-067f54b4{margin:0;text-align:center;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-067f7f84{width:56.7pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 1pt solid rgba(0, 0, 0, 1.00);border-right: 1pt solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-067f7f85{width:56.7pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(0, 0, 0, 1.00);border-top: 1pt solid rgba(0, 0, 0, 1.00);border-left: 1pt solid rgba(0, 0, 0, 1.00);border-right: 1pt solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style><table class='cl-0683f258'>
-<thead><tr style="overflow-wrap:break-word;"><td class="cl-067f7f85"><p class="cl-067f54b4"><span class="cl-067f45be">Z</span><span class="cl-067f45c8">*</span></p></td><td class="cl-067f7f85"><p class="cl-067f54b4"><span class="cl-067f45be">-</span></p></td><td class="cl-067f7f85"><p class="cl-067f54b4"><span class="cl-067f45be">A</span></p></td><td class="cl-067f7f85"><p class="cl-067f54b4"><span class="cl-067f45be">C</span></p></td></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td class="cl-067f7f84"><p class="cl-067f54b4"><span class="cl-067f45be">-</span></p></td><td class="cl-067f7f84"><p class="cl-067f54b4"><span class="cl-067f45d2">1.00</span></p></td><td class="cl-067f7f84"><p class="cl-067f54b4"><span class="cl-067f45d2">0.47</span></p></td><td class="cl-067f7f84"><p class="cl-067f54b4"><span class="cl-067f45d2">0.37</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-067f7f85"><p class="cl-067f54b4"><span class="cl-067f45be">A</span></p></td><td class="cl-067f7f85"><p class="cl-067f54b4"><span class="cl-067f45d2">0.47</span></p></td><td class="cl-067f7f85"><p class="cl-067f54b4"><span class="cl-067f45d2">7.84</span></p></td><td class="cl-067f7f85"><p class="cl-067f54b4"><span class="cl-067f45d2">4.12</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-067f7f85"><p class="cl-067f54b4"><span class="cl-067f45be">C</span></p></td><td class="cl-067f7f85"><p class="cl-067f54b4"><span class="cl-067f45d2">0.37</span></p></td><td class="cl-067f7f85"><p class="cl-067f54b4"><span class="cl-067f45d2">7.43</span></p></td><td class="cl-067f7f85"><p class="cl-067f54b4"><span class="cl-067f45d2">8.45</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-067f7f85"><p class="cl-067f54b4"><span class="cl-067f45be">C</span></p></td><td class="cl-067f7f85"><p class="cl-067f54b4"><span class="cl-067f45d2">0.29</span></p></td><td class="cl-067f7f85"><p class="cl-067f54b4"><span class="cl-067f45d2">4.94</span></p></td><td class="cl-067f7f85"><p class="cl-067f54b4"><span class="cl-067f45d2">61.90</span></p></td></tr></tbody></table></div></template>
-<div class="flextable-shadow-host" id="0f223b02-d115-4d0e-981d-9ee3b9acd851"></div>
+</style><div class="tabwid"><style>.cl-6929d27e{}.cl-6923e10c{font-family:'DejaVu Sans';font-size:11pt;font-weight:bold;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-6923e166{font-family:'DejaVu Sans';font-size:6.6pt;font-weight:bold;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;position: relative;bottom:3.3pt;}.cl-6923e170{font-family:'DejaVu Sans';font-size:6.6pt;font-weight:bold;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;position: relative;top:3.3pt;}.cl-6923e17a{font-family:'DejaVu Sans';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-6923f93a{margin:0;text-align:center;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-69242c02{width:56.7pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 1pt solid rgba(0, 0, 0, 1.00);border-right: 1pt solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-69242c34{width:56.7pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(0, 0, 0, 1.00);border-top: 1pt solid rgba(0, 0, 0, 1.00);border-left: 1pt solid rgba(0, 0, 0, 1.00);border-right: 1pt solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style><table class='cl-6929d27e'>
+<thead><tr style="overflow-wrap:break-word;"><td class="cl-69242c34"><p class="cl-6923f93a"><span class="cl-6923e10c">Z</span><span class="cl-6923e166">*</span><span class="cl-6923e170"></span></p></td><td class="cl-69242c34"><p class="cl-6923f93a"><span class="cl-6923e10c">-</span><span class="cl-6923e166"></span><span class="cl-6923e170"></span></p></td><td class="cl-69242c34"><p class="cl-6923f93a"><span class="cl-6923e10c">A</span><span class="cl-6923e166"></span><span class="cl-6923e170"></span></p></td><td class="cl-69242c34"><p class="cl-6923f93a"><span class="cl-6923e10c">C</span><span class="cl-6923e166"></span><span class="cl-6923e170"></span></p></td></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td class="cl-69242c02"><p class="cl-6923f93a"><span class="cl-6923e10c">-</span></p></td><td class="cl-69242c02"><p class="cl-6923f93a"><span class="cl-6923e17a">1.00</span></p></td><td class="cl-69242c02"><p class="cl-6923f93a"><span class="cl-6923e17a">0.47</span></p></td><td class="cl-69242c02"><p class="cl-6923f93a"><span class="cl-6923e17a">0.37</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-69242c34"><p class="cl-6923f93a"><span class="cl-6923e10c">A</span></p></td><td class="cl-69242c34"><p class="cl-6923f93a"><span class="cl-6923e17a">0.47</span></p></td><td class="cl-69242c34"><p class="cl-6923f93a"><span class="cl-6923e17a">7.84</span></p></td><td class="cl-69242c34"><p class="cl-6923f93a"><span class="cl-6923e17a">4.12</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-69242c34"><p class="cl-6923f93a"><span class="cl-6923e10c">C</span></p></td><td class="cl-69242c34"><p class="cl-6923f93a"><span class="cl-6923e17a">0.37</span></p></td><td class="cl-69242c34"><p class="cl-6923f93a"><span class="cl-6923e17a">7.43</span></p></td><td class="cl-69242c34"><p class="cl-6923f93a"><span class="cl-6923e17a">8.45</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-69242c34"><p class="cl-6923f93a"><span class="cl-6923e10c">C</span></p></td><td class="cl-69242c34"><p class="cl-6923f93a"><span class="cl-6923e17a">0.29</span></p></td><td class="cl-69242c34"><p class="cl-6923f93a"><span class="cl-6923e17a">4.94</span></p></td><td class="cl-69242c34"><p class="cl-6923f93a"><span class="cl-6923e17a">61.90</span></p></td></tr></tbody></table></div></template>
+<div class="flextable-shadow-host" id="b946a3a9-9801-443f-8a35-d0a41fd5c465"></div>
 <script>
-var dest = document.getElementById("0f223b02-d115-4d0e-981d-9ee3b9acd851");
-var template = document.getElementById("96313e93-b8ac-4e9a-998c-b4fd97ee1f7f");
+var dest = document.getElementById("b946a3a9-9801-443f-8a35-d0a41fd5c465");
+var template = document.getElementById("cf00ebed-d55a-4c90-9a11-6b8cc8f9fdb6");
 var caption = template.content.querySelector("caption");
 if(caption) {
   caption.style.cssText = "display:block;text-align:center;";
@@ -844,7 +804,7 @@ var templateContent = template.content;
 fantome.appendChild(templateContent);
 </script>
 
-<template id="77e31027-1417-47d4-ab2f-15498d31c536"><style>
+<template id="1654d78b-2ef3-4950-a4ed-2199b7d6d44f"><style>
 .tabwid table{
   border-spacing:0px !important;
   border-collapse:collapse;
@@ -878,12 +838,12 @@ fantome.appendChild(templateContent);
 .tabwid table tr {
 background-color: transparent;
 }
-</style><div class="tabwid"><style>.cl-0694bbba{}.cl-068fc196{font-family:'DejaVu Sans';font-size:11pt;font-weight:bold;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-068fc1a0{font-family:'DejaVu Sans';font-size:6.6pt;font-weight:bold;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;position: relative;bottom:3.3pt;}.cl-068fc1a1{font-family:'DejaVu Sans';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-068fceca{margin:0;text-align:center;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-068ff51c{width:56.7pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 1pt solid rgba(0, 0, 0, 1.00);border-right: 1pt solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-068ff526{width:56.7pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(0, 0, 0, 1.00);border-top: 1pt solid rgba(0, 0, 0, 1.00);border-left: 1pt solid rgba(0, 0, 0, 1.00);border-right: 1pt solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style><table class='cl-0694bbba'>
-<thead><tr style="overflow-wrap:break-word;"><td class="cl-068ff526"><p class="cl-068fceca"><span class="cl-068fc196">Z</span><span class="cl-068fc1a0">'</span></p></td><td class="cl-068ff526"><p class="cl-068fceca"><span class="cl-068fc196">-</span></p></td><td class="cl-068ff526"><p class="cl-068fceca"><span class="cl-068fc196">A</span></p></td><td class="cl-068ff526"><p class="cl-068fceca"><span class="cl-068fc196">C</span></p></td><td class="cl-068ff526"><p class="cl-068fceca"><span class="cl-068fc196">-</span></p></td></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td class="cl-068ff51c"><p class="cl-068fceca"><span class="cl-068fc196">-</span></p></td><td class="cl-068ff51c"><p class="cl-068fceca"><span class="cl-068fc1a1">(0,0)</span></p></td><td class="cl-068ff51c"><p class="cl-068fceca"><span class="cl-068fc1a1">(0,1)</span></p></td><td class="cl-068ff51c"><p class="cl-068fceca"><span class="cl-068fc1a1">(0,2)</span></p></td><td class="cl-068ff51c"><p class="cl-068fceca"><span class="cl-068fc1a1">(0,3)</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-068ff526"><p class="cl-068fceca"><span class="cl-068fc196">A</span></p></td><td class="cl-068ff526"><p class="cl-068fceca"><span class="cl-068fc1a1">(1,0)</span></p></td><td class="cl-068ff526"><p class="cl-068fceca"><span class="cl-068fc1a1">(1,1)</span></p></td><td class="cl-068ff526"><p class="cl-068fceca"><span class="cl-068fc1a1">(1,2)</span></p></td><td class="cl-068ff526"><p class="cl-068fceca"><span class="cl-068fc1a1">(1,3)</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-068ff526"><p class="cl-068fceca"><span class="cl-068fc196">C</span></p></td><td class="cl-068ff526"><p class="cl-068fceca"><span class="cl-068fc1a1">(2,0)</span></p></td><td class="cl-068ff526"><p class="cl-068fceca"><span class="cl-068fc1a1">(2,1)</span></p></td><td class="cl-068ff526"><p class="cl-068fceca"><span class="cl-068fc1a1">(2,2)</span></p></td><td class="cl-068ff526"><p class="cl-068fceca"><span class="cl-068fc1a1">(2,3)</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-068ff526"><p class="cl-068fceca"><span class="cl-068fc196">C</span></p></td><td class="cl-068ff526"><p class="cl-068fceca"><span class="cl-068fc1a1">(3,0)</span></p></td><td class="cl-068ff526"><p class="cl-068fceca"><span class="cl-068fc1a1">(3,1)</span></p></td><td class="cl-068ff526"><p class="cl-068fceca"><span class="cl-068fc1a1">(3,2)</span></p></td><td class="cl-068ff526"><p class="cl-068fceca"><span class="cl-068fc1a1">(3,3)</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-068ff526"><p class="cl-068fceca"><span class="cl-068fc196">-</span></p></td><td class="cl-068ff526"><p class="cl-068fceca"><span class="cl-068fc1a1">(4,0)</span></p></td><td class="cl-068ff526"><p class="cl-068fceca"><span class="cl-068fc1a1">(4,1)</span></p></td><td class="cl-068ff526"><p class="cl-068fceca"><span class="cl-068fc1a1">(4,2)</span></p></td><td class="cl-068ff526"><p class="cl-068fceca"><span class="cl-068fc1a1">(4,3)</span></p></td></tr></tbody></table></div></template>
-<div class="flextable-shadow-host" id="b191748d-73c6-4604-b776-5339f0ee614a"></div>
+</style><div class="tabwid"><style>.cl-693be8ce{}.cl-6935eb36{font-family:'DejaVu Sans';font-size:11pt;font-weight:bold;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-6935eb5e{font-family:'DejaVu Sans';font-size:6.6pt;font-weight:bold;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;position: relative;bottom:3.3pt;}.cl-6935eb68{font-family:'DejaVu Sans';font-size:6.6pt;font-weight:bold;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;position: relative;top:3.3pt;}.cl-6935eb72{font-family:'DejaVu Sans';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-6935f91e{margin:0;text-align:center;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-69362326{width:56.7pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 1pt solid rgba(0, 0, 0, 1.00);border-right: 1pt solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-6936233a{width:56.7pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(0, 0, 0, 1.00);border-top: 1pt solid rgba(0, 0, 0, 1.00);border-left: 1pt solid rgba(0, 0, 0, 1.00);border-right: 1pt solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style><table class='cl-693be8ce'>
+<thead><tr style="overflow-wrap:break-word;"><td class="cl-6936233a"><p class="cl-6935f91e"><span class="cl-6935eb36">Z</span><span class="cl-6935eb5e">'</span><span class="cl-6935eb68"></span></p></td><td class="cl-6936233a"><p class="cl-6935f91e"><span class="cl-6935eb36">-</span><span class="cl-6935eb5e"></span><span class="cl-6935eb68"></span></p></td><td class="cl-6936233a"><p class="cl-6935f91e"><span class="cl-6935eb36">A</span><span class="cl-6935eb5e"></span><span class="cl-6935eb68"></span></p></td><td class="cl-6936233a"><p class="cl-6935f91e"><span class="cl-6935eb36">C</span><span class="cl-6935eb5e"></span><span class="cl-6935eb68"></span></p></td><td class="cl-6936233a"><p class="cl-6935f91e"><span class="cl-6935eb36">-</span><span class="cl-6935eb5e"></span><span class="cl-6935eb68"></span></p></td></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td class="cl-69362326"><p class="cl-6935f91e"><span class="cl-6935eb36">-</span></p></td><td class="cl-69362326"><p class="cl-6935f91e"><span class="cl-6935eb72">(0,0)</span></p></td><td class="cl-69362326"><p class="cl-6935f91e"><span class="cl-6935eb72">(0,1)</span></p></td><td class="cl-69362326"><p class="cl-6935f91e"><span class="cl-6935eb72">(0,2)</span></p></td><td class="cl-69362326"><p class="cl-6935f91e"><span class="cl-6935eb72">(0,3)</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-6936233a"><p class="cl-6935f91e"><span class="cl-6935eb36">A</span></p></td><td class="cl-6936233a"><p class="cl-6935f91e"><span class="cl-6935eb72">(1,0)</span></p></td><td class="cl-6936233a"><p class="cl-6935f91e"><span class="cl-6935eb72">(1,1)</span></p></td><td class="cl-6936233a"><p class="cl-6935f91e"><span class="cl-6935eb72">(1,2)</span></p></td><td class="cl-6936233a"><p class="cl-6935f91e"><span class="cl-6935eb72">(1,3)</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-6936233a"><p class="cl-6935f91e"><span class="cl-6935eb36">C</span></p></td><td class="cl-6936233a"><p class="cl-6935f91e"><span class="cl-6935eb72">(2,0)</span></p></td><td class="cl-6936233a"><p class="cl-6935f91e"><span class="cl-6935eb72">(2,1)</span></p></td><td class="cl-6936233a"><p class="cl-6935f91e"><span class="cl-6935eb72">(2,2)</span></p></td><td class="cl-6936233a"><p class="cl-6935f91e"><span class="cl-6935eb72">(2,3)</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-6936233a"><p class="cl-6935f91e"><span class="cl-6935eb36">C</span></p></td><td class="cl-6936233a"><p class="cl-6935f91e"><span class="cl-6935eb72">(3,0)</span></p></td><td class="cl-6936233a"><p class="cl-6935f91e"><span class="cl-6935eb72">(3,1)</span></p></td><td class="cl-6936233a"><p class="cl-6935f91e"><span class="cl-6935eb72">(3,2)</span></p></td><td class="cl-6936233a"><p class="cl-6935f91e"><span class="cl-6935eb72">(3,3)</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-6936233a"><p class="cl-6935f91e"><span class="cl-6935eb36">-</span></p></td><td class="cl-6936233a"><p class="cl-6935f91e"><span class="cl-6935eb72">(4,0)</span></p></td><td class="cl-6936233a"><p class="cl-6935f91e"><span class="cl-6935eb72">(4,1)</span></p></td><td class="cl-6936233a"><p class="cl-6935f91e"><span class="cl-6935eb72">(4,2)</span></p></td><td class="cl-6936233a"><p class="cl-6935f91e"><span class="cl-6935eb72">(4,3)</span></p></td></tr></tbody></table></div></template>
+<div class="flextable-shadow-host" id="4707a959-2d22-4af1-bdfd-a035a145e3c0"></div>
 <script>
-var dest = document.getElementById("b191748d-73c6-4604-b776-5339f0ee614a");
-var template = document.getElementById("77e31027-1417-47d4-ab2f-15498d31c536");
+var dest = document.getElementById("4707a959-2d22-4af1-bdfd-a035a145e3c0");
+var template = document.getElementById("1654d78b-2ef3-4950-a4ed-2199b7d6d44f");
 var caption = template.content.querySelector("caption");
 if(caption) {
   caption.style.cssText = "display:block;text-align:center;";
@@ -908,23 +868,14 @@ fantome.appendChild(templateContent);
 <div id="question-3b" class="section level5">
 <h5>Question 3B</h5>
 <div class="question">
-<p>Use <span class="math inline">\(Z,Z^*\)</span> and the mapping from
-<span class="math inline">\(Z^*\)</span> to <span
-class="math inline">\(Z^\prime\)</span> to compute the probability of
-the alignment edges <span class="math inline">\((1,1)\)</span>, <span
-class="math inline">\((2,2)\)</span>, <span
-class="math inline">\((3,1)\)</span> and <span
-class="math inline">\((3,2)\)</span> between <span
-class="math inline">\(x\)</span> and <span
-class="math inline">\(y\)</span>.</p>
+<p>Use <span class="math inline">\(Z,Z^*\)</span> and the mapping from <span class="math inline">\(Z^*\)</span> to <span class="math inline">\(Z^\prime\)</span> to compute the probability of the alignment edges <span class="math inline">\((1,1)\)</span>, <span class="math inline">\((2,2)\)</span>, <span class="math inline">\((3,1)\)</span> and <span class="math inline">\((3,2)\)</span> between <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span>.</p>
 </div>
 </div>
 <div id="hint-1-formulae-2" class="section level5">
 <h5>Hint 1: Formulae</h5>
 <div class="answer">
 <p><span class="math display">\[
-P(x_i \sim y_j | x,y) = \frac{Z_{i-1,j-1}\times
-e^{\frac{\sigma(x_i,y_j)}{T}} \times Z^{\prime}_{i+1,j+1}}{Z(T)}\\
+P(x_i \sim y_j | x,y) = \frac{Z_{i-1,j-1}\times e^{\frac{\sigma(x_i,y_j)}{T}} \times Z^{\prime}_{i+1,j+1}}{Z(T)}\\
 Z^M_{i,j} = Z_{i-1,j-1} \times  e^{\frac{\sigma(x_i,y_j)}{T}}
 \]</span></p>
 </div>
@@ -943,39 +894,21 @@ Z^{\prime}_{4,3} &amp;\Longleftrightarrow Z^{\ast}_{0,0}
 <div id="solution-4" class="section level5">
 <h5>Solution</h5>
 <div class="answer">
-<p>Alignment edge <span class="math inline">\((1,1)\)</span>: <span
-class="math display">\[
-P(x_1 \sim y_1 | x,y) = \frac{Z_{0,0}\times
-e^{\frac{\sigma(x_1,y_1)}{T}} \times Z^{\prime}_{2,2}}{Z(T)}
-=\frac{Z_{0,0}\times e^{\frac{\sigma(x_1,y_1)}{T}} \times
-Z^{\ast}_{2,1}}{Z(T)} = \frac{Z^M_{1,1} \times Z^{\ast}_{2,1}}{Z(T)} =
-\frac{7.39 \times 7.43}{61.90} = 0.89
-\]</span> Alignment edge <span class="math inline">\((2,2)\)</span>:
-<span class="math display">\[
-P(x_2 \sim y_2 | x,y) = \frac{Z_{1,1}\times
-e^{\frac{\sigma(x_2,y_2)}{T}} \times Z^{\prime}_{3,3}}{Z(T)}
-=\frac{Z_{1,1}\times e^{\frac{\sigma(x_2,y_2)}{T}} \times
-Z^{\ast}_{1,0}}{Z(T)} = \frac{Z^M_{2,2} \times Z^{\ast}_{1,0}}{Z(T)} =
-\frac{57.90 \times 0.47}{61.90} = 0.44
-\]</span> Alignment edge <span class="math inline">\((3,1)\)</span>:
-<span class="math display">\[
-P(x_3 \sim y_1 | x,y) = \frac{Z^M_{3,1} \times Z^{\prime}_{4,2}}{Z(T)}
-=  \frac{Z^M_{3,1} \times Z^{\ast}_{0,1}}{Z(T)} = \frac{0.14 \times
-0.47}{61.90} = 0.001
-\]</span> Alignment edge <span class="math inline">\((3,2)\)</span>:
-<span class="math display">\[
-P(x_3 \sim y_2 | x,y) = \frac{Z^M_{3,2} \times Z^{\prime}_{4,3}}{Z(T)}
-=  \frac{Z^M_{3,1} \times Z^{\ast}_{0,0}}{Z(T)} = \frac{30.42 \times
-1}{61.90} = 0.49
+<p>Alignment edge <span class="math inline">\((1,1)\)</span>: <span class="math display">\[
+P(x_1 \sim y_1 | x,y) = \frac{Z_{0,0}\times e^{\frac{\sigma(x_1,y_1)}{T}} \times Z^{\prime}_{2,2}}{Z(T)} =\frac{Z_{0,0}\times e^{\frac{\sigma(x_1,y_1)}{T}} \times Z^{\ast}_{2,1}}{Z(T)} = \frac{Z^M_{1,1} \times Z^{\ast}_{2,1}}{Z(T)} = \frac{7.39 \times 7.43}{61.90} = 0.89
+\]</span> Alignment edge <span class="math inline">\((2,2)\)</span>: <span class="math display">\[
+P(x_2 \sim y_2 | x,y) = \frac{Z_{1,1}\times e^{\frac{\sigma(x_2,y_2)}{T}} \times Z^{\prime}_{3,3}}{Z(T)} =\frac{Z_{1,1}\times e^{\frac{\sigma(x_2,y_2)}{T}} \times Z^{\ast}_{1,0}}{Z(T)} = \frac{Z^M_{2,2} \times Z^{\ast}_{1,0}}{Z(T)} = \frac{57.90 \times 0.47}{61.90} = 0.44
+\]</span> Alignment edge <span class="math inline">\((3,1)\)</span>: <span class="math display">\[
+P(x_3 \sim y_1 | x,y) = \frac{Z^M_{3,1} \times Z^{\prime}_{4,2}}{Z(T)} =  \frac{Z^M_{3,1} \times Z^{\ast}_{0,1}}{Z(T)} = \frac{0.14 \times 0.47}{61.90} = 0.001
+\]</span> Alignment edge <span class="math inline">\((3,2)\)</span>: <span class="math display">\[
+P(x_3 \sim y_2 | x,y) = \frac{Z^M_{3,2} \times Z^{\prime}_{4,3}}{Z(T)} =  \frac{Z^M_{3,1} \times Z^{\ast}_{0,0}}{Z(T)} = \frac{30.42 \times 1}{61.90} = 0.49
 \]</span></p>
 </div>
 </div>
 </div>
 <div id="section-9" class="section level4 unnumbered">
 <h4 class="unnumbered"></h4>
-<p>Download:
-<a href="exercise-sheet-5.pdf" title="Download PDF Version">PDF
-Version</a> of this page.</p>
+<p>Download: <a href="exercise-sheet-5.pdf" title="Download PDF Version">PDF Version</a> of this page.</p>
 </div>
 </div>
 

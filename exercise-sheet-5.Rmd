@@ -1,3 +1,10 @@
+```{r, include=FALSE}
+source("custom_functions.R")
+library(flextable)
+library(officer)
+
+```
+
 ---
 title: "Exercise sheet 5: Probalign"
 ---
@@ -122,37 +129,24 @@ Z_{i,j} &= Z^{M}_{i,j} + Z^{I}_{i,j} + Z^{D}_{i,j}
 
 ##### Solution
 ```{r, include=FALSE}
-library(flextable)
-library(officer)
-custom_theme <- function(x) {
-  x <- set_table_properties(x, layout = "fixed")
-  x <- border_remove(x)
-  std_border <- fp_border(width = 1, color = "black")
-  x <- border_outer(x, part="all", border = std_border)
-  x <- border_inner_h(x, border = std_border, part="all")
-  x <- border_inner_v(x, border = std_border, part="all")
-  x <- align(x, align = "center", part = "all")
-  x <- bold(x, bold = TRUE, part = "header")
-  x <- bold(x, bold = TRUE, j=1)
-  width(x, width=2, unit="cm")
-} 
+
 zm <- data.frame(a = c( "-",  "A",   "C",   "C"),
                  b = c(1.00, 0.00,  0.00,  0.00),
                  c = c(0.00, 7.39,  0.17,  0.14),
                  d = c(0.00, 0.17, 57.90, 30.42))
-names(zm) <- c("Z^M", "-", "A", "C")
+names(zm) <- c("Z^{M}", "-", "A", "C")
 
 zi <- data.frame(a = c( "-",  "A",   "C",   "C"),
                  b = c(0.00, 0.00,  0.00,  0.00),
                  c = c(0.47, 0.22,  0.17,  0.14),
                  d = c(0.37, 3.77,  2.00,  1.63))
-names(zi) <- c("Z^I", "-", "A", "C")
+names(zi) <- c("Z^{I}", "-", "A", "C")
 
 zd <- data.frame(a = c( "-",  "A",   "C",   "C"),
                  b = c(0.00, 0.47,  0.37,  0.29),
                  c = c(0.00, 0.22,  3.68,  3.10),
                  d = c(0.00, 0.17,  2.00, 29.85))
-names(zd) <- c("Z^D", "-", "A", "C")
+names(zd) <- c("Z^{D}", "-", "A", "C")
 
 z <- data.frame(a = c( "-",  "A",   "C",   "C"),
                 b = c(1.00, 0.47,  0.37,  0.29),
@@ -167,16 +161,16 @@ names(z) <- c("Z", "-", "A", "C")
 ```{r, results="asis", include=knitr::is_html_output(), echo=FALSE}
 
 zm_ft <- flextable(zm)
-zm_ft <- compose(zm_ft, part="header", j=1, value = as_paragraph("Z", as_sup("M")))
-custom_theme(zm_ft)
+zm_ft <- custom_theme(zm_ft)
+index_replace(zm_ft)
 
 zi_ft <- flextable(zi)
-zi_ft <- compose(zi_ft, part="header", j=1, value = as_paragraph("Z", as_sup("I")))
-custom_theme(zi_ft)
+zi_ft <- custom_theme(zi_ft)
+index_replace(zi_ft)
 
 zd_ft <- flextable(zd)
-zd_ft <- compose(zd_ft, part="header", j=1, value = as_paragraph("Z", as_sup("D")))
-custom_theme(zd_ft)
+zd_ft <- custom_theme(zd_ft)
+index_replace(zd_ft)
 
 z_ft <- flextable(z)
 custom_theme(z_ft)
@@ -203,27 +197,27 @@ zstar <- data.frame(a = c( "-",  "A",   "C",   "C"),
                     b = c(1.00, 0.47,  0.37,  0.29),
                     c = c(0.47, 7.84,  7.43,  4.94),
                     d = c(0.37, 4.12,  8.45, 61.90))
-names(zstar) <- c("Z^*", "-", "A", "C")
+names(zstar) <- c("Z^{*}", "-", "A", "C")
 
 zstar_pos <- data.frame(a = c(    "-",     "A",     "C",     "C"),
                         b = c("(0,0)", "(1,0)", "(2,0)", "(3,0)"),
                         c = c("(0,1)", "(1,1)", "(2,1)", "(3,1)"),
                         d = c("(0,2)", "(1,2)", "(2,2)", "(3,2)"))
-names(zstar_pos) <- c("Z^*", "-", "C", "A")
+names(zstar_pos) <- c("Z^{*}", "-", "C", "A")
 
 zprime_pos <- data.frame(a = c(    "-",     "A",     "C",     "C",     "-"),
                          b = c("(0,0)", "(1,0)", "(2,0)", "(3,0)", "(4,0)"),
                          c = c("(0,1)", "(1,1)", "(2,1)", "(3,1)", "(4,1)"),
                          d = c("(0,2)", "(1,2)", "(2,2)", "(3,2)", "(4,2)"),
                          e = c("(0,3)", "(1,3)", "(2,3)", "(3,3)", "(4,3)"))
-names(zprime_pos) <- c("Z^'", "-", "A", "C", "--")
+names(zprime_pos) <- c("Z^{'}", "-", "A", "C", "-1")
 ```
 
 ```{r, results="asis", include=knitr::is_html_output(), echo=FALSE}
 
 zstar_ft <- flextable(zstar)
-zstar_ft <- compose(zstar_ft, part="header", j=1, value = as_paragraph("Z", as_sup("*")))
-custom_theme(zstar_ft)
+zstar_ft <- custom_theme(zstar_ft)
+index_replace(zstar_ft)
 ```
 
 ```{r, results="asis", include=knitr::is_latex_output(), echo=FALSE}
@@ -254,13 +248,12 @@ i &= |y| -k +1 \Leftrightarrow k = |y| -i +1
 ```{r, results="asis", include=knitr::is_html_output(), echo=FALSE}
 
 zstar_pos_ft <- flextable(zstar_pos)
-zstar_pos_ft <- compose(zstar_pos_ft, part="header", j=1, value = as_paragraph("Z", as_sup("*")))
-custom_theme(zstar_ft)
+zstar_pos_ft <- custom_theme(zstar_ft)
+index_replace(zstar_pos_ft)
 
 zprime_pos_ft <- flextable(zprime_pos)
-zprime_pos_ft <- compose(zprime_pos_ft, part="header", j=1, value = as_paragraph("Z", as_sup("'")))
-zprime_pos_ft <- compose(zprime_pos_ft, part="header", j=5, value = as_paragraph("-"))
-custom_theme(zprime_pos_ft)
+zprime_pos_ft <- custom_theme(zprime_pos_ft)
+index_replace(zprime_pos_ft)
 ```
 
 ```{r, results="asis", include=knitr::is_latex_output(), echo=FALSE}

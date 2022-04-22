@@ -1,3 +1,11 @@
+```{r, include=FALSE}
+source("custom_functions.R")
+library(flextable)
+library(officer)
+
+```
+
+
 ---
 title: "Exercise sheet 3: T-Coffee"
 ---
@@ -157,21 +165,33 @@ w(x_i,y_j) &=& \begin{cases}
 
 :::
 
+
 ##### Solution
 
-::: {.answer data-latex=""}
+```{r, include=FALSE}
 
-| - | - | A  | C   | C   | A   | A   | G   |
-|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
-| __-__ | 0 | 0  | 0   | 0   | 0   | 0   | 0   |
-| __A__ | 0 | 50 | 50  | 50  | 50  | 50  | 50  |
-| __A__ | 0 | 50 | 50  | 50  | 50  | 50  | 50  |
-| __C__ | 0 | 50 | 50  | 100 | 100 | 100 | 100 |
-| __A__ | 0 | 67 | 67  | 100 | 150 | 150 | 150 |
-| __C__ | 0 | 67 | 133 | 133 | 150 | 150 | 150 |
-| __C__ | 0 | 67 | 133 | 200 | 200 | 200 | 200 |
 
-:::
+onec <- data.frame(a = c("-", "A", "A", "C", "A", "C", "C"),
+                   b = c(0, 0, 0, 0, 0, 0, 0),
+                   c = c(0, 50, 50, 50, 67, 67, 67),
+                   d = c(0, 50, 50, 50, 67, 133, 133),
+                   e = c(0, 50, 50, 100, 100, 133, 200),
+                   f = c(0, 50, 50, 100, 150, 150, 200),
+                   g = c(0, 50, 50, 100, 150, 150, 200),
+                   h = c(0, 50, 50, 100, 150, 150, 0))
+names(onec) <- c("-1",  "-", "A1",   "C2", "C3",  "A4",   "A5",   "G6")
+
+```
+```{r, results="asis", include=knitr::is_html_output(), echo=FALSE}
+onec_ft <- flextable(onec)
+onec_ft <- custom_theme(onec_ft)
+index_replace(onec_ft)
+
+```
+```{r, results="asis", include=knitr::is_latex_output(), echo=FALSE}
+knitr::kable(onec)
+```
+
 #### {-}
 
 
