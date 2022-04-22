@@ -11,6 +11,29 @@ custom_theme <- function(x) {
   x <- align(x, align = "center", part = "all")
   x <- bold(x, bold = TRUE, part = "header")
   x <- bold(x, bold = TRUE, j=1)
+  border2 <- fp_border(width = 2, color = "black")
+  x <- border(x, i=1, border.bottom=border2, part="header")
+  x <- border(x, j=1, border.right=border2, part="all")
+  width(x, width=2, unit="cm")
+}
+
+custom_theme2headers <- function(x, header_row) {
+  x <- set_table_properties(x, layout = "fixed")
+  x <- border_remove(x)
+  x <- add_header_row(x, values=header_row)
+  std_border <- fp_border(width = 1, color = "black")
+
+  x <- border_outer(x, part="all", border = std_border)
+  x <- border_inner_h(x, border = std_border, part="body")
+  x <- border_inner_v(x, border = std_border, part="all")
+
+  x <- align(x, align = "center", part = "all")
+  x <- bold(x, bold = TRUE, part = "header")
+  x <- bold(x, bold = TRUE, j=1)
+  border2 <- fp_border(width = 2, color = "black")
+
+  x <- border(x, i=2, border.bottom=border2, part="header")
+  x <- border(x, j=1, border.right=border2, part="all")
   width(x, width=2, unit="cm")
 }
 
