@@ -4,16 +4,6 @@ title: "Bioinformatics II Exercises"
 
 ---------------------------------
 
-\begin{center}
-\begin{tabular}{|l|l|l|l|}
-\hline
-Johnson Family & Transformation & Parameter Conditions & X Condition \\ \hline
-$S_B$ & $Z=\gamma + \eta ln(\frac {X - \epsilon} {\lambda + \epsilon - X})$ & $\eta, \lambda >0, -\infty < \gamma, \epsilon < \infty$ & $\epsilon < X < \epsilon + \lambda$ \\ \hline
-$S_L$ & $Z=\gamma + \eta ln(X - \epsilon)$ & $\eta >0, -\infty < \gamma, \epsilon < \infty$ & $X > \epsilon$ \\ \hline
-$S_U$ & $Z=\gamma + \eta \sinh^{-1}(\frac {X - \epsilon} {\lambda})$ & $\eta, \lambda >0, -\infty < \gamma, \epsilon < \infty$ & $-\infty < X < \infty$ \\ \hline
-\end{tabular}
-\end{center}
-
 # Introduction
 
 All exercises for the lecture Bioinformatics II are provided on this web page.
@@ -22,9 +12,9 @@ The exercises complement the lecture slides and aim to improve your understandin
 
 `r knitr::asis_output("\U26A0")` We highly recommend doing these exercises.
 
-# Setup
+# Details
 
-Exercises are made up of two parts:
+Exercises contain two parts:
 
 - standard theory and calculation questions 
 - programming assignments.
@@ -32,6 +22,7 @@ Exercises are made up of two parts:
 Standard questions can be found on this web page.
 
 Programming assignments are available via Github Classroom. Links to the appropriate programming assignments will be provided in the according exercise sheet.
+Not every exercise sheet will have a programming assignment.
 
 Exercises are designed for self-teaching. Every week there will be a exercise session where questions about the current exercise sheet will be answered and discussed. Please check the Bioinformatics II Ilias course page for more information about dates and times.
 

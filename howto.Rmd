@@ -15,9 +15,11 @@ Results will be discussed in the weekly exercise sessions.
 
 You can access individual exercise sheets using the navigation bar.
 
+---------------------------------
 ```{r, echo=FALSE, out.width="100%", fig.align='left'}
 knitr::include_graphics("figures/howto/navbar.png")
 ```
+---------------------------------
 
 All exercise sheets are made for self-learning and provide questions, hints and a master-solution.
 
@@ -26,19 +28,15 @@ Keep in mind though that exercise discussions will be held every week for a cert
 
 A detailed schedule is available on our Ilias page.
 
-
-```{r, echo=FALSE, out.width="100%", fig.align='left'}
-knitr::include_graphics("figures/howto/question.png")
-```
-
 ## Pdf-version
 
 A pdf-version of each exercise sheet is available for download on the bottom of each exercise sheet.
 
-```{r, echo=FALSE, out.width="100%", fig.align='left'}
+---------------------------------
+```{r, echo=FALSE, out.width="80%", fig.align='left'}
 knitr::include_graphics("figures/howto/pdf_version.png")
 ```
-
+---------------------------------
 
 # Programming Tasks
 
@@ -46,18 +44,29 @@ Some exercise-sheets have programming tasks.
 
 Whenever a programming task is available you will be redirected to our Github Classroom page:
 
-```{r, echo=FALSE, out.width="100%", fig.align='left'}
+---------------------------------
+```{r, echo=FALSE, out.width="80%", fig.align='left'}
 knitr::include_graphics("figures/howto/programming.png")
 ```
+---------------------------------
 
-In Github Classroom we provide automated testing for solutions written in python. You are of course welcome to use whatever language you prefer, but the automatic tests will not work for other languages than python.
+In Github Classroom we provide automated testing for solutions written in python. You are of course welcome to use whatever language you prefer, but the automatic tests will not work for other languages.
 
 The link provided will lead you to the specific assignment.
+
+---------------------------------
+```{r, echo=FALSE, out.width="80%", fig.align='left'}
+knitr::include_graphics("figures/howto/accept.png")
+```
+---------------------------------
+
 Once you accept the prompt shown on Github, a custom Github repository will be created for yourself, with your Github Name as a suffix.
 
-```{r, echo=FALSE, out.width="100%", fig.align='left'}
-knitr::include_graphics("figures/howto/github-link.png")
+---------------------------------
+```{r, echo=FALSE, out.width="80%", fig.align='left'}
+knitr::include_graphics("figures/howto/ready.png")
 ```
+---------------------------------
 
 If you follow this link you will be able to see your personal Github repository. This will contain all the necessary files and descriptions to complete the programming task.
 The task description will be given in the README.md which is also visible below the source code.
