@@ -11,14 +11,13 @@ title: "Exercise sheet 5: Probalign"
 
 ---------------------------------
 
+# Exercise 1
 
 For the following exercises on Probalign, we use an affine gap penalty with $g(k) = \alpha + \beta k = -0.5 - 0.25k$, there temperature $T=1$ and the similarity function $\sigma(x_i, y_j)$:
 
 ```{r, echo=FALSE, out.width="50%", fig.align='center'}
 knitr::include_graphics("figures/sheet-5/bordermatrix.png")
 ```
-
-# Exercise 1
 
 #### {.tabset}
 
