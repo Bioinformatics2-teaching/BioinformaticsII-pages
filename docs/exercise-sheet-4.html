@@ -13,7 +13,7 @@
 
 <title>Exercise sheet 4: Pair-HMM</title>
 
-<script src="site_libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.12/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/cosmo.min.css" rel="stylesheet" />
@@ -60,6 +60,7 @@ if (window.hljs) {
 
 
 
+
 <link rel="stylesheet" href="bioinf-style.css" type="text/css" />
 
 
@@ -84,6 +85,9 @@ button.code-folding-btn:focus {
 }
 summary {
   display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
 }
 pre code {
   padding: 0;
@@ -337,10 +341,11 @@ div.tocify {
         <li><a href="index.html">Intro</a></li>
         <li><a href="howto.html">HowTo</a></li>
         <li><a href="exercise-sheet-1.html">Sheet 1</a></li>
-<!--    <li><a href="exercise-sheet-2.html">Sheet 2</a></li>
-        <li><a href="exercise-sheet-3.html">Sheet 3</a></li>
+        <li><a href="exercise-sheet-2.html">Sheet 2</a></li>
+<!--        <li><a href="exercise-sheet-3.html">Sheet 3</a></li>
         <li><a href="exercise-sheet-4.html">Sheet 4</a></li>
-        <li><a href="exercise-sheet-5.html">Sheet 5</a></li>-->
+        <li><a href="exercise-sheet-5.html">Sheet 5</a></li>
+        <li><a href="exercise-sheet-6.html">Sheet 6</a></li>-->
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li><a href="http://www.bioinf.uni-freiburg.de/index.html?en2">Contact</a></li>
@@ -360,11 +365,24 @@ div.tocify {
 
 <div id="exercise-1" class="section level1">
 <h1>Exercise 1</h1>
-<p>You are given the basic pair-HMM for sequence alignment between two sequences:</p>
+<p>You are given the basic pair-HMM for sequence alignment between two
+sequences:</p>
 <p><img src="figures/sheet-4/HMM.png" width="50%" style="display: block; margin: auto;" /></p>
-<p>Let <span class="math inline">\(\delta = 0.02\)</span> and <span class="math inline">\(\epsilon=0.79\)</span>. The initial probability distribution of the states is given by <span class="math inline">\(\pi(M)=0.6\)</span>, <span class="math inline">\(\pi(I_x) = 0.2\)</span> and <span class="math inline">\(\pi(I_y) = 0.2\)</span>. Furthermore, let all <span class="math inline">\(p(x_i,y_j)\)</span> and <span class="math inline">\(q(x_i)\)</span> (and <span class="math inline">\(q(y_j)\)</span>) be given in matrix <span class="math inline">\(p\)</span> and vector <span class="math inline">\(q\)</span>, respectively:</p>
+<p>Let <span class="math inline">\(\delta = 0.02\)</span> and <span
+class="math inline">\(\epsilon=0.79\)</span>. The initial probability
+distribution of the states is given by <span
+class="math inline">\(\pi(M)=0.6\)</span>, <span
+class="math inline">\(\pi(I_x) = 0.2\)</span> and <span
+class="math inline">\(\pi(I_y) = 0.2\)</span>. Furthermore, let all
+<span class="math inline">\(p(x_i,y_j)\)</span> and <span
+class="math inline">\(q(x_i)\)</span> (and <span
+class="math inline">\(q(y_j)\)</span>) be given in matrix <span
+class="math inline">\(p\)</span> and vector <span
+class="math inline">\(q\)</span>, respectively:</p>
 <hr />
-<p>Download: <a href="exercise-sheet-4.pdf" title="Download PDF Version">PDF Version</a> of this page.</p>
+<p>Download:
+<a href="exercise-sheet-4.pdf" title="Download PDF Version">PDF
+Version</a> of this page.</p>
 </div>
 
 
