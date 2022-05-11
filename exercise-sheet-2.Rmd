@@ -205,12 +205,12 @@ Compute the following emission probabilities with maximum likelihood estimation:
 ##### Formulae
 
 ::: {.answer data-latex=""}
+<!-- $$ b_{i,k} = Pr[r_t=k | q_t = i], \\ \text{with } t \text{ a point in time } (t -->
+<!-- \in T)\\ q_1 ... q_t ... q_T \text{ random variables for the states}\\ r_1 ... -->
+<!-- r_t ... r_T \text{ random variables for the outputs}\\ k \in \Sigma \text{ a -->
+<!-- finit output alphabet} $$ -->
 $$
-b_{i,k} = Pr[r_t=k | q_t = i], \\
-\text{with } t \text{ a point in time } (t \in T)\\
-q_1 ... q_t ... q_T \text{ random variables for the states}\\
-r_1 ... r_t ... r_T \text{ random variables for the outputs}\\
-k \in \Sigma \text{ a finit output alphabet}
+b_{i,k} = \frac{E[\text{number of emissions of } \sigma_k \text{, while in state } i | \mathcal{O}, M]}{E[\text{number of times in state } i | \mathcal{O}, M]}
 $$
 :::
 
@@ -241,7 +241,7 @@ Compute the following transition probabilities with maximum likelihood estimatio
 
 ::: {.answer data-latex=""}
 $$
-a_{i,j} = Pr[q_t = j | q_{t-1} = i]
+a_{i,j} = \frac{E[\text{number of transitions from }  i \text{ to } j | \mathcal{O}, M]}{E[\text{number of transitions from } i | \mathcal{O}, M]}
 $$
 :::
 

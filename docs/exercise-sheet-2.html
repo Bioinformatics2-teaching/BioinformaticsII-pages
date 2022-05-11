@@ -342,8 +342,8 @@ div.tocify {
         <li><a href="howto.html">HowTo</a></li>
         <li><a href="exercise-sheet-1.html">Sheet 1</a></li>
         <li><a href="exercise-sheet-2.html">Sheet 2</a></li>
-<!--        <li><a href="exercise-sheet-3.html">Sheet 3</a></li>
-        <li><a href="exercise-sheet-4.html">Sheet 4</a></li>
+        <li><a href="exercise-sheet-3.html">Sheet 3</a></li>
+<!--    <li><a href="exercise-sheet-4.html">Sheet 4</a></li>
         <li><a href="exercise-sheet-5.html">Sheet 5</a></li>
         <li><a href="exercise-sheet-6.html">Sheet 6</a></li>-->
       </ul>
@@ -599,12 +599,14 @@ class="math inline">\(b_{M_1,T}\)</span>.</p>
 <div id="formulae" class="section level5">
 <h5>Formulae</h5>
 <div class="answer">
+<!-- $$ b_{i,k} = Pr[r_t=k | q_t = i], \\ \text{with } t \text{ a point in time } (t -->
+<!-- \in T)\\ q_1 ... q_t ... q_T \text{ random variables for the states}\\ r_1 ... -->
+<!-- r_t ... r_T \text{ random variables for the outputs}\\ k \in \Sigma \text{ a -->
+<!-- finit output alphabet} $$ -->
 <p><span class="math display">\[
-b_{i,k} = Pr[r_t=k | q_t = i], \\
-\text{with } t \text{ a point in time } (t \in T)\\
-q_1 ... q_t ... q_T \text{ random variables for the states}\\
-r_1 ... r_t ... r_T \text{ random variables for the outputs}\\
-k \in \Sigma \text{ a finit output alphabet}
+b_{i,k} = \frac{E[\text{number of emissions of } \sigma_k \text{, while
+in state } i | \mathcal{O}, M]}{E[\text{number of times in state } i |
+\mathcal{O}, M]}
 \]</span></p>
 </div>
 </div>
@@ -636,7 +638,9 @@ class="math inline">\(a_{M_2,D_3}\)</span></p>
 <h5>Formulae</h5>
 <div class="answer">
 <p><span class="math display">\[
-a_{i,j} = Pr[q_t = j | q_{t-1} = i]
+a_{i,j} = \frac{E[\text{number of transitions from }  i \text{ to } j |
+\mathcal{O}, M]}{E[\text{number of transitions from } i | \mathcal{O},
+M]}
 \]</span></p>
 </div>
 </div>
