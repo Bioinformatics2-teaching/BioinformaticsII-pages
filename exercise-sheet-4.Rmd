@@ -26,9 +26,9 @@ Identify the probabilities of the following alignments between sequences x=AGCGG
 ##### Question 1A
 
 ```
-                                    a: AGCGG----
+                                    x: AGCGG----
                                          :::
-                                    b: --ACAGGGG
+                                    y: --ACAGGGG
 ```
 
 
@@ -92,9 +92,9 @@ $Prob(path,O) \approx 2.4 \cdot 10^{-11}$$
 ##### Question 1C
 
 ```
-                                    a: AGCGG------
+                                    x: AGCGG------
                                            :
-                                    b: ----ACAGGGG
+                                    y: ----ACAGGGG
 ```
 
 
