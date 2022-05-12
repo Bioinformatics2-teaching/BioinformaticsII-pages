@@ -113,9 +113,9 @@ $Prob(path, O) = Prob(O | path ) \times Prob(O)$
 ##### Solution
 
 ::: {.answer data-latex=""}
-$Prob(path=I_xI_xI_xI_xMI_yI_yI_yI_yI_yI_y)=\pi(I_x)$
+$Prob(path=I_xI_xI_xI_xMI_yI_yI_yI_yI_yI_y) \approx 1.2 \cdot 10^{-4}$
 
-$Prob(O | path)=q(A)$
+$Prob(O | path) \approx 2.9 \cdot 10^{-9}$
 
 $Prob(path,O) \approx 3.7 \cdot 10^{-13}$
 :::
