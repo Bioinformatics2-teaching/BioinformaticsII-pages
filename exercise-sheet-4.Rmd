@@ -26,25 +26,27 @@ Identify the probabilities of the following alignments between sequences x=AGCGG
 ##### Question 1A
 
 ```
-                                    a: CACCG_G
-                                        |||: |
-                                    b: _ACCAAG
+                                    a: AGCGG----
+                                         :::
+                                    b: --ACAGGGG
 ```
 
 
 ##### Formulae
 
 ::: {.answer data-latex=""}
-$Prob(path=IxIxMMMIyIyIyIy)=\pi(Ix) \cdot \epsilon \cdot (1-\epsilon) \cdot (1-2\delta)^2 \cdot \delta \cdot \epsilon^3$
+$Prob(path=I_xI_xMMMI_yI_yI_yI_y)=\pi(I_x) \cdot \epsilon \cdot (1-\epsilon) \cdot (1-2\delta)^2 \cdot \delta \cdot \epsilon^3$
 
 $Prob(O | path)=q(A) \cdot q(G) \cdot p(C,A) \cdot p(G,C) \cdot p(G,A) \cdot q(G)^4$
+
+$Prob(path, O) = Prob(O | path ) \times Prob(O)$
 :::
 
 
 ##### Solution
 
 ::: {.answer data-latex=""}
-$Prob(path=IxIxMMMIyIyIyIy) \approx 3.0 \cdot 10^{-4}$
+$Prob(path=I_xI_xMMMI_yI_yI_yI_y) \approx 3.0 \cdot 10^{-4}$
 
 $Prob(O | path) \approx 3.4 \cdot 10^{-9}$
 
@@ -66,16 +68,18 @@ $Prob(path,O) \approx 1.0 \cdot 10^{-12}$
 ##### Formulae
 
 ::: {.answer data-latex=""}
-$Prob(path=IyMMMMMIy)=\pi(Iy) \cdot (1-\epsilon) \cdot (1-2\delta)^4 \cdot \delta$
+$Prob(path=I_yMMMMMI_y)=\pi(I_y) \cdot (1-\epsilon) \cdot (1-2\delta)^4 \cdot \delta$
 
 $Prob(O | path)=q(A) \cdot p(A,C) \cdot p(G,A) \cdot p(C,G) \cdot p(G,G) \cdot p(G,G) \cdot q(G)$
+
+$Prob(path, O) = Prob(O | path ) \times Prob(O)$
 :::
 
 
 ##### Solution
 
 ::: {.answer data-latex=""}
-$Prob(path=IyMMMMMIy) \approx 3.4 \cdot 10^{-9}$
+$Prob(path=I_yMMMMMI_y) \approx 3.4 \cdot 10^{-9}$
 
 $Prob(O | path)=q(A) \approx 3.3 \cdot 10^{-8}$
 
@@ -88,25 +92,28 @@ $Prob(path,O) \approx 2.4 \cdot 10^{-11}$$
 ##### Question 1C
 
 ```
-                                    a: CACCG_G
-                                        |||: |
-                                    b: _ACCAAG
+                                    a: AGCGG------
+                                           :
+                                    b: ----ACAGGGG
 ```
 
 
 ##### Formulae
 
 ::: {.answer data-latex=""}
-$Prob(path=IxIxIxIxMIyIyIyIyIyIy)=\pi(Ix) \cdot \epsilon^3 \cdot (1-\epsilon) \cdot \delta \cdot \epsilon^5$
+$Prob(path=I_xI_xI_xI_xMI_yI_yI_yI_yI_yI_y)=\pi(I_x) \cdot \epsilon^3 \cdot (1-\epsilon) \cdot \delta \cdot \epsilon^5$
 
 $Prob(O | path)=q(A) \cdot q(G) \cdot q(C) \cdot q(G) \cdot p(G,A) \cdot q(C) \cdot q(A) \cdot q(G) \cdot q(G) \cdot q(G) \cdot q(G)$
+
+$Prob(path, O) = Prob(O | path ) \times Prob(O)$
+
 :::
 
 
 ##### Solution
 
 ::: {.answer data-latex=""}
-$Prob(path=IxIxIxIxMIyIyIyIyIyIy)=\pi(Ix)$
+$Prob(path=I_xI_xI_xI_xMI_yI_yI_yI_yI_yI_y)=\pi(I_x)$
 
 $Prob(O | path)=q(A)$
 
@@ -134,7 +141,7 @@ Could you explain why?
 
 ##### Solution
 
-Because the probability of moving from Ix to Iy is zero, there is no edge between Ix and Iy.
+Because the probability of moving from $I_x$ to $I_y$ is zero, there is no edge between $I_x$ and $I_y$.
 
 #### {-}
 

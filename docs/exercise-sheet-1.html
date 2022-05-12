@@ -13,6 +13,7 @@
 
 <title>Exercise sheet 1: Hidden Markov models</title>
 
+<script src="site_libs/header-attrs-2.11/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/cosmo.min.css" rel="stylesheet" />
@@ -59,7 +60,6 @@ if (window.hljs) {
 
 
 
-
 <link rel="stylesheet" href="bioinf-style.css" type="text/css" />
 
 
@@ -84,9 +84,6 @@ button.code-folding-btn:focus {
 }
 summary {
   display: list-item;
-}
-details > summary > p:only-child {
-  display: inline;
 }
 pre code {
   padding: 0;
@@ -342,7 +339,7 @@ div.tocify {
         <li><a href="exercise-sheet-1.html">Sheet 1</a></li>
         <li><a href="exercise-sheet-2.html">Sheet 2</a></li>
         <li><a href="exercise-sheet-3.html">Sheet 3</a></li>
-        <!--<li><a href="exercise-sheet-4.html">Sheet 4</a></li>
+<!--    <li><a href="exercise-sheet-4.html">Sheet 4</a></li>
         <li><a href="exercise-sheet-5.html">Sheet 5</a></li>
         <li><a href="exercise-sheet-6.html">Sheet 6</a></li>-->
       </ul>
@@ -368,7 +365,7 @@ div.tocify {
 <p><img src="figures/sheet-1/Dice-E1.png" width="100%" style="display: block; margin: auto;" /></p>
 <p>A casino uses two kinds of dice: <span class="math inline">\(98\%\)</span> of dice are fair and <span class="math inline">\(2\%\)</span> are loaded. The loaded die has a probability of <span class="math inline">\(0.5\)</span> to show number six and <span class="math inline">\(0.1\)</span> for the numbers one to five.</p>
 <div id="section" class="section level4 tabset">
-<h4></h4>
+<h4 class="tabset"></h4>
 <div id="question-1a" class="section level5">
 <h5>Question 1A</h5>
 <div class="question">
@@ -402,10 +399,10 @@ P(6) = 0.173\bar{3}
 </div>
 </div>
 <div id="section-1" class="section level4 unnumbered">
-<h4></h4>
+<h4 class="unnumbered"></h4>
 </div>
 <div id="section-2" class="section level4 tabset">
-<h4></h4>
+<h4 class="tabset"></h4>
 <div id="question-1b" class="section level5">
 <h5>Question 1B</h5>
 <div class="question">
@@ -440,10 +437,10 @@ P(L|\mathcal{O}) = 35.53\%
 </div>
 </div>
 <div id="section-3" class="section level4 unnumbered">
-<h4></h4>
+<h4 class="unnumbered"></h4>
 </div>
 <div id="section-4" class="section level4 tabset">
-<h4></h4>
+<h4 class="tabset"></h4>
 <div id="question-1c" class="section level5">
 <h5>Question 1C</h5>
 <div class="question">
@@ -484,7 +481,7 @@ n = 6 \text{, as only Integers make sense here (just trying would also work)}
 </div>
 </div>
 <div id="section-5" class="section level4 unnumbered">
-<h4></h4>
+<h4 class="unnumbered"></h4>
 <hr />
 </div>
 </div>
@@ -493,7 +490,7 @@ n = 6 \text{, as only Integers make sense here (just trying would also work)}
 <p><img src="figures/sheet-1/Dice-E2.png" width="25%" style="display: block; margin: auto;" /></p>
 <p>In a casino they use a fair die most of the time, but occasionally they switch to a loaded die. The loaded die has a probability <span class="math inline">\(0.5\)</span> to show number six and probability <span class="math inline">\(0.1\)</span> for the numbers one to five. Assume that the casino switches from a fair to a loaded die with probability <span class="math inline">\(0.05\)</span> before each roll, and that the probability of switching back is <span class="math inline">\(0.1\)</span>. The probability to start a game with the fair die is <span class="math inline">\(0.9\)</span>.</p>
 <div id="section-6" class="section level4 tabset">
-<h4></h4>
+<h4 class="tabset"></h4>
 <div id="question-2a" class="section level5">
 <h5>Question 2A</h5>
 <div class="question">
@@ -508,10 +505,10 @@ n = 6 \text{, as only Integers make sense here (just trying would also work)}
 </div>
 </div>
 <div id="section-7" class="section level4 unnumbered">
-<h4></h4>
+<h4 class="unnumbered"></h4>
 </div>
 <div id="section-8" class="section level4 tabset">
-<h4></h4>
+<h4 class="tabset"></h4>
 <div id="question-2b" class="section level5">
 <h5>Question 2B</h5>
 <div class="question">
@@ -550,10 +547,10 @@ P(\mathcal{O},s_2) &amp;= 2.36 \times 10^{-6}
 </div>
 </div>
 <div id="section-9" class="section level4 unnumbered">
-<h4></h4>
+<h4 class="unnumbered"></h4>
 </div>
 <div id="section-10" class="section level4 tabset">
-<h4></h4>
+<h4 class="tabset"></h4>
 <div id="question-2c" class="section level5">
 <h5>Question 2C</h5>
 <div class="question">
@@ -574,7 +571,7 @@ P(\mathcal{O},s_2) &amp;= 2.36 \times 10^{-6}
 </div>
 </div>
 <div id="section-11" class="section level4 unnumbered">
-<h4></h4>
+<h4 class="unnumbered"></h4>
 <hr />
 </div>
 </div>
