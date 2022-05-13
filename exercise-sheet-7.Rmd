@@ -1,0 +1,68 @@
+```{r, include=FALSE}
+source("custom_functions.R")
+library(flextable)
+library(officer)
+
+```
+
+---
+title: "Exercise sheet 6: BLAST"
+---
+
+---------------------------------
+
+# Exercise 1
+
+You are given the text $T=CAGTAGTAGC$
+
+
+#### {.tabset}
+
+##### Question 1A
+
+Draw the corresponding suffix tree
+
+##### Solution
+
+```{r, echo=FALSE, out.width="100%", fig.align='center'}
+knitr::include_graphics("figures/sheet-7/suffix_tree_1.png")
+```
+
+
+#### {-}
+
+#### {.tabset}
+
+##### Question 1B
+
+Describe the steps of a counting query for $P = TAG$
+
+##### Solution
+
+* start at root node
+* locate outgoing edge that starts with $T$
+* match subsequent characters of the pattern
+* in the subtree rooted at $\overline{TAG}$ count the number of leaves $\Rightarrow 2$
+
+#### {-}
+
+
+#### {.tabset}
+
+##### Question 1C
+
+Describe the steps of a reporting query for $P = AG$
+
+##### Solution
+
+* start at root node
+* locate outgoing edge that start with $A$
+* match subsequent characters of the pattern
+* in the subtree rooted at $\overline{AG}$ report the labels of all leaves $\Rightarrow \{2, 5, 8\}$
+
+#### {-}
+
+
+
+
+
