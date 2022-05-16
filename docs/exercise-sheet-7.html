@@ -416,6 +416,79 @@ div.tocify {
 <h4 class="unnumbered"></h4>
 </div>
 </div>
+<div id="exercise-2" class="section level1">
+<h1>Exercise 2</h1>
+<div id="section-6" class="section level4 tabset">
+<h4 class="tabset"></h4>
+<div id="question-2a" class="section level5">
+<h5>Question 2A</h5>
+<p>Draw a generalized suffix tree for the sequences <span class="math inline">\(A=CCATG\)</span> and <span class="math inline">\(B=CATG\)</span>.</p>
+</div>
+<div id="hint-1" class="section level5">
+<h5>Hint 1</h5>
+<p>Concatenate the two sequences using a unique character for splitting. e.g. <span class="math inline">\(CCATG\#CATG\$\)</span>.</p>
+<p>Dont forget to include suffix links</p>
+</div>
+<div id="formulae" class="section level5">
+<h5>Formulae</h5>
+<p><span class="math inline">\(sl(v) = w\)</span></p>
+<p><span class="math inline">\(v = \overline{cb}\)</span></p>
+<p><span class="math inline">\(w = \overline{b}\)</span></p>
+<p><span class="math inline">\(c: character, b: string\)</span></p>
+<p>remember: over lined strings are a representation for the node at that string</p>
+</div>
+<div id="solution-3" class="section level5">
+<h5>Solution</h5>
+<p><img src="figures/sheet-7/suffix_tree_2.png" width="100%" style="display: block; margin: auto;" /></p>
+</div>
+</div>
+<div id="section-7" class="section level4 unnumbered">
+<h4 class="unnumbered"></h4>
+</div>
+<div id="section-8" class="section level4 tabset">
+<h4 class="tabset"></h4>
+<div id="question-2b" class="section level5">
+<h5>Question 2B</h5>
+<p>Find the Maximal Unique Matches of the sequences <span class="math inline">\(A=CCATG\)</span> and <span class="math inline">\(B=CATG\)</span> using the tree from A)</p>
+</div>
+<div id="solution-4" class="section level5">
+<h5>Solution</h5>
+<p><span class="math inline">\(CATG\)</span> is the only MUM as <span class="math inline">\(v = \overline{CATG}\)</span> has no suffix links pointing to it</p>
+</div>
+</div>
+<div id="section-9" class="section level4 unnumbered">
+<h4 class="unnumbered"></h4>
+</div>
+</div>
+<div id="exercise-3" class="section level1">
+<h1>Exercise 3</h1>
+<div id="section-10" class="section level4 tabset">
+<h4 class="tabset"></h4>
+<div id="question-3a" class="section level5">
+<h5>Question 3A</h5>
+<p>Draw a generalized suffix tree for the sequence <span class="math inline">\(A=ACGCACGCG\)</span>.</p>
+</div>
+<div id="solution-5" class="section level5">
+<h5>Solution</h5>
+<p><img src="figures/sheet-7/suffix_tree_3.png" width="100%" style="display: block; margin: auto;" /></p>
+</div>
+</div>
+<div id="section-11" class="section level4 tabset">
+<h4 class="tabset"></h4>
+<div id="question-3b" class="section level5">
+<h5>Question 3B</h5>
+<p>Find all maximal pairs of length at least 2</p>
+</div>
+<div id="solution-6" class="section level5">
+<h5>Solution</h5>
+<p><span class="math inline">\(ACGC: (1,5,4)\)</span></p>
+<p><span class="math inline">\(CG: (2,8,2), (6,8,2)\)</span></p>
+</div>
+</div>
+<div id="section-12" class="section level4 unnumbered">
+<h4 class="unnumbered"></h4>
+</div>
+</div>
 
 
 
