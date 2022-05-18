@@ -182,7 +182,7 @@ onec <- data.frame(a = c("-", "A", "A", "C", "A", "C", "C"),
                    e = c(0, 50, 50, 100, 100, 133, 200),
                    f = c(0, 50, 50, 100, 150, 150, 200),
                    g = c(0, 50, 50, 100, 150, 150, 200),
-                   h = c(0, 50, 50, 100, 150, 150, 0))
+                   h = c(0, 50, 50, 100, 150, 150, 200))
 names(onec) <- c("-1",  "-", "A1",   "C2", "C3",  "A4",   "A5",   "G6")
 
 ```
@@ -221,7 +221,7 @@ Sketch a Guide Tree (either Sketch or Newick format)
 
 ##### Solution
 
-Newick: $((a,c),b)$  or $((a,b),c)$
+Newick: $((a,c),b)$  or $((a,b),c)$ or $((b,c),a)$
 
 #### {-}
 
