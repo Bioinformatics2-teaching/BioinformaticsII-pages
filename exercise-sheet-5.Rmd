@@ -248,7 +248,7 @@ i &= |y| -k +1 \Leftrightarrow k = |y| -i +1
 ```{r, results="asis", include=knitr::is_html_output(), echo=FALSE}
 
 zstar_pos_ft <- flextable(zstar_pos)
-zstar_pos_ft <- custom_theme(zstar_ft)
+zstar_pos_ft <- custom_theme(zstar_pos_ft)
 index_replace(zstar_pos_ft)
 
 zprime_pos_ft <- flextable(zprime_pos)
