@@ -13,7 +13,7 @@
 
 <title>Exercise sheet 6: BLAST</title>
 
-<script src="site_libs/header-attrs-2.12/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.11/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/cosmo.min.css" rel="stylesheet" />
@@ -60,7 +60,6 @@ if (window.hljs) {
 
 
 
-
 <link rel="stylesheet" href="bioinf-style.css" type="text/css" />
 
 
@@ -85,9 +84,6 @@ button.code-folding-btn:focus {
 }
 summary {
   display: list-item;
-}
-details > summary > p:only-child {
-  display: inline;
 }
 pre code {
   padding: 0;
@@ -366,10 +362,7 @@ div.tocify {
 <hr />
 <div id="exercise-1" class="section level1">
 <h1>Exercise 1</h1>
-<p>You are given accession number . Use the <a
-href="http://blast.ncbi.nlm.nih.gov/Blast.cgi">BLAST web server</a> to
-find out about the gene that belongs to this acccession number (choose
-nucleotide blast, and the database RefSeq RNA).</p>
+<p>You are given accession number . Use the <a href="http://blast.ncbi.nlm.nih.gov/Blast.cgi">BLAST web server</a> to find out about the gene that belongs to this acccession number (choose nucleotide blast, and the database RefSeq RNA).</p>
 <div id="section" class="section level4 tabset">
 <h4 class="tabset"></h4>
 <div id="question-1a" class="section level5">
@@ -410,10 +403,7 @@ nucleotide blast, and the database RefSeq RNA).</p>
 </div>
 <div id="exercise-2" class="section level1">
 <h1>Exercise 2</h1>
-<p>You are given the sequences <span
-class="math inline">\(A=\texttt{TAKTQHTSLPL}\)</span> and <span
-class="math inline">\(B=\texttt{TGTCTTCTGGGTTCAGCAAA}\)</span> which
-stem from the same patient and are supposedly from the same gene.</p>
+<p>You are given the sequences <span class="math inline">\(A=\texttt{TAKTQHTSLPL}\)</span> and <span class="math inline">\(B=\texttt{TGTCTTCTGGGTTCAGCAAA}\)</span> which stem from the same patient and are supposedly from the same gene.</p>
 <div id="section-4" class="section level4 tabset">
 <h4 class="tabset"></h4>
 <div id="question-2a" class="section level5">
@@ -422,8 +412,7 @@ stem from the same patient and are supposedly from the same gene.</p>
 </div>
 <div id="solution-2" class="section level5">
 <h5>Solution</h5>
-<p><span class="math inline">\(\texttt{A}\)</span> is a protein, <span
-class="math inline">\(\texttt{B}\)</span> is a DNA sequence.</p>
+<p><span class="math inline">\(\texttt{A}\)</span> is a protein, <span class="math inline">\(\texttt{B}\)</span> is a DNA sequence.</p>
 </div>
 </div>
 <div id="section-5" class="section level4 unnumbered">
@@ -434,16 +423,11 @@ class="math inline">\(\texttt{B}\)</span> is a DNA sequence.</p>
 <h4 class="tabset"></h4>
 <div id="question-2b" class="section level5">
 <h5>Question 2B</h5>
-<p>If you BLAST these sequences, for which sequence do you expect a
-lower <em>E-value</em>?</p>
+<p>If you BLAST these sequences, for which sequence do you expect a lower <em>E-value</em>?</p>
 </div>
 <div id="solution-3" class="section level5">
 <h5>Solution</h5>
-<p>Even though sequence <span class="math inline">\(\texttt{A}\)</span>
-is shorter, as a sequence of amino acids it holds more information and
-should be more unique than sequence <span
-class="math inline">\(\texttt{B}\)</span>. Hence the E-value for <span
-class="math inline">\(\texttt{A}\)</span> should be smaller.</p>
+<p>Even though sequence <span class="math inline">\(\texttt{A}\)</span> is shorter, as a sequence of amino acids it holds more information and should be more unique than sequence <span class="math inline">\(\texttt{B}\)</span>. Hence the E-value for <span class="math inline">\(\texttt{A}\)</span> should be smaller.</p>
 </div>
 </div>
 <div id="section-7" class="section level4 unnumbered">
@@ -454,24 +438,11 @@ class="math inline">\(\texttt{A}\)</span> should be smaller.</p>
 <h4 class="tabset"></h4>
 <div id="question-2c" class="section level5">
 <h5>Question 2C</h5>
-<p>BLAST both these sequences. Which gene do the sequences come from?
-Which BLAST result gave you a lower <em>E-value</em> and why? (use db:
-nucleotide collection and non-redundant protein sequences)</p>
+<p>BLAST both these sequences. Which gene do the sequences come from? Which BLAST result gave you a lower <em>E-value</em> and why? (use db: nucleotide collection and non-redundant protein sequences)</p>
 </div>
 <div id="solution-4" class="section level5">
 <h5>Solution</h5>
-<p>For sequence <span class="math inline">\(\texttt{A}\)</span> one
-needs to use blastp for sequence <span
-class="math inline">\(\texttt{B}\)</span> one needs to use blastn.
-Result is Forkhead box protein FBXW10. Sequence <span
-class="math inline">\(\texttt{A}\)</span> gives an E-value of <span
-class="math inline">\(0.27\)</span>. <span
-class="math inline">\(\texttt{B}\)</span> gives <span
-class="math inline">\(E=0.76\)</span> (these numbers can change due to
-changes in the database, the important message is that <span
-class="math inline">\(\texttt{A}\)</span> &lt; <span
-class="math inline">\(\texttt{B}\)</span> in this case). The reason for
-this is stated in the answer to the last question.</p>
+<p>For sequence <span class="math inline">\(\texttt{A}\)</span> one needs to use blastp for sequence <span class="math inline">\(\texttt{B}\)</span> one needs to use blastn. Result is Forkhead box protein FBXW10. Sequence <span class="math inline">\(\texttt{A}\)</span> gives an E-value of <span class="math inline">\(0.27\)</span>. <span class="math inline">\(\texttt{B}\)</span> gives <span class="math inline">\(E=0.76\)</span> (these numbers can change due to changes in the database, the important message is that <span class="math inline">\(\texttt{A}\)</span> &lt; <span class="math inline">\(\texttt{B}\)</span> in this case). The reason for this is stated in the answer to the last question.</p>
 </div>
 </div>
 <div id="section-9" class="section level4 unnumbered">
@@ -481,21 +452,12 @@ this is stated in the answer to the last question.</p>
 </div>
 <div id="exercise-3" class="section level1">
 <h1>Exercise 3</h1>
-<p>You are given a nucleotide query sequence <span
-class="math inline">\(q\)</span> = <span
-class="math inline">\(\texttt{ATAC}\)</span>, and a nucleotide database
-sequence <span class="math inline">\(s\)</span> = <span
-class="math inline">\(\texttt{ATAAAACGGGGGG}\)</span>. The word-size
-<span class="math inline">\(k=2\)</span>. Use a simple scoring scheme
-that assigns a score of <span class="math inline">\(2\)</span> for a
-match and a score of <span class="math inline">\(-1\)</span> for a
-mismatch.</p>
+<p>You are given a nucleotide query sequence <span class="math inline">\(q\)</span> = <span class="math inline">\(\texttt{ATAC}\)</span>, and a nucleotide database sequence <span class="math inline">\(s\)</span> = <span class="math inline">\(\texttt{ATAAAACGGGGGG}\)</span>. The word-size <span class="math inline">\(k=2\)</span>. Use a simple scoring scheme that assigns a score of <span class="math inline">\(2\)</span> for a match and a score of <span class="math inline">\(-1\)</span> for a mismatch.</p>
 <div id="section-10" class="section level4 tabset">
 <h4 class="tabset"></h4>
 <div id="question-3a" class="section level5">
 <h5>Question 3A</h5>
-<p>Generate all <span class="math inline">\(k\)</span>-length words of
-the query sequence.</p>
+<p>Generate all <span class="math inline">\(k\)</span>-length words of the query sequence.</p>
 </div>
 <div id="solution-5" class="section level5">
 <h5>Solution</h5>
@@ -514,9 +476,7 @@ the query sequence.</p>
 <h4 class="tabset"></h4>
 <div id="question-3b" class="section level5">
 <h5>Question 3B</h5>
-<p>List all possible words for the first <span
-class="math inline">\(k\)</span>-length word (AT) that have a score of
-at least <span class="math inline">\(T_1=1\)</span>.</p>
+<p>List all possible words for the first <span class="math inline">\(k\)</span>-length word (AT) that have a score of at least <span class="math inline">\(T_1=1\)</span>.</p>
 </div>
 <div id="solution-6" class="section level5">
 <h5>Solution</h5>
@@ -539,13 +499,11 @@ at least <span class="math inline">\(T_1=1\)</span>.</p>
 <h4 class="tabset"></h4>
 <div id="question-3c" class="section level5">
 <h5>Question 3C</h5>
-<p>Scan the database for exact matches for the words from the question
-3B.</p>
+<p>Scan the database for exact matches for the words from the question 3B.</p>
 </div>
 <div id="solution-7" class="section level5">
 <h5>Solution</h5>
-<p><em>AA</em> at position 2,3,4. <em>AC</em> at position 5, <em>AT</em>
-at position 0.</p>
+<p><em>AA</em> at position 2,3,4. <em>AC</em> at position 5, <em>AT</em> at position 0.</p>
 </div>
 </div>
 <div id="section-15" class="section level4 unnumbered">
@@ -556,9 +514,7 @@ at position 0.</p>
 <h4 class="tabset"></h4>
 <div id="question-3d" class="section level5">
 <h5>Question 3D</h5>
-<p>Extend the exact matches that you found in the question 3C to the
-left/right and report all MSPs with a score greater than <span
-class="math inline">\(4\)</span>.</p>
+<p>Extend the exact matches that you found in the question 3C to the left/right and report all MSPs with a score greater than <span class="math inline">\(4\)</span>.</p>
 </div>
 <div id="solution-8" class="section level5">
 <h5>Solution</h5>
@@ -593,21 +549,15 @@ class="math inline">\(4\)</span>.</p>
 <div id="solution-9" class="section level5">
 <h5>Solution</h5>
 <ul>
-<li>Higher <span class="math inline">\(T_1\)</span>, <span
-class="math inline">\(k\)</span>: - faster (less seeds), - less
-sensitive (some hits will be missed)</li>
-<li>Lower <span class="math inline">\(T_1\)</span>, <span
-class="math inline">\(k\)</span>: - slower (more seeds), - more
-sensitive (less hits will be missed)</li>
+<li>Higher <span class="math inline">\(T_1\)</span>, <span class="math inline">\(k\)</span>: - faster (less seeds), - less sensitive (some hits will be missed)</li>
+<li>Lower <span class="math inline">\(T_1\)</span>, <span class="math inline">\(k\)</span>: - slower (more seeds), - more sensitive (less hits will be missed)</li>
 </ul>
 </div>
 </div>
 <div id="section-18" class="section level4 unnumbered">
 <h4 class="unnumbered"></h4>
 <hr />
-<p>Download:
-<a href="exercise-sheet-6.pdf" title="Download PDF Version">PDF
-Version</a> of this page.</p>
+<p>Download: <a href="exercise-sheet-6.pdf" title="Download PDF Version">PDF Version</a> of this page.</p>
 </div>
 </div>
 

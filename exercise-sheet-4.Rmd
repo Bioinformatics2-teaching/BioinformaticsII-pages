@@ -39,7 +39,7 @@ $Prob(path=I_xI_xMMMI_yI_yI_yI_y)=\pi(I_x) \cdot \epsilon \cdot (1-\epsilon) \cd
 
 $Prob(O | path)=q(A) \cdot q(G) \cdot p(C,A) \cdot p(G,C) \cdot p(G,A) \cdot q(G)^4$
 
-$Prob(path, O) = Prob(O | path ) \times Prob(O)$
+$Prob(path, O) = Prob(O | path ) \times Prob(path)$
 :::
 
 
@@ -72,16 +72,16 @@ $Prob(path=I_yMMMMMI_y)=\pi(I_y) \cdot (1-\epsilon) \cdot (1-2\delta)^4 \cdot \d
 
 $Prob(O | path)=q(A) \cdot p(A,C) \cdot p(G,A) \cdot p(C,G) \cdot p(G,G) \cdot p(G,G) \cdot q(G)$
 
-$Prob(path, O) = Prob(O | path ) \times Prob(O)$
+$Prob(path, O) = Prob(O | path ) \times Prob(path)$
 :::
 
 
 ##### Solution
 
 ::: {.answer data-latex=""}
-$Prob(path=I_yMMMMMI_y) \approx 3.4 \cdot 10^{-9}$
+$Prob(path=I_yMMMMMI_y) \approx 3.4 \cdot 10^{-4}$
 
-$Prob(O | path)=q(A) \approx 3.3 \cdot 10^{-8}$
+$Prob(O | path)= \approx 3.3 \cdot 10^{-8}$
 
 $Prob(path,O) \approx 2.4 \cdot 10^{-11}$$
 :::
@@ -105,7 +105,7 @@ $Prob(path=I_xI_xI_xI_xMI_yI_yI_yI_yI_yI_y)=\pi(I_x) \cdot \epsilon^3 \cdot (1-\
 
 $Prob(O | path)=q(A) \cdot q(G) \cdot q(C) \cdot q(G) \cdot p(G,A) \cdot q(C) \cdot q(A) \cdot q(G) \cdot q(G) \cdot q(G) \cdot q(G)$
 
-$Prob(path, O) = Prob(O | path ) \times Prob(O)$
+$Prob(path, O) = Prob(O | path ) \times Prob(path)$
 
 :::
 
@@ -117,7 +117,7 @@ $Prob(path=I_xI_xI_xI_xMI_yI_yI_yI_yI_yI_y) \approx 1.2 \cdot 10^{-4}$
 
 $Prob(O | path) \approx 2.9 \cdot 10^{-9}$
 
-$Prob(path,O) \approx 3.7 \cdot 10^{-13}$
+$Prob(path,O) \approx 3.5 \cdot 10^{-13}$
 :::
 #### {-}
 
