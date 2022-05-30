@@ -54,7 +54,7 @@ Many more...
 
 # Exercise 2
 
-We wish to find sequences related to a query sequence of 28 residues in a database of 1 billon sequences. Since this sequence belongs to a highly conserved gene family, we decide to use the PAM30 matrix.
+We wish to find sequences related to a query sequence of 28 residues in a database of 1 billon residues. Since this sequence belongs to a highly conserved gene family, we decide to use the PAM30 matrix.
 
 #### {.tabset}
 
@@ -96,7 +96,7 @@ In that case, the query is long enough, since the minimum query length is 14 res
 
 ##### Question 2B
 
-Our supervisor has asked us to find homologous sequences of a gene which belongs to a highly diverged gene family. In that case, we decide to use the PAM250 matrix, since it provides the best sensitivity. What are the implications of using PAM250 instead of PAM30?
+Our supervisor has asked us to find homologous sequences of a gene which belongs to a highly diverged gene family. In that case, we decide to use the PAM250 matrix, since it provides the best sensitivity. What are the implications of using PAM250 instead of PAM30, assuming that the query has a similar size?
 
 ##### Solution
 
