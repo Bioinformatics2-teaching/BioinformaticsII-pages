@@ -13,6 +13,7 @@
 
 <title>Exercise sheet 2: Hidden Markov models II</title>
 
+<script src="site_libs/header-attrs-2.11/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/cosmo.min.css" rel="stylesheet" />
@@ -59,7 +60,6 @@ if (window.hljs) {
 
 
 
-
 <link rel="stylesheet" href="bioinf-style.css" type="text/css" />
 
 
@@ -84,9 +84,6 @@ button.code-folding-btn:focus {
 }
 summary {
   display: list-item;
-}
-details > summary > p:only-child {
-  display: inline;
 }
 pre code {
   padding: 0;
@@ -344,7 +341,7 @@ div.tocify {
         <li><a href="exercise-sheet-3.html">Sheet 3</a></li>
         <li><a href="exercise-sheet-4.html">Sheet 4</a></li>
         <li><a href="exercise-sheet-5.html">Sheet 5</a></li>
-<!--        <li><a href="exercise-sheet-6.html">Sheet 6</a></li>-->
+        <li><a href="exercise-sheet-6.html">Sheet 6</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li><a href="http://www.bioinf.uni-freiburg.de/index.html?en2">Contact</a></li>
@@ -367,7 +364,7 @@ div.tocify {
 <h1>Exercise 1 - The occasionally cheating casino</h1>
 <p>In a casino they use a fair die most of the time, but occasionally they switch to a loaded die. The loaded die has a probability <span class="math inline">\(0.5\)</span> to show number six and probability <span class="math inline">\(0.1\)</span> for the numbers one to five. Assume that the casino switches from a fair to a loaded die with probability <span class="math inline">\(0.05\)</span> before each roll, and that the probability of switching back is <span class="math inline">\(0.1\)</span>. The probability to start a game with the fair die is <span class="math inline">\(0.9\)</span>.</p>
 <div id="section" class="section level4 tabset">
-<h4></h4>
+<h4 class="tabset"></h4>
 <div id="question-1a" class="section level5">
 <h5>Question 1A</h5>
 <div class="question">
@@ -408,10 +405,10 @@ P( \mathcal{O}=1662)= \alpha_4(F)+\alpha_4(L) = 0.000693 + 0.000407 = 0.0011
 </div>
 </div>
 <div id="section-1" class="section level4 unnumbered">
-<h4></h4>
+<h4 class="unnumbered"></h4>
 </div>
 <div id="section-2" class="section level4 tabset">
-<h4></h4>
+<h4 class="tabset"></h4>
 <div id="question-1b" class="section level5">
 <h5>Question 1B</h5>
 <div class="question">
@@ -435,10 +432,10 @@ P(\mathcal{O} = 1666) &gt; P(\mathcal{O} = 1662) &gt; P(\mathcal{O} = 1262)
 </div>
 </div>
 <div id="section-3" class="section level4 unnumbered">
-<h4></h4>
+<h4 class="unnumbered"></h4>
 </div>
 <div id="section-4" class="section level4 tabset">
-<h4></h4>
+<h4 class="tabset"></h4>
 <div id="question-1c" class="section level5">
 <h5>Question 1C</h5>
 <div class="question">
@@ -486,7 +483,7 @@ q_1^* =&amp; argmax_{i\in\{F,L\}}(\delta_1(i) \times a_{i,q_2^*}) = argmax(F:0.1
 </div>
 </div>
 <div id="section-5" class="section level4 unnumbered">
-<h4></h4>
+<h4 class="unnumbered"></h4>
 <hr />
 </div>
 </div>
@@ -500,7 +497,7 @@ q_1^* =&amp; argmax_{i\in\{F,L\}}(\delta_1(i) \times a_{i,q_2^*}) = argmax(F:0.1
                                         TTGGGT
                                         **   *</code></pre>
 <div id="section-6" class="section level4 tabset">
-<h4></h4>
+<h4 class="tabset"></h4>
 <div id="question-2a" class="section level5">
 <h5>Question 2A</h5>
 <div class="question">
@@ -515,10 +512,10 @@ q_1^* =&amp; argmax_{i\in\{F,L\}}(\delta_1(i) \times a_{i,q_2^*}) = argmax(F:0.1
 </div>
 </div>
 <div id="section-7" class="section level4 unnumbered">
-<h4></h4>
+<h4 class="unnumbered"></h4>
 </div>
 <div id="section-8" class="section level4 tabset">
-<h4></h4>
+<h4 class="tabset"></h4>
 <div id="question-2b" class="section level5">
 <h5>Question 2B</h5>
 <div class="question">
@@ -536,10 +533,10 @@ q_1^* =&amp; argmax_{i\in\{F,L\}}(\delta_1(i) \times a_{i,q_2^*}) = argmax(F:0.1
 </div>
 </div>
 <div id="section-9" class="section level4 unnumbered">
-<h4></h4>
+<h4 class="unnumbered"></h4>
 </div>
 <div id="section-10" class="section level4 tabset">
-<h4></h4>
+<h4 class="tabset"></h4>
 <div id="question-2c" class="section level5">
 <h5>Question 2C</h5>
 <div class="question">
@@ -569,10 +566,10 @@ b_{i,k} = \frac{E[\text{number of emissions of } \sigma_k \text{, while in state
 </div>
 </div>
 <div id="section-11" class="section level4 unnumbered">
-<h4></h4>
+<h4 class="unnumbered"></h4>
 </div>
 <div id="section-12" class="section level4 tabset">
-<h4></h4>
+<h4 class="tabset"></h4>
 <div id="question-2d" class="section level5">
 <h5>Question 2D</h5>
 <div class="question">
@@ -597,10 +594,10 @@ a_{i,j} = \frac{E[\text{number of transitions from }  i \text{ to } j | \mathcal
 </div>
 </div>
 <div id="section-13" class="section level4 unnumbered">
-<h4></h4>
+<h4 class="unnumbered"></h4>
 </div>
 <div id="section-14" class="section level4 tabset">
-<h4></h4>
+<h4 class="tabset"></h4>
 <div id="question-2e" class="section level5">
 <h5>Question 2E</h5>
 <div class="question">
@@ -621,7 +618,7 @@ a_{i,j} = \frac{E[\text{number of transitions from }  i \text{ to } j | \mathcal
 </div>
 </div>
 <div id="section-15" class="section level4 unnumbered">
-<h4></h4>
+<h4 class="unnumbered"></h4>
 </div>
 </div>
 
