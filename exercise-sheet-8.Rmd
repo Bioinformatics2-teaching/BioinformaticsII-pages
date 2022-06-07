@@ -6,7 +6,7 @@ library(officer)
 ```
 
 ---
-title: "Exercise sheet 7: Suffix-Trees"
+title: "Exercise sheet 8: Suffix-Trees"
 ---
 
 ---------------------------------
