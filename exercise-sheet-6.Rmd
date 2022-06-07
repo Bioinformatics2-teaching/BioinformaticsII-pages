@@ -13,7 +13,7 @@ title: "Exercise sheet 6: BLAST"
 
 # Exercise 1
 
-You are given accession number \texttt{NM\_000667.3}. Use the [BLAST web server](http://blast.ncbi.nlm.nih.gov/Blast.cgi) to find
+You are given accession number NM_000667.3. Use the [BLAST web server](http://blast.ncbi.nlm.nih.gov/Blast.cgi) to find
 out about the gene that belongs to this acccession number (choose nucleotide blast, and the database RefSeq RNA).
 
 
@@ -54,17 +54,39 @@ Many more...
 
 # Exercise 2
 
-You are given the sequences $A=\texttt{TAKTQHTSLPL}$ and $B=\texttt{TGTCTTCTGGGTTCAGCAAA}$ which stem from the same patient and are supposedly from the same gene. 
+We wish to find sequences related to a query sequence of 28 residues in a database of 1 billon residues. Since this sequence belongs to a highly conserved gene family, we decide to use the PAM30 matrix.
 
 #### {.tabset}
 
 ##### Question 2A
 
-What kind of sequences are these (DNA, RNA, Protein)? 
+Does this query sequence provide enough information to find significant matches?
+
+##### Hint 1: scoring matrices
+
+```{r, echo=FALSE, out.width="100%", fig.align='center'}
+knitr::include_graphics("figures/sheet-6/matrices.png")
+```
+
+##### Hint 2: formulae
+
+::: {.answer data-latex=""}
+$$
+Shortest\ reliable\ alignment = \frac{log2(mn)}{H^{N}}
+\\
+$$
+:::
 
 ##### Solution 
 
-$\texttt{A}$ is a protein, $\texttt{B}$ is a DNA sequence.
+::: {.answer data-latex=""}
+$$
+Shortest\ reliable\ alignment = \frac{log2(mn)}{H^{N}} = \frac{log2(28·10^{9})}{2,57}\simeq 14\ residues
+\\
+$$
+:::
+
+In that case, the query is long enough, since the minimum query length is 14 residues.
 
 #### {-}
 
@@ -74,26 +96,19 @@ $\texttt{A}$ is a protein, $\texttt{B}$ is a DNA sequence.
 
 ##### Question 2B
 
-If you BLAST these sequences, for which sequence do you expect a lower *E-value*?
+Our supervisor has asked us to find homologous sequences of a gene which belongs to a highly diverged gene family. In that case, we decide to use the PAM250 matrix, since it provides the best sensitivity. What are the implications of using PAM250 instead of PAM30, assuming that the query has a similar size?
 
 ##### Solution
 
-Even though sequence $\texttt{A}$ is shorter, as a sequence of amino acids it holds more information and should be more unique than sequence $\texttt{B}$. Hence the E-value for $\texttt{A}$ should be smaller.
+The information content of the matrix PAM250 is much lower than PAM30 (0,36 bits/site vs 2,57 bits/site). It has a direct impact in the information contained in the query. So, let's check it the query contains enough information to find significant matches:
 
-#### {-}
+::: {.answer data-latex=""}
+$$
+Shortest\ reliable\ alignment = \frac{log2(mn)}{H^{N}} = \frac{log2(28·10^{9})}{0,36}\simeq 96\ residues
+$$
+:::
 
----------------------------------
-
-#### {.tabset}
-
-##### Question 2C
-
-BLAST both these sequences. Which gene do the sequences come from? Which BLAST result gave you a lower *E-value* and why? (use db: nucleotide collection and non-redundant protein sequences)
-
-##### Solution
-
-For sequence $\texttt{A}$ one needs to use blastp for sequence $\texttt{B}$ one needs to use blastn. Result is Forkhead box protein FBXW10. Sequence $\texttt{A}$ gives an E-value of $0.27$. $\texttt{B}$ gives $E=0.76$ (these numbers can change due to changes in the database, the important message is that $\texttt{A}$ < $\texttt{B}$ in this case). The reason for this is stated in the answer to the last question.
-
+Since the shortest alignment for which significance can be reliably is greater than the query size, it implies that a query size of 28 residues doesn't provide enough information. In order to solve the problem, we could try to use a longer query sequence, or use a smaller database.
 
 #### {-}
 
@@ -187,9 +202,9 @@ Pos: 0              ATA
 
 AC:
 ```
-Pos: 5              A
-                    |||
-                    AAA     with score 6
+Pos: 5              AT
+                    ||
+                    AC     with score 1
 ```
 
 MSPs start in the template at index 0 and 3.
@@ -200,7 +215,7 @@ MSPs start in the template at index 0 and 3.
 
 ##### Question 3E
 
-What happens if we vary the parameters *k* and T_1$?
+What happens if we vary the parameters *k* and $T_1$?
 
 ##### Solution
 
