@@ -126,7 +126,7 @@ What observation do you make?
 
 ##### Solution
 ::: {.answer data-latex=""}
-When increasing the $K$-mer size both the TPR and the number of False Positives reduce. 
+When increasing the $K$-mer size both the TPR and the number of False Positives are reduced. 
 But the number of False Positives reduces drastically, compared to the TPR.
 :::
 #### {-}
@@ -193,7 +193,7 @@ F = (34-7+1) \times \frac{2500000000}{7} \times (\frac{1}{4}^{7} + 7 \times \fra
 $$
 For $K=14$:
 $$
-F = (34-14+1) \times \frac{2500000000}{14} \times (\frac{1}{4}^{14} + 14 \times \frac{1}{4}^13 \times (1-\frac{1}{4})) = 600.7031  
+F = (34-14+1) \times \frac{2500000000}{14} \times (\frac{1}{4}^{14} + 14 \times \frac{1}{4}^{13} \times (1-\frac{1}{4})) = 600.7031  
 $$
 :::
 
@@ -213,7 +213,7 @@ We observe an increase in both the TPR and the number of False positives.
 
 # Exercise 3
 
-Finally, we want to reduce the number of False Positive results. To that end, instead of requiring single perfect matches, we now want exactly $n$ perfect matches.
+Finally, we want to reduce the number of False Positive results. To that end, instead of requiring single perfect matches, we now want at least $n$ perfect matches.
 
 For the $K$-mer sizes $K=7$ and $K=14$, respectively.
 
@@ -221,7 +221,7 @@ For the $K$-mer sizes $K=7$ and $K=14$, respectively.
 
 ##### Question 3A
 ::: {.question data-latex=""}
-What is the probability that at least $n=2$ non-overlapping $K$-mer in the homologous region match perfectly with the corresponding $K$-mer in the query sequence? 
+What is the probability that at least $2$ non-overlapping $K$-mer in the homologous region match perfectly with corresponding $K$-mers in the query sequence? 
 :::
 
 ##### Formula

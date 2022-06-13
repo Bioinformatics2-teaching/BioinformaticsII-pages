@@ -520,8 +520,8 @@ class="math inline">\(14\)</span>-mers that you computed in part 1B and
 <h5>Solution</h5>
 <div class="answer">
 <p>When increasing the <span class="math inline">\(K\)</span>-mer size
-both the TPR and the number of False Positives reduce. But the number of
-False Positives reduces drastically, compared to the TPR.</p>
+both the TPR and the number of False Positives are reduced. But the
+number of False Positives reduces drastically, compared to the TPR.</p>
 </div>
 </div>
 </div>
@@ -608,7 +608,7 @@ F = (34-7+1) \times \frac{2500000000}{7} \times (\frac{1}{4}^{7} + 7
 \]</span> For <span class="math inline">\(K=14\)</span>: <span
 class="math display">\[
 F = (34-14+1) \times \frac{2500000000}{14} \times (\frac{1}{4}^{14} + 14
-\times \frac{1}{4}^13 \times (1-\frac{1}{4})) = 600.7031  
+\times \frac{1}{4}^{13} \times (1-\frac{1}{4})) = 600.7031  
 \]</span></p>
 </div>
 </div>
@@ -640,8 +640,8 @@ positives.</p>
 <div id="exercise-3" class="section level1">
 <h1>Exercise 3</h1>
 <p>Finally, we want to reduce the number of False Positive results. To
-that end, instead of requiring single perfect matches, we now want
-exactly <span class="math inline">\(n\)</span> perfect matches.</p>
+that end, instead of requiring single perfect matches, we now want at
+least <span class="math inline">\(n\)</span> perfect matches.</p>
 <p>For the <span class="math inline">\(K\)</span>-mer sizes <span
 class="math inline">\(K=7\)</span> and <span
 class="math inline">\(K=14\)</span>, respectively.</p>
@@ -651,10 +651,10 @@ class="math inline">\(K=14\)</span>, respectively.</p>
 <h5>Question 3A</h5>
 <div class="question">
 <p>What is the probability that at least <span
-class="math inline">\(n=2\)</span> non-overlapping <span
+class="math inline">\(2\)</span> non-overlapping <span
 class="math inline">\(K\)</span>-mer in the homologous region match
-perfectly with the corresponding <span
-class="math inline">\(K\)</span>-mer in the query sequence?</p>
+perfectly with corresponding <span class="math inline">\(K\)</span>-mers
+in the query sequence?</p>
 </div>
 </div>
 <div id="formula-5" class="section level5">
