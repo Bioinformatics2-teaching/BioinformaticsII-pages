@@ -120,14 +120,14 @@ $$
 ##### Question 1D
 
 ::: {.question data-latex=""}
-Observe the True positive rate (TPR) and the number of False Positives for 7-mers and 14-mers that you computed in part 1B and 1C.
-What conclusion can you draw?
+Observe the True positive rate (TPR) and the number of False Positives for the $7$-mers and $14$-mers that you computed in part 1B and 1C.
+What observation do you make?
 :::
 
 ##### Solution
 ::: {.answer data-latex=""}
 When increasing the $K$-mer size both the TPR and the number of False Positives reduce. 
-But the number of False Positives reduces drastically, compared to the FDR.
+But the number of False Positives reduces drastically, compared to the TPR.
 :::
 #### {-}
 
@@ -207,7 +207,7 @@ What development do we see when observing the TPR and FPs for the updated formul
 
 ##### Solution
 ::: {.answer data-latex=""}
-We observe an increase in both the FDR and the number of False positives.
+We observe an increase in both the TPR and the number of False positives.
 :::
 #### {-}
 
@@ -221,20 +221,43 @@ For the $K$-mer sizes $K=7$ and $K=14$, respectively.
 
 ##### Question 3A
 ::: {.question data-latex=""}
-What is the probability that at least one non-overlapping $K$-mer in the homologous region matches perfectly with the corresponding $K$-mer in the query sequence? Given $n=3$, i.e. we require 3 perfect matches.
+What is the probability that at least $n=2$ non-overlapping $K$-mer in the homologous region match perfectly with the corresponding $K$-mer in the query sequence? 
 :::
 
 ##### Formula
 ::: {.answer data-latex=""}
 $$
 p_{n} = (M^{K})^{n} \times (1-M^{K})^{T-n} \times \frac{T!}{n! \times (T-n)!}\\
-\text{with}\quad T= \left\lfloor\frac{H}{K}\right\rfloor
+\text{with}\quad T= \left\lfloor\frac{H}{K}\right\rfloor\\\\
+P = P_{n} + P_{n+1} + ... + P_{T}
 $$
 :::
 
 ##### Solution
 ::: {.answer data-latex=""}
-TODO
+For $K=7$:
+$$
+P_{2} = 0.98^{7 \times 2} \times (1-0.98^{7})^{\left\lfloor\frac{50}{7}\right\rfloor-2} \times \frac{\frac{50}{7}\text{!}}{2\text{!}\times(\frac{50}{7}-2)\text{!}}\\
+\text{...}\\
+\text{...}\\
+$$
+\begin{align*}
+P &= P_{2} + P_{3} + P_{4} + P_{5} + P_{6} + P_{7}\\
+  &= 0.000631 + 0.006925 + 0.045591 + 0.180074 + 0.395142 + 0.371601\\
+  &= 0.999967...
+\end{align*}
+
+For $K=14$:
+$$
+P_{2} = 0.98^{14 \times 2} \times (1-0.98^{14})^{\left\lfloor\frac{50}{14}\right\rfloor-2} \times \frac{\frac{50}{14}!}{2!\times(\frac{50}{14}-2)!}\\
+\text{...}\\
+\text{...}\\
+$$
+\begin{align*}
+P &= P_{2} + P_{3}\\
+  &= 0.419776 + 0.428050\\
+  &= 0.847827...
+\end{align*}
 :::
 #### {-}
 
@@ -247,6 +270,7 @@ We can observe a decrease in the TPR. Does it still make sense to use this metho
 ##### Solution
 ::: {.answer data-latex=""}
 While it is true that this also decreases the TPR. It drastically decreases the amount of False Positives, which greatly improves the overall results.
+In real examples, the size of the homologous regions is typically higher than 50 nucleotides that we chose for this example. When considering our example with $H=100$, we would end up with a TPR close to 1.0, while having nearly no False Positives.
 :::
 #### {-}
 

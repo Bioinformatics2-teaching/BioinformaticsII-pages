@@ -511,8 +511,9 @@ F = (34-14+1) \times \frac{2500000000}{14} \times \frac{1}{4}^{14} =
 <h5>Question 1D</h5>
 <div class="question">
 <p>Observe the True positive rate (TPR) and the number of False
-Positives for 7-mers and 14-mers that you computed in part 1B and 1C.
-What conclusion can you draw?</p>
+Positives for the <span class="math inline">\(7\)</span>-mers and <span
+class="math inline">\(14\)</span>-mers that you computed in part 1B and
+1C. What observation do you make?</p>
 </div>
 </div>
 <div id="solution-3" class="section level5">
@@ -520,7 +521,7 @@ What conclusion can you draw?</p>
 <div class="answer">
 <p>When increasing the <span class="math inline">\(K\)</span>-mer size
 both the TPR and the number of False Positives reduce. But the number of
-False Positives reduces drastically, compared to the FDR.</p>
+False Positives reduces drastically, compared to the TPR.</p>
 </div>
 </div>
 </div>
@@ -627,7 +628,7 @@ updated formulae?</p>
 <div id="solution-6" class="section level5">
 <h5>Solution</h5>
 <div class="answer">
-<p>We observe an increase in both the FDR and the number of False
+<p>We observe an increase in both the TPR and the number of False
 positives.</p>
 </div>
 </div>
@@ -649,12 +650,11 @@ class="math inline">\(K=14\)</span>, respectively.</p>
 <div id="question-3a" class="section level5">
 <h5>Question 3A</h5>
 <div class="question">
-<p>What is the probability that at least one non-overlapping <span
-class="math inline">\(K\)</span>-mer in the homologous region matches
+<p>What is the probability that at least <span
+class="math inline">\(n=2\)</span> non-overlapping <span
+class="math inline">\(K\)</span>-mer in the homologous region match
 perfectly with the corresponding <span
-class="math inline">\(K\)</span>-mer in the query sequence? Given <span
-class="math inline">\(n=3\)</span>, i.e. we require 3 perfect
-matches.</p>
+class="math inline">\(K\)</span>-mer in the query sequence?</p>
 </div>
 </div>
 <div id="formula-5" class="section level5">
@@ -663,14 +663,39 @@ matches.</p>
 <p><span class="math display">\[
 p_{n} = (M^{K})^{n} \times (1-M^{K})^{T-n} \times \frac{T!}{n! \times
 (T-n)!}\\
-\text{with}\quad T= \left\lfloor\frac{H}{K}\right\rfloor
+\text{with}\quad T= \left\lfloor\frac{H}{K}\right\rfloor\\\\
+P = P_{n} + P_{n+1} + ... + P_{T}
 \]</span></p>
 </div>
 </div>
 <div id="solution-7" class="section level5">
 <h5>Solution</h5>
 <div class="answer">
-<p>TODO</p>
+<p>For <span class="math inline">\(K=7\)</span>: <span
+class="math display">\[
+P_{2} = 0.98^{7 \times 2} \times
+(1-0.98^{7})^{\left\lfloor\frac{50}{7}\right\rfloor-2} \times
+\frac{\frac{50}{7}\text{!}}{2\text{!}\times(\frac{50}{7}-2)\text{!}}\\
+\text{...}\\
+\text{...}\\
+\]</span> <span class="math display">\[\begin{align*}
+P &amp;= P_{2} + P_{3} + P_{4} + P_{5} + P_{6} + P_{7}\\
+  &amp;= 0.000631 + 0.006925 + 0.045591 + 0.180074 + 0.395142 +
+0.371601\\
+  &amp;= 0.999967...
+\end{align*}\]</span></p>
+<p>For <span class="math inline">\(K=14\)</span>: <span
+class="math display">\[
+P_{2} = 0.98^{14 \times 2} \times
+(1-0.98^{14})^{\left\lfloor\frac{50}{14}\right\rfloor-2} \times
+\frac{\frac{50}{14}!}{2!\times(\frac{50}{14}-2)!}\\
+\text{...}\\
+\text{...}\\
+\]</span> <span class="math display">\[\begin{align*}
+P &amp;= P_{2} + P_{3}\\
+  &amp;= 0.419776 + 0.428050\\
+  &amp;= 0.847827...
+\end{align*}\]</span></p>
 </div>
 </div>
 </div>
@@ -691,7 +716,11 @@ this method? Why?</p>
 <div class="answer">
 <p>While it is true that this also decreases the TPR. It drastically
 decreases the amount of False Positives, which greatly improves the
-overall results.</p>
+overall results. In real examples, the size of the homologous regions is
+typically higher than 50 nucleotides that we chose for this example.
+When considering our example with <span
+class="math inline">\(H=100\)</span>, we would end up with a TPR close
+to 1.0, while having nearly no False Positives.</p>
 </div>
 </div>
 </div>
