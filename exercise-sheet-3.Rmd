@@ -251,15 +251,15 @@ onec <- data.frame(a = c("-", "A", "C", "C", "A", "A", "G"),
 
                    
                    )
-names(onec) <-c("-1","-2", "-3", "-4", "C5", "A6", "C7", "C8", "G9", "G10")
+names(onec) <- c("-1", "-2", "A3", "A4", "C5", "A6", "C7", "C8", "-9", "-10")
 
 ```
 ```{r, results="asis", include=knitr::is_html_output(), echo=FALSE}
-onec_ft <- flextable(onec)
-header = c("-", "-", "A", "A", "C", "A", "C", "C", "-", "-")
-onec_ft <- custom_theme2headers(onec_ft, header)
-index_replace(onec_ft)
 
+onec_ft <- flextable(onec)
+onec_ft <- index_replace(onec_ft)
+header = c("-","-", "-", "-", "C", "A", "C", "C", "G", "G")
+custom_theme2headers(onec_ft, header)
 ```
 
 ```{=latex}
