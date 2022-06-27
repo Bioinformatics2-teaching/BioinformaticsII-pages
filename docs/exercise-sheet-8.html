@@ -13,7 +13,7 @@
 
 <title>Exercise sheet 8: Suffix-Trees</title>
 
-<script src="site_libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.14/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/cosmo.min.css" rel="stylesheet" />
@@ -60,6 +60,7 @@ if (window.hljs) {
 
 
 
+
 <link rel="stylesheet" href="bioinf-style.css" type="text/css" />
 
 
@@ -84,6 +85,9 @@ button.code-folding-btn:focus {
 }
 summary {
   display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
 }
 pre code {
   padding: 0;
@@ -365,16 +369,21 @@ div.tocify {
 <hr />
 <div id="exercise-1" class="section level1">
 <h1>Exercise 1</h1>
-<p>You are given the text <span class="math inline">\(T=CAGTAGTAGC\)</span></p>
+<p>You are given the text <span
+class="math inline">\(T=CAGTAGTAGC\)</span></p>
 <div id="section" class="section level4 tabset">
 <h4 class="tabset"></h4>
 <div id="question-1a" class="section level5">
 <h5>Question 1A</h5>
+<div class="question">
 <p>Draw the corresponding suffix tree</p>
+</div>
 </div>
 <div id="solution" class="section level5">
 <h5>Solution</h5>
+<div class="answer">
 <p><img src="figures/sheet-7/suffix_tree_1.png" width="100%" style="display: block; margin: auto;" /></p>
+</div>
 </div>
 </div>
 <div id="section-1" class="section level4 unnumbered">
@@ -384,16 +393,24 @@ div.tocify {
 <h4 class="tabset"></h4>
 <div id="question-1b" class="section level5">
 <h5>Question 1B</h5>
-<p>Describe the steps of a counting query for <span class="math inline">\(P = TAG\)</span></p>
+<div class="question">
+<p>Describe the steps of a counting query for <span
+class="math inline">\(P = TAG\)</span></p>
+</div>
 </div>
 <div id="solution-1" class="section level5">
 <h5>Solution</h5>
+<div class="answer">
 <ul>
 <li>start at root node</li>
-<li>locate outgoing edge that starts with <span class="math inline">\(T\)</span></li>
+<li>locate outgoing edge that starts with <span
+class="math inline">\(T\)</span></li>
 <li>match subsequent characters of the pattern</li>
-<li>in the subtree rooted at <span class="math inline">\(\overline{TAG}\)</span> count the number of leaves <span class="math inline">\(\Rightarrow 2\)</span></li>
+<li>in the subtree rooted at <span
+class="math inline">\(\overline{TAG}\)</span> count the number of leaves
+<span class="math inline">\(\Rightarrow 2\)</span></li>
 </ul>
+</div>
 </div>
 </div>
 <div id="section-3" class="section level4 unnumbered">
@@ -403,16 +420,24 @@ div.tocify {
 <h4 class="tabset"></h4>
 <div id="question-1c" class="section level5">
 <h5>Question 1C</h5>
-<p>Describe the steps of a reporting query for <span class="math inline">\(P = AG\)</span></p>
+<div class="question">
+<p>Describe the steps of a reporting query for <span
+class="math inline">\(P = AG\)</span></p>
+</div>
 </div>
 <div id="solution-2" class="section level5">
 <h5>Solution</h5>
+<div class="answer">
 <ul>
 <li>start at root node</li>
-<li>locate outgoing edge that start with <span class="math inline">\(A\)</span></li>
+<li>locate outgoing edge that start with <span
+class="math inline">\(A\)</span></li>
 <li>match subsequent characters of the pattern</li>
-<li>in the subtree rooted at <span class="math inline">\(\overline{AG}\)</span> report the labels of all leaves <span class="math inline">\(\Rightarrow \{2, 5, 8\}\)</span></li>
+<li>in the subtree rooted at <span
+class="math inline">\(\overline{AG}\)</span> report the labels of all
+leaves <span class="math inline">\(\Rightarrow \{2, 5, 8\}\)</span></li>
 </ul>
+</div>
 </div>
 </div>
 <div id="section-5" class="section level4 unnumbered">
@@ -425,24 +450,36 @@ div.tocify {
 <h4 class="tabset"></h4>
 <div id="question-2a" class="section level5">
 <h5>Question 2A</h5>
-<p>Draw a generalized suffix tree for the sequences <span class="math inline">\(A=CCATG\)</span> and <span class="math inline">\(B=CATG\)</span>.</p>
+<div class="question">
+<p>Draw a generalized suffix tree for the sequences <span
+class="math inline">\(A=CCATG\)</span> and <span
+class="math inline">\(B=CATG\)</span>.</p>
+</div>
 </div>
 <div id="hint-1" class="section level5">
 <h5>Hint 1</h5>
-<p>Concatenate the two sequences using a unique character for splitting. e.g. <span class="math inline">\(CCATG\#CATG\$\)</span>.</p>
+<div class="answer">
+<p>Concatenate the two sequences using a unique character for splitting.
+e.g. <span class="math inline">\(CCATG\#CATG\$\)</span>.</p>
 <p>Dont forget to include suffix links</p>
+</div>
 </div>
 <div id="formulae" class="section level5">
 <h5>Formulae</h5>
+<div class="answer">
 <p><span class="math inline">\(sl(v) = w\)</span></p>
 <p><span class="math inline">\(v = \overline{cb}\)</span></p>
 <p><span class="math inline">\(w = \overline{b}\)</span></p>
 <p><span class="math inline">\(c: character, b: string\)</span></p>
-<p>remember: over lined strings are a representation for the node at that string</p>
+<p>remember: over lined strings are a representation for the node at
+that string</p>
+</div>
 </div>
 <div id="solution-3" class="section level5">
 <h5>Solution</h5>
+<div class="answer">
 <p><img src="figures/sheet-7/suffix_tree_2.png" width="100%" style="display: block; margin: auto;" /></p>
+</div>
 </div>
 </div>
 <div id="section-7" class="section level4 unnumbered">
@@ -452,11 +489,19 @@ div.tocify {
 <h4 class="tabset"></h4>
 <div id="question-2b" class="section level5">
 <h5>Question 2B</h5>
-<p>Find the Maximal Unique Matches of the sequences <span class="math inline">\(A=CCATG\)</span> and <span class="math inline">\(B=CATG\)</span> using the tree from A)</p>
+<div class="question">
+<p>Find the Maximal Unique Matches of the sequences <span
+class="math inline">\(A=CCATG\)</span> and <span
+class="math inline">\(B=CATG\)</span> using the tree from A)</p>
+</div>
 </div>
 <div id="solution-4" class="section level5">
 <h5>Solution</h5>
-<p><span class="math inline">\(CATG\)</span> is the only MUM as <span class="math inline">\(v = \overline{CATG}\)</span> has no suffix links pointing to it</p>
+<div class="answer">
+<p><span class="math inline">\(CATG\)</span> is the only MUM as <span
+class="math inline">\(v = \overline{CATG}\)</span> has no suffix links
+pointing to it</p>
+</div>
 </div>
 </div>
 <div id="section-9" class="section level4 unnumbered">
@@ -469,23 +514,32 @@ div.tocify {
 <h4 class="tabset"></h4>
 <div id="question-3a" class="section level5">
 <h5>Question 3A</h5>
-<p>Draw a generalized suffix tree for the sequence <span class="math inline">\(A=ACGCACGCG\)</span>.</p>
+<div class="question">
+<p>Draw a generalized suffix tree for the sequence <span
+class="math inline">\(A=ACGCACGCG\)</span>.</p>
+</div>
 </div>
 <div id="solution-5" class="section level5">
 <h5>Solution</h5>
+<div class="answer">
 <p><img src="figures/sheet-7/suffix_tree_3.png" width="100%" style="display: block; margin: auto;" /></p>
+</div>
 </div>
 </div>
 <div id="section-11" class="section level4 tabset">
 <h4 class="tabset"></h4>
 <div id="question-3b" class="section level5">
 <h5>Question 3B</h5>
+<div class="question">
 <p>Find all maximal pairs of length at least 2</p>
+</div>
 </div>
 <div id="solution-6" class="section level5">
 <h5>Solution</h5>
+<div class="answer">
 <p><span class="math inline">\(ACGC: (1,5,4)\)</span></p>
 <p><span class="math inline">\(CG: (2,8,2), (6,8,2)\)</span></p>
+</div>
 </div>
 </div>
 <div id="section-12" class="section level4 unnumbered">
