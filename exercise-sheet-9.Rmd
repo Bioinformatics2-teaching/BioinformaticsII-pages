@@ -79,7 +79,7 @@ Horizontal:
 
 - 7. Illumina/Pacbio way of determining the order of nucleotides in a DNA strand. (3 words)
 
-- 8. More than just single-end.
+- 8. More than just single-end. (2 words)
 
 - 11. The alphabet of life.
 
