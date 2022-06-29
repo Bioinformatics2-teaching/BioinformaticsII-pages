@@ -158,6 +158,26 @@ $CG: (2,8,2), (6,8,2)$
 #### {-}
 
 
+#### {.tabset}
+
+
+##### Question 3C
+::: {.question data-latex=""}
+
+Why is $C: (2, 8, 1)$ not a maximal pair?
+
+::: 
+##### Solution
+::: {.answer data-latex=""}
+
+It is not right maximal.
+This can be seen since $CG: (2, 8, 2)$ already includes the indices 2 and 8 with
+a longer match. 
+
+::: 
+#### {-}
+
+
 
 
 

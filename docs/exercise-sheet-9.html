@@ -13,7 +13,7 @@
 
 <title>Exercise sheet 9: Data Driven Life Sciences</title>
 
-<script src="site_libs/header-attrs-2.14/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.11/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/cosmo.min.css" rel="stylesheet" />
@@ -60,7 +60,6 @@ if (window.hljs) {
 
 
 
-
 <link rel="stylesheet" href="bioinf-style.css" type="text/css" />
 
 
@@ -85,9 +84,6 @@ button.code-folding-btn:focus {
 }
 summary {
   display: list-item;
-}
-details > summary > p:only-child {
-  display: inline;
 }
 pre code {
   padding: 0;
@@ -361,8 +357,7 @@ div.tocify {
 
 
 
-<h1 class="title toc-ignore">Exercise sheet 9: Data Driven Life
-Sciences</h1>
+<h1 class="title toc-ignore">Exercise sheet 9: Data Driven Life Sciences</h1>
 
 </div>
 
@@ -375,8 +370,7 @@ Sciences</h1>
 <div id="question-1a" class="section level5">
 <h5>Question 1A</h5>
 <div class="question">
-<p>Arrange the following terms into their correct order in the Illumina
-sequencing method and describe each of them briefly:</p>
+<p>Arrange the following terms into their correct order in the Illumina sequencing method and describe each of them briefly:</p>
 <ul>
 <li><p>bridge amplification</p></li>
 <li><p>deblocking</p></li>
@@ -390,38 +384,17 @@ sequencing method and describe each of them briefly:</p>
 <h5>Solution</h5>
 <div class="answer">
 <p><strong>1. Library preparation:</strong></p>
-<p>A sequencing <em>library</em> gets <em>prepared</em> from a sample by
-fragmenting the original DNA and adding Illumina-specific adapter
-sequences to both ends of the fragments. The <em>library</em> is what
-gets read during sequencing.</p>
+<p>A sequencing <em>library</em> gets <em>prepared</em> from a sample by fragmenting the original DNA and adding Illumina-specific adapter sequences to both ends of the fragments. The <em>library</em> is what gets read during sequencing.</p>
 <p><strong>2. Template strand annealing</strong></p>
-<p>The single-stranded library fragments are used as <em>template
-strands</em> in the sequencing and are <em>annealed</em> to primer
-sequences, which are bound to the <em>flow cell</em> and are
-complementary to the adapter sequences of the fragments.</p>
+<p>The single-stranded library fragments are used as <em>template strands</em> in the sequencing and are <em>annealed</em> to primer sequences, which are bound to the <em>flow cell</em> and are complementary to the adapter sequences of the fragments.</p>
 <p><strong>3. Bridge amplification</strong></p>
-<p>After complementary strands have been synthesized and the templates
-been washed off, the now flow cell-bound fragments are
-<em>amplified</em> in several cycles of so-called
-<em>bridge-amplification</em> to form fragment colonies, or
-<em>clusters</em> on the flow cell to guarantee a detectable
-fluorescence signal during sequencing.</p>
+<p>After complementary strands have been synthesized and the templates been washed off, the now flow cell-bound fragments are <em>amplified</em> in several cycles of so-called <em>bridge-amplification</em> to form fragment colonies, or <em>clusters</em> on the flow cell to guarantee a detectable fluorescence signal during sequencing.</p>
 <p><strong>4. Fluorescence detection</strong></p>
-<p>Illumina-sequencing is a form of <em>sequencing-by-synthesis</em> in
-which the nucleotides incorporated into the growing strand are detected
-via attached <em>fluorophores</em>. After the first <span
-class="math inline">\(3\)</span> steps, the following steps are iterated
-to sequence the entire read:</p>
-<p>Modified nucleotides, containing a fluorescent group, are used to
-extend the strand, their blocking groups are cleaved from their 3`-OH
-groups.</p>
+<p>Illumina-sequencing is a form of <em>sequencing-by-synthesis</em> in which the nucleotides incorporated into the growing strand are detected via attached <em>fluorophores</em>. After the first <span class="math inline">\(3\)</span> steps, the following steps are iterated to sequence the entire read:</p>
+<p>Modified nucleotides, containing a fluorescent group, are used to extend the strand, their blocking groups are cleaved from their 3`-OH groups.</p>
 <p><strong>5. Deblocking</strong></p>
-<p><em>Deblocking</em> is the removal of the fluorophore (blocking
-group). It is necessary before a new round of elongation by one
-nucleotide can begin.</p>
-<p>More information about this topic can be found on the <a
-href="https://www.illumina.com/science/technology/next-generation-sequencing/sequencing-technology.html">Illumina
-Webpage</a>.</p>
+<p><em>Deblocking</em> is the removal of the fluorophore (blocking group). It is necessary before a new round of elongation by one nucleotide can begin.</p>
+<p>More information about this topic can be found on the <a href="https://www.illumina.com/science/technology/next-generation-sequencing/sequencing-technology.html">Illumina Webpage</a>.</p>
 </div>
 </div>
 </div>
@@ -447,8 +420,7 @@ Webpage</a>.</p>
 <li>Has a sequencing method named after himself (first name)</li>
 </ol></li>
 <li><ol start="7" style="list-style-type: decimal">
-<li>Illumina/Pacbio way of determining the order of nucleotides in a DNA
-strand. (3 words)</li>
+<li>Illumina/Pacbio way of determining the order of nucleotides in a DNA strand. (3 words)</li>
 </ol></li>
 <li><ol start="8" style="list-style-type: decimal">
 <li>More than just single-end. (2 words)</li>
@@ -463,8 +435,7 @@ strand. (3 words)</li>
 <li>Keeps nucleic acid synthesis going.</li>
 </ol></li>
 <li><ol start="14" style="list-style-type: decimal">
-<li>Measure to asses the quality of the identification of nucleobases
-generated by automated DNA sequencing. (3 words)</li>
+<li>Measure to asses the quality of the identification of nucleobases generated by automated DNA sequencing. (3 words)</li>
 </ol></li>
 </ul>
 <p>Vertical:</p>
@@ -473,8 +444,7 @@ generated by automated DNA sequencing. (3 words)</li>
 <li>Dideoxynucleosidetriphosphates (abbrev.)</li>
 </ol></li>
 <li><ol start="2" style="list-style-type: decimal">
-<li>Process of determining positions of reads on the reference
-genome.</li>
+<li>Process of determining positions of reads on the reference genome.</li>
 </ol></li>
 <li><ol start="4" style="list-style-type: decimal">
 <li>The process of making many copies of a piece of DNA.</li>
@@ -483,8 +453,7 @@ genome.</li>
 <li>Found in pairs in DNA.</li>
 </ol></li>
 <li><ol start="6" style="list-style-type: decimal">
-<li>Chemical group attached to nucleotides to monitor incorporation into
-DNA.</li>
+<li>Chemical group attached to nucleotides to monitor incorporation into DNA.</li>
 </ol></li>
 <li><ol start="9" style="list-style-type: decimal">
 <li>Breakthrough sequencing method (abbrev.)</li>
@@ -513,14 +482,8 @@ DNA.</li>
 <div id="question-3a" class="section level5">
 <h5>Question 3A</h5>
 <div class="question">
-<p>You want to determine how many reads <span
-class="math inline">\(N\)</span> are needed to achieve a coverage depth
-<span class="math inline">\(C\)</span> of 20X when sequencing reads for
-<em>Escherichia coli</em>.</p>
-<p>The length of the reads <span class="math inline">\(L\)</span> is
-30nt and the <em>E. coli</em> genome <span
-class="math inline">\(G\)</span> is approximately 4.6 million bases
-long.</p>
+<p>You want to determine how many reads <span class="math inline">\(N\)</span> are needed to achieve a coverage depth <span class="math inline">\(C\)</span> of 20X when sequencing reads for <em>Escherichia coli</em>.</p>
+<p>The length of the reads <span class="math inline">\(L\)</span> is 30nt and the <em>E. coli</em> genome <span class="math inline">\(G\)</span> is approximately 4.6 million bases long.</p>
 </div>
 </div>
 <div id="formula" class="section level5">

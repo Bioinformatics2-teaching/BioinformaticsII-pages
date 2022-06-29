@@ -13,7 +13,7 @@
 
 <title>Exercise sheet 2: Hidden Markov models II</title>
 
-<script src="site_libs/header-attrs-2.14/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.11/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/cosmo.min.css" rel="stylesheet" />
@@ -60,7 +60,6 @@ if (window.hljs) {
 
 
 
-
 <link rel="stylesheet" href="bioinf-style.css" type="text/css" />
 
 
@@ -85,9 +84,6 @@ button.code-folding-btn:focus {
 }
 summary {
   display: list-item;
-}
-details > summary > p:only-child {
-  display: inline;
 }
 pre code {
   padding: 0;
@@ -361,34 +357,21 @@ div.tocify {
 
 
 
-<h1 class="title toc-ignore">Exercise sheet 2: Hidden Markov models
-II</h1>
+<h1 class="title toc-ignore">Exercise sheet 2: Hidden Markov models II</h1>
 
 </div>
 
 
 <hr />
-<div id="exercise-1---the-occasionally-cheating-casino"
-class="section level1">
+<div id="exercise-1---the-occasionally-cheating-casino" class="section level1">
 <h1>Exercise 1 - The occasionally cheating casino</h1>
-<p>In a casino they use a fair die most of the time, but occasionally
-they switch to a loaded die. The loaded die has a probability <span
-class="math inline">\(0.5\)</span> to show number six and probability
-<span class="math inline">\(0.1\)</span> for the numbers one to five.
-Assume that the casino switches from a fair to a loaded die with
-probability <span class="math inline">\(0.05\)</span> before each roll,
-and that the probability of switching back is <span
-class="math inline">\(0.1\)</span>. The probability to start a game with
-the fair die is <span class="math inline">\(0.9\)</span>.</p>
+<p>In a casino they use a fair die most of the time, but occasionally they switch to a loaded die. The loaded die has a probability <span class="math inline">\(0.5\)</span> to show number six and probability <span class="math inline">\(0.1\)</span> for the numbers one to five. Assume that the casino switches from a fair to a loaded die with probability <span class="math inline">\(0.05\)</span> before each roll, and that the probability of switching back is <span class="math inline">\(0.1\)</span>. The probability to start a game with the fair die is <span class="math inline">\(0.9\)</span>.</p>
 <div id="section" class="section level4 tabset">
 <h4 class="tabset"></h4>
 <div id="question-1a" class="section level5">
 <h5>Question 1A</h5>
 <div class="question">
-<p>Find the probability <span
-class="math inline">\(P(\mathcal{O}|M)\)</span> for <span
-class="math inline">\(\mathcal{O}=1662\)</span> and the given HMM using
-the forward algorithm.</p>
+<p>Find the probability <span class="math inline">\(P(\mathcal{O}|M)\)</span> for <span class="math inline">\(\mathcal{O}=1662\)</span> and the given HMM using the forward algorithm.</p>
 </div>
 </div>
 <div id="hint-1-formulae" class="section level5">
@@ -396,8 +379,7 @@ the forward algorithm.</p>
 <div class="answer">
 <p><span class="math display">\[\begin{align*}
 \alpha_{1}(i)   =&amp; \pi_{i} \times b_{i,o_1}\\
-\alpha_{t+1}(j) =&amp; \sum_{i\in\{F,L\}}\alpha_{t}(i)\times
-a_{i,j}\times b_{j,o_{t+1}}
+\alpha_{t+1}(j) =&amp; \sum_{i\in\{F,L\}}\alpha_{t}(i)\times a_{i,j}\times b_{j,o_{t+1}}
 \end{align*}\]</span></p>
 </div>
 </div>
@@ -405,23 +387,14 @@ a_{i,j}\times b_{j,o_{t+1}}
 <h5>Hint 2 : Calculation Method</h5>
 <div class="answer">
 <p><span class="math display">\[\begin{align*}
-\alpha_1(F) =&amp; \pi_F \times b_{F,1} = 0.9 \times \frac{1}{6} =
-0.15\\
+\alpha_1(F) =&amp; \pi_F \times b_{F,1} = 0.9 \times \frac{1}{6} = 0.15\\
 \alpha_1(L) =&amp; \pi_F \times b_{L,1} = 0.1 \times 0.1 = 0.01\\\\
-\alpha_2(F) =&amp; \alpha_{1}(F)\times a_{F,F}\times b_{F,6} +
-\alpha_{1}(L)\times a_{L,F}\times b_{F,6} =  0.15 \times 0.95 \times
-\frac{1}{6} + 0.01 \times 0.1 \times \frac{1}{6} = 0.0239167\\
-\alpha_2(L) =&amp; \alpha_{1}(F)\times a_{F,L}\times b_{L,6} +
-\alpha_{1}(L)\times a_{L,L}\times b_{L,6} =  0.15 \times 0.05 \times 0.5
-+ 0.01 \times 0.9 \times 0.5 = 0.00825\\
-\alpha_3(F) =&amp; 0.023917 \times 0.95 \times \frac{1}{6} + 0.00825
-\times 0.1 \times \frac{1}{6} = 0.00392\\
-\alpha_3(L) =&amp; 0.023917 \times 0.05 \times 0.5 + 0.00825 \times 0.9
-\times 0.5 = 0.00431\\
-\alpha_4(F) =&amp; 0.00392 \times 0.95 \times \frac{1}{6} + 0.00431
-\times 0.1 \times \frac{1}{6} = 0.000693\\
-\alpha_4(L) =&amp; 0.00392 \times 0.05 \times 0.1 + 0.00431 \times 0.9
-\times 0.1 = 0.000407\\
+\alpha_2(F) =&amp; \alpha_{1}(F)\times a_{F,F}\times b_{F,6} + \alpha_{1}(L)\times a_{L,F}\times b_{F,6} =  0.15 \times 0.95 \times \frac{1}{6} + 0.01 \times 0.1 \times \frac{1}{6} = 0.0239167\\
+\alpha_2(L) =&amp; \alpha_{1}(F)\times a_{F,L}\times b_{L,6} + \alpha_{1}(L)\times a_{L,L}\times b_{L,6} =  0.15 \times 0.05 \times 0.5 + 0.01 \times 0.9 \times 0.5 = 0.00825\\
+\alpha_3(F) =&amp; 0.023917 \times 0.95 \times \frac{1}{6} + 0.00825 \times 0.1 \times \frac{1}{6} = 0.00392\\
+\alpha_3(L) =&amp; 0.023917 \times 0.05 \times 0.5 + 0.00825 \times 0.9 \times 0.5 = 0.00431\\
+\alpha_4(F) =&amp; 0.00392 \times 0.95 \times \frac{1}{6} + 0.00431 \times 0.1 \times \frac{1}{6} = 0.000693\\
+\alpha_4(L) =&amp; 0.00392 \times 0.05 \times 0.1 + 0.00431 \times 0.9 \times 0.1 = 0.000407\\
 \end{align*}\]</span></p>
 </div>
 </div>
@@ -429,8 +402,7 @@ a_{i,j}\times b_{j,o_{t+1}}
 <h5>Solution</h5>
 <div class="answer">
 <p><span class="math display">\[
-P( \mathcal{O}=1662)= \alpha_4(F)+\alpha_4(L) = 0.000693 + 0.000407 =
-0.0011
+P( \mathcal{O}=1662)= \alpha_4(F)+\alpha_4(L) = 0.000693 + 0.000407 = 0.0011
 \]</span></p>
 </div>
 </div>
@@ -443,27 +415,21 @@ P( \mathcal{O}=1662)= \alpha_4(F)+\alpha_4(L) = 0.000693 + 0.000407 =
 <div id="question-1b" class="section level5">
 <h5>Question 1B</h5>
 <div class="question">
-<p>Given the result of Question 1A, do you expect a higher probability
-for the observations <span class="math inline">\(\mathcal{O} =
-1666\)</span> and <span class="math inline">\(\mathcal{O} =
-1262\)</span>?</p>
+<p>Given the result of Question 1A, do you expect a higher probability for the observations <span class="math inline">\(\mathcal{O} = 1666\)</span> and <span class="math inline">\(\mathcal{O} = 1262\)</span>?</p>
 </div>
 </div>
 <div id="hint-1" class="section level5">
 <h5>Hint 1</h5>
 <div class="answer">
-<p>It has something to do with the emission probabilities of the
-different states.</p>
+<p>It has something to do with the emission probabilities of the different states.</p>
 </div>
 </div>
 <div id="solution-1" class="section level5">
 <h5>Solution</h5>
 <div class="answer">
-<p>As state L has a high probability to emit a six, observations with
-more sixes are more likely.</p>
+<p>As state L has a high probability to emit a six, observations with more sixes are more likely.</p>
 <p><span class="math display">\[
-P(\mathcal{O} = 1666) &gt; P(\mathcal{O} = 1662) &gt; P(\mathcal{O} =
-1262)
+P(\mathcal{O} = 1666) &gt; P(\mathcal{O} = 1662) &gt; P(\mathcal{O} = 1262)
 \]</span></p>
 </div>
 </div>
@@ -476,8 +442,7 @@ P(\mathcal{O} = 1666) &gt; P(\mathcal{O} = 1662) &gt; P(\mathcal{O} =
 <div id="question-1c" class="section level5">
 <h5>Question 1C</h5>
 <div class="question">
-<p>Find the most probable path through the HMM that produces the
-sequence <span class="math inline">\(\mathcal{O} = 1662\)</span>.</p>
+<p>Find the most probable path through the HMM that produces the sequence <span class="math inline">\(\mathcal{O} = 1662\)</span>.</p>
 </div>
 </div>
 <div id="hint-1-formulae-1" class="section level5">
@@ -485,10 +450,8 @@ sequence <span class="math inline">\(\mathcal{O} = 1662\)</span>.</p>
 <div class="answer">
 <p><span class="math display">\[\begin{align*}
 \delta_{1}(i)   =&amp; \pi_{i} \times b_{i,o_1}\\
-\delta_{t+1}(j) =&amp; max_{i\in\{F,L\}}\delta_{t}(i)\times a_{i,j}
-\times b_{j,o_{t+1}}\\
-q_{t}^{ * }     =&amp; argmax_{1 \leq i \leq n}  \{ \delta_t(i)
-a_{i,q_{t+1}^{ * } } \}
+\delta_{t+1}(j) =&amp; max_{i\in\{F,L\}}\delta_{t}(i)\times a_{i,j} \times b_{j,o_{t+1}}\\
+q_{t}^{ * }     =&amp; argmax_{1 \leq i \leq n}  \{ \delta_t(i) a_{i,q_{t+1}^{ * } } \}
 \end{align*}\]</span></p>
 </div>
 </div>
@@ -496,21 +459,15 @@ a_{i,q_{t+1}^{ * } } \}
 <h5>Hint 2 : Intermediate calculations</h5>
 <div class="answer">
 <p><span class="math display">\[\begin{align*}
-\delta_1(F) =&amp; \pi_F \times b_{F,1} = 0.9 \times \frac{1}{6} =
-0.15\\
+\delta_1(F) =&amp; \pi_F \times b_{F,1} = 0.9 \times \frac{1}{6} = 0.15\\
 \delta_1(L) =&amp; \pi_F \times b_{L,1} = 0.1 \times 0.1 = 0.01\\\\
-\delta_2(F) =&amp; max(\delta_{1}(F) \times a_{F,F} \times b_{F,6},
-\delta_{1}(L) \times a_{L,F} \times b_{F,6}) = max(0.02375 , 0.00016) =
-0.02375 \\
-\delta_2(L) =&amp; max(\delta_{1}(F) \times a_{F,L} \times b_{L,6},
-\delta_{1}(L) \times a_{L,L} \times b_{L,6}) = max(0.00375, 0.0045) =
-0.0045\\
+\delta_2(F) =&amp; max(\delta_{1}(F) \times a_{F,F} \times b_{F,6}, \delta_{1}(L) \times a_{L,F} \times b_{F,6}) = max(0.02375 , 0.00016) = 0.02375 \\
+\delta_2(L) =&amp; max(\delta_{1}(F) \times a_{F,L} \times b_{L,6}, \delta_{1}(L) \times a_{L,L} \times b_{L,6}) = max(0.00375, 0.0045) = 0.0045\\
 \delta_3(F) =&amp; max(0.00376, 0.000075) = 0.00376\\
 \delta_3(L) =&amp; max(0.00059375, 0.002025) = 0.002025\\
 \delta_4(F) =&amp; max(0.0005953, 0.00003375) = 0.0005953\\
 \delta_4(L) =&amp; max(0.0000188, 0.00018225) = 0.00018225\\\\
-P( \mathcal{P}^{*}, \mathcal{O}) =&amp; max(\delta_4(F), \delta_4(L)) =
-5.95 \times 10^{-4}
+P( \mathcal{P}^{*}, \mathcal{O}) =&amp; max(\delta_4(F), \delta_4(L)) = 5.95 \times 10^{-4}
 \end{align*}\]</span></p>
 </div>
 </div>
@@ -519,12 +476,9 @@ P( \mathcal{P}^{*}, \mathcal{O}) =&amp; max(\delta_4(F), \delta_4(L)) =
 <div class="answer">
 <p><span class="math display">\[\begin{align*}
 q_4^* =&amp; argmax_{i\in\{F,L\}}(\delta_4(i)) = F\\
-q_3^* =&amp; argmax_{i\in\{F,L\}}(\delta_3(i) \times a_{i,q_4^*}) =
-argmax(F:0.00376 \times 0.95, L:0.002025 \times 0.1) = F\\
-q_2^* =&amp; argmax_{i\in\{F,L\}}(\delta_2(i) \times a_{i,q_3^*}) =
-argmax(F:0.02375 \times 0.95, L:0.0045 \times 0.1) = F\\
-q_1^* =&amp; argmax_{i\in\{F,L\}}(\delta_1(i) \times a_{i,q_2^*}) =
-argmax(F:0.15 \times 0.95, L:0.01 \times 0.1) = F\\
+q_3^* =&amp; argmax_{i\in\{F,L\}}(\delta_3(i) \times a_{i,q_4^*}) = argmax(F:0.00376 \times 0.95, L:0.002025 \times 0.1) = F\\
+q_2^* =&amp; argmax_{i\in\{F,L\}}(\delta_2(i) \times a_{i,q_3^*}) = argmax(F:0.02375 \times 0.95, L:0.0045 \times 0.1) = F\\
+q_1^* =&amp; argmax_{i\in\{F,L\}}(\delta_1(i) \times a_{i,q_2^*}) = argmax(F:0.15 \times 0.95, L:0.01 \times 0.1) = F\\
 \Rightarrow&amp; Q^*=FFFF
 \end{align*}\]</span></p>
 <p>The best path is therefore to stay in state F.</p>
@@ -538,8 +492,7 @@ argmax(F:0.15 \times 0.95, L:0.01 \times 0.1) = F\\
 </div>
 <div id="exercise-2---profile-hmms" class="section level1">
 <h1>Exercise 2 - Profile HMMs</h1>
-<p>Profile HMMs define a position specific scoring scheme which can be
-used to search databases for homologous sequences.</p>
+<p>Profile HMMs define a position specific scoring scheme which can be used to search databases for homologous sequences.</p>
 <p>The following multiple alignment of DNA sequences is given:</p>
 <pre><code>                                        AC---A
                                         A----A
@@ -551,8 +504,7 @@ used to search databases for homologous sequences.</p>
 <div id="question-2a" class="section level5">
 <h5>Question 2A</h5>
 <div class="question">
-<p>Draw the graphical representation of the profile HMM for the given
-multiple alignment.</p>
+<p>Draw the graphical representation of the profile HMM for the given multiple alignment.</p>
 </div>
 </div>
 <div id="solution-3" class="section level5">
@@ -570,8 +522,7 @@ multiple alignment.</p>
 <div id="question-2b" class="section level5">
 <h5>Question 2B</h5>
 <div class="question">
-<p>Find the state sequences that correspond to each row in the
-alignment.</p>
+<p>Find the state sequences that correspond to each row in the alignment.</p>
 </div>
 </div>
 <div id="solution-4" class="section level5">
@@ -592,11 +543,7 @@ alignment.</p>
 <div id="question-2c" class="section level5">
 <h5>Question 2C</h5>
 <div class="question">
-<p>Compute the following emission probabilities with maximum likelihood
-estimation: <span class="math inline">\(b_{M_1,A}\)</span>, <span
-class="math inline">\(b_{M_1,G}\)</span>, <span
-class="math inline">\(b_{M_1,C}\)</span>, <span
-class="math inline">\(b_{M_1,T}\)</span>.</p>
+<p>Compute the following emission probabilities with maximum likelihood estimation: <span class="math inline">\(b_{M_1,A}\)</span>, <span class="math inline">\(b_{M_1,G}\)</span>, <span class="math inline">\(b_{M_1,C}\)</span>, <span class="math inline">\(b_{M_1,T}\)</span>.</p>
 </div>
 </div>
 <div id="formulae" class="section level5">
@@ -607,9 +554,7 @@ class="math inline">\(b_{M_1,T}\)</span>.</p>
 <!-- r_t ... r_T \text{ random variables for the outputs}\\ k \in \Sigma \text{ a -->
 <!-- finit output alphabet} $$ -->
 <p><span class="math display">\[
-b_{i,k} = \frac{E[\text{number of emissions of } \sigma_k \text{, while
-in state } i | \mathcal{O}, M]}{E[\text{number of times in state } i |
-\mathcal{O}, M]}
+b_{i,k} = \frac{E[\text{number of emissions of } \sigma_k \text{, while in state } i | \mathcal{O}, M]}{E[\text{number of times in state } i | \mathcal{O}, M]}
 \]</span></p>
 </div>
 </div>
@@ -631,31 +576,23 @@ in state } i | \mathcal{O}, M]}{E[\text{number of times in state } i |
 <div id="question-2d" class="section level5">
 <h5>Question 2D</h5>
 <div class="question">
-<p>Compute the following transition probabilities with maximum
-likelihood estimation: <span class="math inline">\(a_{M_2,M_3}\)</span>,
-<span class="math inline">\(a_{M_2,I_2}\)</span>, <span
-class="math inline">\(a_{M_2,D_3}\)</span></p>
+<p>Compute the following transition probabilities with maximum likelihood estimation: <span class="math inline">\(a_{M_2,M_3}\)</span>, <span class="math inline">\(a_{M_2,I_2}\)</span>, <span class="math inline">\(a_{M_2,D_3}\)</span></p>
 </div>
 </div>
 <div id="formulae-1" class="section level5">
 <h5>Formulae</h5>
 <div class="answer">
 <p><span class="math display">\[
-a_{i,j} = \frac{E[\text{number of transitions from }  i \text{ to } j |
-\mathcal{O}, M]}{E[\text{number of transitions from } i | \mathcal{O},
-M]}
+a_{i,j} = \frac{E[\text{number of transitions from }  i \text{ to } j | \mathcal{O}, M]}{E[\text{number of transitions from } i | \mathcal{O}, M]}
 \]</span></p>
 </div>
 </div>
 <div id="solution-6" class="section level5">
 <h5>Solution</h5>
 <div class="answer">
-<p><span class="math inline">\(a_{M_2,M_3} = \frac{2}{2+1+0} =
-\frac{2}{3}\)</span></p>
-<p><span class="math inline">\(a_{M_2,I_2} = \frac{1}{2+1+0} =
-\frac{1}{3}\)</span></p>
-<p><span class="math inline">\(a_{M_2,D_3} = \frac{0}{2+1+0} =
-0\)</span></p>
+<p><span class="math inline">\(a_{M_2,M_3} = \frac{2}{2+1+0} = \frac{2}{3}\)</span></p>
+<p><span class="math inline">\(a_{M_2,I_2} = \frac{1}{2+1+0} = \frac{1}{3}\)</span></p>
+<p><span class="math inline">\(a_{M_2,D_3} = \frac{0}{2+1+0} = 0\)</span></p>
 </div>
 </div>
 </div>
@@ -667,27 +604,19 @@ M]}
 <div id="question-2e" class="section level5">
 <h5>Question 2E</h5>
 <div class="question">
-<p>Repeat the calculations from c) and d) using a pseudo-count of <span
-class="math inline">\(1\)</span>.</p>
+<p>Repeat the calculations from c) and d) using a pseudo-count of <span class="math inline">\(1\)</span>.</p>
 </div>
 </div>
 <div id="solution-7" class="section level5">
 <h5>Solution</h5>
 <div class="answer">
-<p><span
-class="math inline">\(b_{M_1,A}=\frac{3+1}{4+4}=\frac{1}{2}\)</span></p>
-<p><span
-class="math inline">\(b_{M_1,G}=\frac{0+1}{4+4}=\frac{1}{8}\)</span></p>
-<p><span
-class="math inline">\(b_{M_1,C}=\frac{0+1}{4+4}=\frac{1}{8}\)</span></p>
-<p><span
-class="math inline">\(b_{M_1,T}=\frac{1+1}{4+4}=\frac{1}{4}\)</span></p>
-<p><span class="math inline">\(a_{M_2,M_3} = \frac{2+1}{2+1+0+3} =
-\frac{1}{2}\)</span></p>
-<p><span class="math inline">\(a_{M_2,I_2} = \frac{1+1}{2+1+0+3} =
-\frac{1}{3}\)</span></p>
-<p><span class="math inline">\(a_{M_2,D_3} = \frac{0+1}{2+1+0+3} =
-\frac{1}{6}\)</span></p>
+<p><span class="math inline">\(b_{M_1,A}=\frac{3+1}{4+4}=\frac{1}{2}\)</span></p>
+<p><span class="math inline">\(b_{M_1,G}=\frac{0+1}{4+4}=\frac{1}{8}\)</span></p>
+<p><span class="math inline">\(b_{M_1,C}=\frac{0+1}{4+4}=\frac{1}{8}\)</span></p>
+<p><span class="math inline">\(b_{M_1,T}=\frac{1+1}{4+4}=\frac{1}{4}\)</span></p>
+<p><span class="math inline">\(a_{M_2,M_3} = \frac{2+1}{2+1+0+3} = \frac{1}{2}\)</span></p>
+<p><span class="math inline">\(a_{M_2,I_2} = \frac{1+1}{2+1+0+3} = \frac{1}{3}\)</span></p>
+<p><span class="math inline">\(a_{M_2,D_3} = \frac{0+1}{2+1+0+3} = \frac{1}{6}\)</span></p>
 </div>
 </div>
 </div>
