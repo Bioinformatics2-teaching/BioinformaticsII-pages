@@ -13,7 +13,7 @@
 
 <title>Exercise sheet 6: BLAST</title>
 
-<script src="site_libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.14/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/cosmo.min.css" rel="stylesheet" />
@@ -60,6 +60,7 @@ if (window.hljs) {
 
 
 
+
 <link rel="stylesheet" href="bioinf-style.css" type="text/css" />
 
 
@@ -84,6 +85,9 @@ button.code-folding-btn:focus {
 }
 summary {
   display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
 }
 pre code {
   padding: 0;
@@ -365,7 +369,10 @@ div.tocify {
 <hr />
 <div id="exercise-1" class="section level1">
 <h1>Exercise 1</h1>
-<p>You are given accession number NM_000667.3. Use the <a href="http://blast.ncbi.nlm.nih.gov/Blast.cgi">BLAST web server</a> to find out about the gene that belongs to this acccession number (choose nucleotide blast, and the database RefSeq RNA).</p>
+<p>You are given accession number NM_000667.3. Use the <a
+href="http://blast.ncbi.nlm.nih.gov/Blast.cgi">BLAST web server</a> to
+find out about the gene that belongs to this acccession number (choose
+nucleotide blast, and the database RefSeq RNA).</p>
 <div id="section" class="section level4 tabset">
 <h4 class="tabset"></h4>
 <div id="question-1a" class="section level5">
@@ -406,12 +413,15 @@ div.tocify {
 </div>
 <div id="exercise-2" class="section level1">
 <h1>Exercise 2</h1>
-<p>We wish to find sequences related to a query sequence of 28 residues in a database of 1 billon residues. Since this sequence belongs to a highly conserved gene family, we decide to use the PAM30 matrix.</p>
+<p>We wish to find sequences related to a query sequence of 28 residues
+in a database of 1 billon residues. Since this sequence belongs to a
+highly conserved gene family, we decide to use the PAM30 matrix.</p>
 <div id="section-4" class="section level4 tabset">
 <h4 class="tabset"></h4>
 <div id="question-2a" class="section level5">
 <h5>Question 2A</h5>
-<p>Does this query sequence provide enough information to find significant matches?</p>
+<p>Does this query sequence provide enough information to find
+significant matches?</p>
 </div>
 <div id="hint-1-scoring-matrices" class="section level5">
 <h5>Hint 1: scoring matrices</h5>
@@ -430,11 +440,13 @@ Shortest\ reliable\ alignment = \frac{log2(mn)}{H^{N}}
 <h5>Solution</h5>
 <div class="answer">
 <p><span class="math display">\[
-Shortest\ reliable\ alignment = \frac{log2(mn)}{H^{N}} = \frac{log2(28·10^{9})}{2,57}\simeq 14\ residues
+Shortest\ reliable\ alignment = \frac{log2(mn)}{H^{N}} =
+\frac{log2(28·10^{9})}{2,57}\simeq 14\ residues
 \\
 \]</span></p>
 </div>
-<p>In that case, the query is long enough, since the minimum query length is 14 residues.</p>
+<p>In that case, the query is long enough, since the minimum query
+length is 14 residues.</p>
 </div>
 </div>
 <div id="section-5" class="section level4 unnumbered">
@@ -445,17 +457,29 @@ Shortest\ reliable\ alignment = \frac{log2(mn)}{H^{N}} = \frac{log2(28·10^{9})}
 <h4 class="tabset"></h4>
 <div id="question-2b" class="section level5">
 <h5>Question 2B</h5>
-<p>Our supervisor has asked us to find homologous sequences of a gene which belongs to a highly diverged gene family. In that case, we decide to use the PAM250 matrix, since it provides the best sensitivity. What are the implications of using PAM250 instead of PAM30, assuming that the query has a similar size?</p>
+<p>Our supervisor has asked us to find homologous sequences of a gene
+which belongs to a highly diverged gene family. In that case, we decide
+to use the PAM250 matrix, since it provides the best sensitivity. What
+are the implications of using PAM250 instead of PAM30, assuming that the
+query has a similar size?</p>
 </div>
 <div id="solution-3" class="section level5">
 <h5>Solution</h5>
-<p>The information content of the matrix PAM250 is much lower than PAM30 (0,36 bits/site vs 2,57 bits/site). It has a direct impact in the information contained in the query. So, let’s check it the query contains enough information to find significant matches:</p>
+<p>The information content of the matrix PAM250 is much lower than PAM30
+(0,36 bits/site vs 2,57 bits/site). It has a direct impact in the
+information contained in the query. So, let’s check it the query
+contains enough information to find significant matches:</p>
 <div class="answer">
 <p><span class="math display">\[
-Shortest\ reliable\ alignment = \frac{log2(mn)}{H^{N}} = \frac{log2(28·10^{9})}{0,36}\simeq 96\ residues
+Shortest\ reliable\ alignment = \frac{log2(mn)}{H^{N}} =
+\frac{log2(28·10^{9})}{0,36}\simeq 96\ residues
 \]</span></p>
 </div>
-<p>Since the shortest alignment for which significance can be reliably is greater than the query size, it implies that a query size of 28 residues doesn’t provide enough information. In order to solve the problem, we could try to use a longer query sequence, or use a smaller database.</p>
+<p>Since the shortest alignment for which significance can be reliably
+is greater than the query size, it implies that a query size of 28
+residues doesn’t provide enough information. In order to solve the
+problem, we could try to use a longer query sequence, or use a smaller
+database.</p>
 </div>
 </div>
 <div id="section-7" class="section level4 unnumbered">
@@ -465,12 +489,21 @@ Shortest\ reliable\ alignment = \frac{log2(mn)}{H^{N}} = \frac{log2(28·10^{9})}
 </div>
 <div id="exercise-3" class="section level1">
 <h1>Exercise 3</h1>
-<p>You are given a nucleotide query sequence <span class="math inline">\(q\)</span> = <span class="math inline">\(\texttt{ATAC}\)</span>, and a nucleotide database sequence <span class="math inline">\(s\)</span> = <span class="math inline">\(\texttt{ATAAAACGGGGGG}\)</span>. The word-size <span class="math inline">\(k=2\)</span>. Use a simple scoring scheme that assigns a score of <span class="math inline">\(2\)</span> for a match and a score of <span class="math inline">\(-1\)</span> for a mismatch.</p>
+<p>You are given a nucleotide query sequence <span
+class="math inline">\(q\)</span> = <span
+class="math inline">\(\texttt{ATAC}\)</span>, and a nucleotide database
+sequence <span class="math inline">\(s\)</span> = <span
+class="math inline">\(\texttt{ATAAAACGGGGGG}\)</span>. The word-size
+<span class="math inline">\(k=2\)</span>. Use a simple scoring scheme
+that assigns a score of <span class="math inline">\(2\)</span> for a
+match and a score of <span class="math inline">\(-1\)</span> for a
+mismatch.</p>
 <div id="section-8" class="section level4 tabset">
 <h4 class="tabset"></h4>
 <div id="question-3a" class="section level5">
 <h5>Question 3A</h5>
-<p>Generate all <span class="math inline">\(k\)</span>-length words of the query sequence.</p>
+<p>Generate all <span class="math inline">\(k\)</span>-length words of
+the query sequence.</p>
 </div>
 <div id="solution-4" class="section level5">
 <h5>Solution</h5>
@@ -489,7 +522,9 @@ Shortest\ reliable\ alignment = \frac{log2(mn)}{H^{N}} = \frac{log2(28·10^{9})}
 <h4 class="tabset"></h4>
 <div id="question-3b" class="section level5">
 <h5>Question 3B</h5>
-<p>List all possible words for the first <span class="math inline">\(k\)</span>-length word (AT) that have a score of at least <span class="math inline">\(T_1=1\)</span>.</p>
+<p>List all possible words for the first <span
+class="math inline">\(k\)</span>-length word (AT) that have a score of
+at least <span class="math inline">\(T_1=1\)</span>.</p>
 </div>
 <div id="solution-5" class="section level5">
 <h5>Solution</h5>
@@ -512,11 +547,13 @@ Shortest\ reliable\ alignment = \frac{log2(mn)}{H^{N}} = \frac{log2(28·10^{9})}
 <h4 class="tabset"></h4>
 <div id="question-3c" class="section level5">
 <h5>Question 3C</h5>
-<p>Scan the database for exact matches for the words from the question 3B.</p>
+<p>Scan the database for exact matches for the words from the question
+3B.</p>
 </div>
 <div id="solution-6" class="section level5">
 <h5>Solution</h5>
-<p><em>AA</em> at position 2,3,4. <em>AC</em> at position 5, <em>AT</em> at position 0.</p>
+<p><em>AA</em> at position 2,3,4. <em>AC</em> at position 5, <em>AT</em>
+at position 0.</p>
 </div>
 </div>
 <div id="section-13" class="section level4 unnumbered">
@@ -527,7 +564,9 @@ Shortest\ reliable\ alignment = \frac{log2(mn)}{H^{N}} = \frac{log2(28·10^{9})}
 <h4 class="tabset"></h4>
 <div id="question-3d" class="section level5">
 <h5>Question 3D</h5>
-<p>Extend the exact matches that you found in the question 3C to the left/right and report all MSPs with a score greater than <span class="math inline">\(4\)</span>.</p>
+<p>Extend the exact matches that you found in the question 3C to the
+left/right and report all MSPs with a score greater than <span
+class="math inline">\(4\)</span>.</p>
 </div>
 <div id="solution-7" class="section level5">
 <h5>Solution</h5>
@@ -557,13 +596,18 @@ Shortest\ reliable\ alignment = \frac{log2(mn)}{H^{N}} = \frac{log2(28·10^{9})}
 <h4 class="tabset"></h4>
 <div id="question-3e" class="section level5">
 <h5>Question 3E</h5>
-<p>What happens if we vary the parameters <em>k</em> and <span class="math inline">\(T_1\)</span>?</p>
+<p>What happens if we vary the parameters <em>k</em> and <span
+class="math inline">\(T_1\)</span>?</p>
 </div>
 <div id="solution-8" class="section level5">
 <h5>Solution</h5>
 <ul>
-<li>Higher <span class="math inline">\(T_1\)</span>, <span class="math inline">\(k\)</span>: - faster (less seeds), - less sensitive (some hits will be missed)</li>
-<li>Lower <span class="math inline">\(T_1\)</span>, <span class="math inline">\(k\)</span>: - slower (more seeds), - more sensitive (less hits will be missed)</li>
+<li>Higher <span class="math inline">\(T_1\)</span>, <span
+class="math inline">\(k\)</span>: - faster (less seeds), - less
+sensitive (some hits will be missed)</li>
+<li>Lower <span class="math inline">\(T_1\)</span>, <span
+class="math inline">\(k\)</span>: - slower (more seeds), - more
+sensitive (less hits will be missed)</li>
 </ul>
 </div>
 </div>
@@ -574,11 +618,17 @@ Shortest\ reliable\ alignment = \frac{log2(mn)}{H^{N}} = \frac{log2(28·10^{9})}
 </div>
 <div id="exercise-4---programming-assignment" class="section level1">
 <h1>Exercise 4 - Programming assignment</h1>
-<p>Programming assignments are available via Github Classroom and contain automatic tests.</p>
-<p>We recommend doing these assignments since they will help you to further understand this topic.</p>
-<p>Access the Github Classroom link: <a href="https://classroom.github.com/a/Q9By3xyo">Programming Assignment: Sheet 06</a>.</p>
+<p>Programming assignments are available via Github Classroom and
+contain automatic tests.</p>
+<p>We recommend doing these assignments since they will help you to
+further understand this topic.</p>
+<p>Access the Github Classroom link: <a
+href="https://classroom.github.com/a/Q9By3xyo">Programming Assignment:
+Sheet 06</a>.</p>
 <hr />
-<p>Download: <a href="exercise-sheet-6.pdf" title="Download PDF Version">PDF Version</a> of this page.</p>
+<p>Download:
+<a href="exercise-sheet-6.pdf" title="Download PDF Version">PDF
+Version</a> of this page.</p>
 </div>
 
 

@@ -32,6 +32,7 @@ Arrange the following terms into their correct order in the Illumina sequencing 
 
 ##### Solution
 ::: {.answer data-latex=""}
+
 **1. Library preparation:**
 
 A sequencing *library* gets *prepared* from a sample by fragmenting the original DNA and adding Illumina-specific adapter sequences to both ends of the fragments. The *library* is what gets read during sequencing.
@@ -60,6 +61,7 @@ More information about this topic can be found on the [Illumina Webpage](https:/
 #### {-}
 
 # Exercise 2
+<span style="color:red">This exercise will be modified by end of today 30.06.22 to better fit the lecture recordings. Sorry for any inconvenience this may cause!</span>
 
 #### {.tabset}
 ```{r, echo=FALSE, out.width="75%", fig.align='center'}
