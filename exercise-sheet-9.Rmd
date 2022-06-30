@@ -134,7 +134,7 @@ N = \frac{C\times G}{L}
 $$
 ::: 
 
-##### Formula
+##### Solution
 ::: {.answer data-latex=""}
 $$
 N = \frac{20\times 4600000}{30} \approx 3066667 \text{ reads}
