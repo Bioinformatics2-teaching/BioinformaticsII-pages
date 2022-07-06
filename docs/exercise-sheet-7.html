@@ -13,7 +13,7 @@
 
 <title>Exercise sheet 7: BLAT</title>
 
-<script src="site_libs/header-attrs-2.14/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.11/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/cosmo.min.css" rel="stylesheet" />
@@ -60,7 +60,6 @@ if (window.hljs) {
 
 
 
-
 <link rel="stylesheet" href="bioinf-style.css" type="text/css" />
 
 
@@ -85,9 +84,6 @@ button.code-folding-btn:focus {
 }
 summary {
   display: list-item;
-}
-details > summary > p:only-child {
-  display: inline;
 }
 pre code {
   padding: 0;
@@ -349,6 +345,7 @@ div.tocify {
         <li><a href="exercise-sheet-7.html">Sheet 7</a></li>
         <li><a href="exercise-sheet-8.html">Sheet 8</a></li>
         <li><a href="exercise-sheet-9.html">Sheet 9</a></li>
+        <!--<li><a href="exercise-sheet-10.html">Sheet 10</a></li>-->
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li><a href="http://www.bioinf.uni-freiburg.de/index.html?en2">Contact</a></li>
@@ -367,44 +364,25 @@ div.tocify {
 
 
 <hr />
-<p>In the first step of the BLAT (Blast-like Alignment Tool) algorithm,
-regions that are likely to be homologous are detected. In this exercise
-sheet, we will investigate the search stage of the BLAT algorithm on the
-example of the mouse genome.</p>
-<p>We want to determine whether a region from the human genome aligns to
-a part of the mouse genome. Therefore, a homologous region to our query
-sequence will be detected during the search stage.</p>
+<p>In the first step of the BLAT (Blast-like Alignment Tool) algorithm, regions that are likely to be homologous are detected. In this exercise sheet, we will investigate the search stage of the BLAT algorithm on the example of the mouse genome.</p>
+<p>We want to determine whether a region from the human genome aligns to a part of the mouse genome. Therefore, a homologous region to our query sequence will be detected during the search stage.</p>
 <p>We assume that:</p>
 <ul>
-<li>the human genome <span class="math inline">\(G\)</span> is
-approximately <span class="math inline">\(2.9\)</span> billion bases
-long.</li>
-<li>the mouse genome <span class="math inline">\(G\)</span> is
-approximately <span class="math inline">\(2.5\)</span> billion bases
-long.</li>
-<li>the match ratio <span class="math inline">\(M\)</span> between
-homologous areas of both species is <span
-class="math inline">\(98\%\)</span> for DNA and <span
-class="math inline">\(89\%\)</span> for protein alignments.</li>
-<li>in our example we assume that homologous areas <span
-class="math inline">\(H\)</span> are typically <span
-class="math inline">\(50\)</span> bases long.</li>
-<li>our query sequence <span class="math inline">\(Q\)</span> is
-GTCCTCGGAACCAGGACCTCGGCGTGGCCTAGCG.</li>
+<li>the human genome <span class="math inline">\(G\)</span> is approximately <span class="math inline">\(2.9\)</span> billion bases long.</li>
+<li>the mouse genome <span class="math inline">\(G\)</span> is approximately <span class="math inline">\(2.5\)</span> billion bases long.</li>
+<li>the match ratio <span class="math inline">\(M\)</span> between homologous areas of both species is <span class="math inline">\(98\%\)</span> for DNA and <span class="math inline">\(89\%\)</span> for protein alignments.</li>
+<li>in our example we assume that homologous areas <span class="math inline">\(H\)</span> are typically <span class="math inline">\(50\)</span> bases long.</li>
+<li>our query sequence <span class="math inline">\(Q\)</span> is GTCCTCGGAACCAGGACCTCGGCGTGGCCTAGCG.</li>
 </ul>
 <div id="exercise-1" class="section level1">
 <h1>Exercise 1</h1>
-<p>For the <span class="math inline">\(K\)</span>-mer sizes <span
-class="math inline">\(K=7\)</span> and <span
-class="math inline">\(K=14\)</span>, respectively.</p>
+<p>For the <span class="math inline">\(K\)</span>-mer sizes <span class="math inline">\(K=7\)</span> and <span class="math inline">\(K=14\)</span>, respectively.</p>
 <div id="section" class="section level4 tabset">
 <h4 class="tabset"></h4>
 <div id="question-1a" class="section level5">
 <h5>Question 1A</h5>
 <div class="question">
-<p>What is the probability of having a perfect match between a specific
-<span class="math inline">\(K\)</span>-mer in a homologous region and a
-<span class="math inline">\(K\)</span>-mer in the query sequence?</p>
+<p>What is the probability of having a perfect match between a specific <span class="math inline">\(K\)</span>-mer in a homologous region and a <span class="math inline">\(K\)</span>-mer in the query sequence?</p>
 </div>
 </div>
 <div id="formula" class="section level5">
@@ -418,11 +396,9 @@ p_{1} = M^K
 <div id="solution" class="section level5">
 <h5>Solution</h5>
 <div class="answer">
-<p>For <span class="math inline">\(K=7\)</span>: <span
-class="math display">\[
+<p>For <span class="math inline">\(K=7\)</span>: <span class="math display">\[
 p_{1} = 0.98^{7} = 0.8681
-\]</span> For <span class="math inline">\(K=14\)</span>: <span
-class="math display">\[
+\]</span> For <span class="math inline">\(K=14\)</span>: <span class="math display">\[
 p_{1} = 0.98^{14} = 0.7536
 \]</span></p>
 </div>
@@ -436,10 +412,7 @@ p_{1} = 0.98^{14} = 0.7536
 <div id="question-1b" class="section level5">
 <h5>Question 1B</h5>
 <div class="question">
-<p>What is the probability that at least one non-overlapping <span
-class="math inline">\(K\)</span>-mer in the homologous region matches
-perfectly with the corresponding <span
-class="math inline">\(K\)</span>-mer in the query sequence?</p>
+<p>What is the probability that at least one non-overlapping <span class="math inline">\(K\)</span>-mer in the homologous region matches perfectly with the corresponding <span class="math inline">\(K\)</span>-mer in the query sequence?</p>
 </div>
 </div>
 <div id="formula-1" class="section level5">
@@ -454,13 +427,10 @@ P = 1 - (1 - p_{1})^{T} = 1 - (1 - M^{K})^{T},\\
 <div id="solution-1" class="section level5">
 <h5>Solution</h5>
 <div class="answer">
-<p>For <span class="math inline">\(K=7\)</span>: <span
-class="math display">\[
-P = 1 - (1 - 0.98^7)^{\left\lfloor\frac{50}{7}\right\rfloor} = 0.9999...
-\]</span> For <span class="math inline">\(K=14\)</span>: <span
-class="math display">\[
-P = 1 - (1 - 0.98^{14})^{\left\lfloor\frac{50}{14}\right\rfloor} =
-0.9850...
+<p>For <span class="math inline">\(K=7\)</span>: <span class="math display">\[
+P = 1 - (1 - 0.98^7)^{\left\lfloor\frac{50}{7}\right\rfloor} = 0.9999... 
+\]</span> For <span class="math inline">\(K=14\)</span>: <span class="math display">\[
+P = 1 - (1 - 0.98^{14})^{\left\lfloor\frac{50}{14}\right\rfloor} = 0.9850... 
 \]</span></p>
 </div>
 </div>
@@ -473,17 +443,14 @@ P = 1 - (1 - 0.98^{14})^{\left\lfloor\frac{50}{14}\right\rfloor} =
 <div id="question-1c" class="section level5">
 <h5>Question 1C</h5>
 <div class="question">
-<p>Calculate the number of False Positives (FPs), i.e. the number of
-<span class="math inline">\(K\)</span>-mers that are expected to match
-by chance.</p>
+<p>Calculate the number of False Positives (FPs), i.e. the number of <span class="math inline">\(K\)</span>-mers that are expected to match by chance.</p>
 </div>
 </div>
 <div id="formula-2" class="section level5">
 <h5>Formula</h5>
 <div class="answer">
 <p><span class="math display">\[\begin{align*}
-F &amp;= (Q-K+1) \times \bigg(\frac{G}{K}\bigg) \times
-\bigg(\frac{1}{A}\bigg)^{K},\\
+F &amp;= (Q-K+1) \times \bigg(\frac{G}{K}\bigg) \times \bigg(\frac{1}{A}\bigg)^{K},\\
 &amp;A: \text{the alphabet size}\\
 &amp;Q: \text{the query length in bases}\\
 &amp;G: \text{the genome size in bases}
@@ -493,14 +460,10 @@ F &amp;= (Q-K+1) \times \bigg(\frac{G}{K}\bigg) \times
 <div id="solution-2" class="section level5">
 <h5>Solution</h5>
 <div class="answer">
-<p>For <span class="math inline">\(K=7\)</span>: <span
-class="math display">\[
-F = (34-7+1) \times \frac{2500000000}{7} \times \frac{1}{4}^{7} =
-610351.5625
-\]</span> For <span class="math inline">\(K=14\)</span>: <span
-class="math display">\[
-F = (34-14+1) \times \frac{2500000000}{14} \times \frac{1}{4}^{14} =
-13.9698
+<p>For <span class="math inline">\(K=7\)</span>: <span class="math display">\[
+F = (34-7+1) \times \frac{2500000000}{7} \times \frac{1}{4}^{7} = 610351.5625
+\]</span> For <span class="math inline">\(K=14\)</span>: <span class="math display">\[
+F = (34-14+1) \times \frac{2500000000}{14} \times \frac{1}{4}^{14} = 13.9698
 \]</span></p>
 </div>
 </div>
@@ -513,18 +476,13 @@ F = (34-14+1) \times \frac{2500000000}{14} \times \frac{1}{4}^{14} =
 <div id="question-1d" class="section level5">
 <h5>Question 1D</h5>
 <div class="question">
-<p>Observe the True positive rate (TPR) and the number of False
-Positives for the <span class="math inline">\(7\)</span>-mers and <span
-class="math inline">\(14\)</span>-mers that you computed in part 1B and
-1C. What observation do you make?</p>
+<p>Observe the True positive rate (TPR) and the number of False Positives for the <span class="math inline">\(7\)</span>-mers and <span class="math inline">\(14\)</span>-mers that you computed in part 1B and 1C. What observation do you make?</p>
 </div>
 </div>
 <div id="solution-3" class="section level5">
 <h5>Solution</h5>
 <div class="answer">
-<p>When increasing the <span class="math inline">\(K\)</span>-mer size
-both the TPR and the number of False Positives are reduced. But the
-number of False Positives reduces drastically, compared to the TPR.</p>
+<p>When increasing the <span class="math inline">\(K\)</span>-mer size both the TPR and the number of False Positives are reduced. But the number of False Positives reduces drastically, compared to the TPR.</p>
 </div>
 </div>
 </div>
@@ -534,21 +492,14 @@ number of False Positives reduces drastically, compared to the TPR.</p>
 </div>
 <div id="exercise-2" class="section level1">
 <h1>Exercise 2</h1>
-<p>In order to increase the True Positive Rate, we want to allow single
-mismatches when checking for exact matches.</p>
-<p>For the <span class="math inline">\(K\)</span>-mer sizes <span
-class="math inline">\(K=7\)</span> and <span
-class="math inline">\(K=14\)</span>, respectively.</p>
+<p>In order to increase the True Positive Rate, we want to allow single mismatches when checking for exact matches.</p>
+<p>For the <span class="math inline">\(K\)</span>-mer sizes <span class="math inline">\(K=7\)</span> and <span class="math inline">\(K=14\)</span>, respectively.</p>
 <div id="section-8" class="section level4 tabset">
 <h4 class="tabset"></h4>
 <div id="question-2a" class="section level5">
 <h5>Question 2A</h5>
 <div class="question">
-<p>What is the probability that at least one non-overlapping <span
-class="math inline">\(K\)</span>-mer in the homologous region matches
-perfectly with the corresponding <span
-class="math inline">\(K\)</span>-mer in the query sequence? Given that
-we allow one mismatch.</p>
+<p>What is the probability that at least one non-overlapping <span class="math inline">\(K\)</span>-mer in the homologous region matches perfectly with the corresponding <span class="math inline">\(K\)</span>-mer in the query sequence? Given that we allow one mismatch.</p>
 </div>
 </div>
 <div id="formula-3" class="section level5">
@@ -563,14 +514,10 @@ P = 1 - (1 - (M^{K}+K\times M^{K-1}\times (1-M)))^{T},\\
 <div id="solution-4" class="section level5">
 <h5>Solution</h5>
 <div class="answer">
-<p>For <span class="math inline">\(K=7\)</span>: <span
-class="math display">\[
-P = 1 - (1 - (0.98^{7} +
-7*0.98^{6}*0.02))^{\left\lfloor\frac{50}{7}\right\rfloor} \approx 1
-\]</span> For <span class="math inline">\(K=14\)</span>: <span
-class="math display">\[
-P = 1 - (1 - (0.98^{14} +
-14*0.98^{13}*0.02))^{\left\lfloor\frac{50}{14}\right\rfloor} \approx 1
+<p>For <span class="math inline">\(K=7\)</span>: <span class="math display">\[
+P = 1 - (1 - (0.98^{7} + 7*0.98^{6}*0.02))^{\left\lfloor\frac{50}{7}\right\rfloor} \approx 1
+\]</span> For <span class="math inline">\(K=14\)</span>: <span class="math display">\[
+P = 1 - (1 - (0.98^{14} + 14*0.98^{13}*0.02))^{\left\lfloor\frac{50}{14}\right\rfloor} \approx 1
 \]</span></p>
 </div>
 </div>
@@ -583,18 +530,14 @@ P = 1 - (1 - (0.98^{14} +
 <div id="question-2b" class="section level5">
 <h5>Question 2B</h5>
 <div class="question">
-<p>Calculate the number of False Positives (FPs), i.e. the number of
-<span class="math inline">\(K\)</span>-mers that are expected to match
-by chance. Given that we allow one mismatch.</p>
+<p>Calculate the number of False Positives (FPs), i.e. the number of <span class="math inline">\(K\)</span>-mers that are expected to match by chance. Given that we allow one mismatch.</p>
 </div>
 </div>
 <div id="formula-4" class="section level5">
 <h5>Formula</h5>
 <div class="answer">
 <p><span class="math display">\[\begin{align*}
-F &amp;= (Q-K+1) \times \bigg(\frac{G}{K}\bigg) \times
-\Bigg[\bigg(\frac{1}{A}\bigg)^{K} + K \times
-\bigg(\frac{1}{A}\bigg)^{K-1} \times \bigg(1-\frac{1}{A}\bigg)\Bigg],\\
+F &amp;= (Q-K+1) \times \bigg(\frac{G}{K}\bigg) \times \Bigg[\bigg(\frac{1}{A}\bigg)^{K} + K \times \bigg(\frac{1}{A}\bigg)^{K-1} \times \bigg(1-\frac{1}{A}\bigg)\Bigg],\\
 &amp;A: \text{the alphabet size}\\
 &amp;Q: \text{the query length in bases}\\
 &amp;G: \text{the genome size in bases}
@@ -604,14 +547,10 @@ F &amp;= (Q-K+1) \times \bigg(\frac{G}{K}\bigg) \times
 <div id="solution-5" class="section level5">
 <h5>Solution</h5>
 <div class="answer">
-<p>For <span class="math inline">\(K=7\)</span>: <span
-class="math display">\[
-F = (34-7+1) \times \frac{2500000000}{7} \times (\frac{1}{4}^{7} + 7
-\times \frac{1}{4}^6 \times (1-\frac{1}{4})) = 1.3427... * 10^{7}  
-\]</span> For <span class="math inline">\(K=14\)</span>: <span
-class="math display">\[
-F = (34-14+1) \times \frac{2500000000}{14} \times (\frac{1}{4}^{14} + 14
-\times \frac{1}{4}^{13} \times (1-\frac{1}{4})) = 600.7031  
+<p>For <span class="math inline">\(K=7\)</span>: <span class="math display">\[
+F = (34-7+1) \times \frac{2500000000}{7} \times (\frac{1}{4}^{7} + 7 \times \frac{1}{4}^6 \times (1-\frac{1}{4})) = 1.3427... * 10^{7}  
+\]</span> For <span class="math inline">\(K=14\)</span>: <span class="math display">\[
+F = (34-14+1) \times \frac{2500000000}{14} \times (\frac{1}{4}^{14} + 14 \times \frac{1}{4}^{13} \times (1-\frac{1}{4})) = 600.7031  
 \]</span></p>
 </div>
 </div>
@@ -624,15 +563,13 @@ F = (34-14+1) \times \frac{2500000000}{14} \times (\frac{1}{4}^{14} + 14
 <div id="question-2c" class="section level5">
 <h5>Question 2C</h5>
 <div class="question">
-<p>What development do we see when observing the TPR and FPs for the
-updated formulae?</p>
+<p>What development do we see when observing the TPR and FPs for the updated formulae?</p>
 </div>
 </div>
 <div id="solution-6" class="section level5">
 <h5>Solution</h5>
 <div class="answer">
-<p>We observe an increase in both the TPR and the number of False
-positives.</p>
+<p>We observe an increase in both the TPR and the number of False positives.</p>
 </div>
 </div>
 </div>
@@ -642,30 +579,21 @@ positives.</p>
 </div>
 <div id="exercise-3" class="section level1">
 <h1>Exercise 3</h1>
-<p>Finally, we want to reduce the number of False Positive results. To
-that end, instead of requiring single perfect matches, we now want at
-least <span class="math inline">\(n\)</span> perfect matches.</p>
-<p>For the <span class="math inline">\(K\)</span>-mer sizes <span
-class="math inline">\(K=7\)</span> and <span
-class="math inline">\(K=14\)</span>, respectively.</p>
+<p>Finally, we want to reduce the number of False Positive results. To that end, instead of requiring single perfect matches, we now want at least <span class="math inline">\(n\)</span> perfect matches.</p>
+<p>For the <span class="math inline">\(K\)</span>-mer sizes <span class="math inline">\(K=7\)</span> and <span class="math inline">\(K=14\)</span>, respectively.</p>
 <div id="section-14" class="section level4 tabset">
 <h4 class="tabset"></h4>
 <div id="question-3a" class="section level5">
 <h5>Question 3A</h5>
 <div class="question">
-<p>What is the probability that at least <span
-class="math inline">\(2\)</span> non-overlapping <span
-class="math inline">\(K\)</span>-mer in the homologous region match
-perfectly with corresponding <span class="math inline">\(K\)</span>-mers
-in the query sequence?</p>
+<p>What is the probability that at least <span class="math inline">\(2\)</span> non-overlapping <span class="math inline">\(K\)</span>-mer in the homologous region match perfectly with corresponding <span class="math inline">\(K\)</span>-mers in the query sequence?</p>
 </div>
 </div>
 <div id="formula-5" class="section level5">
 <h5>Formula</h5>
 <div class="answer">
 <p><span class="math display">\[
-p_{n} = (M^{K})^{n} \times (1-M^{K})^{T-n} \times \frac{T!}{n! \times
-(T-n)!}\\
+p_{n} = (M^{K})^{n} \times (1-M^{K})^{T-n} \times \frac{T!}{n! \times (T-n)!}\\
 \text{with}\quad T= \left\lfloor\frac{H}{K}\right\rfloor\\\\
 P = P_{n} + P_{n+1} + ... + P_{T}
 \]</span></p>
@@ -674,24 +602,17 @@ P = P_{n} + P_{n+1} + ... + P_{T}
 <div id="solution-7" class="section level5">
 <h5>Solution</h5>
 <div class="answer">
-<p>For <span class="math inline">\(K=7\)</span>: <span
-class="math display">\[
-P_{2} = 0.98^{7 \times 2} \times
-(1-0.98^{7})^{\left\lfloor\frac{50}{7}\right\rfloor-2} \times
-\frac{\frac{50}{7}\text{!}}{2\text{!}\times(\frac{50}{7}-2)\text{!}}\\
+<p>For <span class="math inline">\(K=7\)</span>: <span class="math display">\[
+P_{2} = 0.98^{7 \times 2} \times (1-0.98^{7})^{\left\lfloor\frac{50}{7}\right\rfloor-2} \times \frac{\frac{50}{7}\text{!}}{2\text{!}\times(\frac{50}{7}-2)\text{!}}\\
 \text{...}\\
 \text{...}\\
 \]</span> <span class="math display">\[\begin{align*}
 P &amp;= P_{2} + P_{3} + P_{4} + P_{5} + P_{6} + P_{7}\\
-  &amp;= 0.000631 + 0.006925 + 0.045591 + 0.180074 + 0.395142 +
-0.371601\\
+  &amp;= 0.000631 + 0.006925 + 0.045591 + 0.180074 + 0.395142 + 0.371601\\
   &amp;= 0.999967...
 \end{align*}\]</span></p>
-<p>For <span class="math inline">\(K=14\)</span>: <span
-class="math display">\[
-P_{2} = 0.98^{14 \times 2} \times
-(1-0.98^{14})^{\left\lfloor\frac{50}{14}\right\rfloor-2} \times
-\frac{\frac{50}{14}!}{2!\times(\frac{50}{14}-2)!}\\
+<p>For <span class="math inline">\(K=14\)</span>: <span class="math display">\[
+P_{2} = 0.98^{14 \times 2} \times (1-0.98^{14})^{\left\lfloor\frac{50}{14}\right\rfloor-2} \times \frac{\frac{50}{14}!}{2!\times(\frac{50}{14}-2)!}\\
 \text{...}\\
 \text{...}\\
 \]</span> <span class="math display">\[\begin{align*}
@@ -710,20 +631,13 @@ P &amp;= P_{2} + P_{3}\\
 <div id="question-3b" class="section level5">
 <h5>Question 3B</h5>
 <div class="question">
-<p>We can observe a decrease in the TPR. Does it still make sense to use
-this method? Why?</p>
+<p>We can observe a decrease in the TPR. Does it still make sense to use this method? Why?</p>
 </div>
 </div>
 <div id="solution-8" class="section level5">
 <h5>Solution</h5>
 <div class="answer">
-<p>While it is true that this also decreases the TPR. It drastically
-decreases the amount of False Positives, which greatly improves the
-overall results. In real examples, the size of the homologous regions is
-typically higher than 50 nucleotides that we chose for this example.
-When considering our example with <span
-class="math inline">\(H=100\)</span>, we would end up with a TPR close
-to 1.0, while having nearly no False Positives.</p>
+<p>While it is true that this also decreases the TPR. It drastically decreases the amount of False Positives, which greatly improves the overall results. In real examples, the size of the homologous regions is typically higher than 50 nucleotides that we chose for this example. When considering our example with <span class="math inline">\(H=100\)</span>, we would end up with a TPR close to 1.0, while having nearly no False Positives.</p>
 </div>
 </div>
 </div>

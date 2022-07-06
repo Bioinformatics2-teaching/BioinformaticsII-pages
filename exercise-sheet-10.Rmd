@@ -39,20 +39,45 @@ knitr::include_graphics("figures/sheet-10/exercise_01.png")
 Invert the Burrows-Wheeler-Transform $B(S) = TCAACT\$AA$ to obtain S.
 ::: 
 
-##### Hint
+
+##### Hint 1
+::: {.answer data-latex=""}
+
+You can get the first column $F(S)$ of the Burrows Wheeler Matrix via 
+counting and sorting the letters since it has a very predictably structure.
+
+$F(S) = \$AAAACCTT$ 
+
+
+::: 
+
+
+##### Hint 2
+::: {.answer data-latex=""}
+
+Use the last-first mapping to assign indices to the corresponging letters 
+in the first $F(S)$ and the last column $B(S)$
+
+$F(S) = \$_1A_1A_2A_3A_4C_1C_2T_3T_4$
+
+$B(S) = T_1C_1A_1A_2C_2T_2\$_1A_3A_4$
+
+::: 
+
+##### Solution 1
+::: {.answer data-latex=""}
+```{r, echo=FALSE, out.width="80%", fig.align='center'}
+knitr::include_graphics("figures/sheet-10/exercise_01_solution.png")
+```
+::: 
+
+##### Solution 2
 ::: {.answer data-latex=""}
 
 Step-by-step method:
 
 ```{r, echo=FALSE, out.width="100%", fig.align='center'}
 knitr::include_graphics("figures/sheet-10/exercise_01_details.png")
-```
-::: 
-
-##### Solution
-::: {.answer data-latex=""}
-```{r, echo=FALSE, out.width="80%", fig.align='center'}
-knitr::include_graphics("figures/sheet-10/exercise_01_solution.png")
 ```
 ::: 
 
