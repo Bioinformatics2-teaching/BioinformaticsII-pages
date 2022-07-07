@@ -165,6 +165,17 @@ local alignment has to be performed.
 
 
 
+---------------------------------
+
+# Exercise 3 - Programming assignment
+
+Programming assignments are available via Github Classroom and contain automatic tests.
+
+We recommend doing these assignments since they will help you to further understand this topic.
+
+Access the Github Classroom link: [Programming Assignment: Sheet 10](https://classroom.github.com/a/v8Q0vPUN).
+
+-------------------------------------------
 
 
 
