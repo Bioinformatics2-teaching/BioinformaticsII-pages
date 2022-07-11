@@ -13,7 +13,7 @@
 
 <title>Exercise sheet 10: Introduction to Mapping</title>
 
-<script src="site_libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.14/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/cosmo.min.css" rel="stylesheet" />
@@ -60,6 +60,7 @@ if (window.hljs) {
 
 
 
+
 <link rel="stylesheet" href="bioinf-style.css" type="text/css" />
 
 
@@ -84,6 +85,9 @@ button.code-folding-btn:focus {
 }
 summary {
   display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
 }
 pre code {
   padding: 0;
@@ -360,7 +364,8 @@ div.tocify {
 
 
 
-<h1 class="title toc-ignore">Exercise sheet 10: Introduction to Mapping</h1>
+<h1 class="title toc-ignore">Exercise sheet 10: Introduction to
+Mapping</h1>
 
 </div>
 
@@ -373,7 +378,8 @@ div.tocify {
 <div id="question-1a" class="section level5">
 <h5>Question 1A</h5>
 <div class="question">
-<p>Extract the Burrows-Wheeler Transform B(S) of <span class="math inline">\(S = TGGTGGTTGA\$\)</span>.</p>
+<p>Extract the Burrows-Wheeler Transform B(S) of <span
+class="math inline">\(S = TGGTGGTTGA\$\)</span>.</p>
 </div>
 </div>
 <div id="solution" class="section level5">
@@ -392,22 +398,30 @@ div.tocify {
 <div id="question-1b" class="section level5">
 <h5>Question 1B</h5>
 <div class="question">
-<p>Invert the Burrows-Wheeler-Transform <span class="math inline">\(B(S) = TCAACT\$AA\)</span> to obtain S.</p>
+<p>Invert the Burrows-Wheeler-Transform <span class="math inline">\(B(S)
+= TCAACT\$AA\)</span> to obtain S.</p>
 </div>
 </div>
 <div id="hint-1" class="section level5">
 <h5>Hint 1</h5>
 <div class="answer">
-<p>You can get the first column <span class="math inline">\(F(S)\)</span> of the Burrows Wheeler Matrix via counting and sorting the letters since it has a very predictably structure.</p>
+<p>You can get the first column <span
+class="math inline">\(F(S)\)</span> of the Burrows Wheeler Matrix via
+counting and sorting the letters since it has a very predictably
+structure.</p>
 <p><span class="math inline">\(F(S) = \$AAAACCTT\)</span></p>
 </div>
 </div>
 <div id="hint-2" class="section level5">
 <h5>Hint 2</h5>
 <div class="answer">
-<p>Use the last-first mapping to assign indices to the corresponging letters in the first <span class="math inline">\(F(S)\)</span> and the last column <span class="math inline">\(B(S)\)</span></p>
-<p><span class="math inline">\(F(S) = \$_1A_1A_2A_3A_4C_1C_2T_3T_4\)</span></p>
-<p><span class="math inline">\(B(S) = T_1C_1A_1A_2C_2T_2\$_1A_3A_4\)</span></p>
+<p>Use the last-first mapping to assign indices to the corresponging
+letters in the first <span class="math inline">\(F(S)\)</span> and the
+last column <span class="math inline">\(B(S)\)</span></p>
+<p><span class="math inline">\(F(S) =
+\$_1A_1A_2A_3A_4C_1C_2T_3T_4\)</span></p>
+<p><span class="math inline">\(B(S) =
+T_1C_1A_1A_2C_2T_2\$_1A_3A_4\)</span></p>
 </div>
 </div>
 <div id="solution-1" class="section level5">
@@ -432,7 +446,8 @@ div.tocify {
 <div id="question-1c" class="section level5">
 <h5>Question 1C</h5>
 <div class="question">
-<p>Search for <span class="math inline">\(CAT\)</span> in <span class="math inline">\(B(S) = TCAACT\$AA\)</span>.</p>
+<p>Search for <span class="math inline">\(CAT\)</span> in <span
+class="math inline">\(B(S) = TCAACT\$AA\)</span>.</p>
 </div>
 </div>
 <div id="solution-3" class="section level5">
@@ -451,7 +466,16 @@ div.tocify {
 <div id="section-6" class="section level4 tabset">
 <h4 class="tabset"></h4>
 <div class="question">
-<p>Read the publication on the bwa-mem aligner at <a href="https://arxiv.org/abs/1303.3997" class="uri">https://arxiv.org/abs/1303.3997</a> and pay particular attention to the re-seeding and chaining features of the algorithm. Now consider a read <span class="math inline">\(R = CCCCGTTTT\)</span> and a reference genome <span class="math inline">\(T = ...CCCCATTTT...CCCCGA...AGTTTT...\)</span> and explain step-by-step how re-seeding and chaining let bwa-mem let recover the correct best alignment of <span class="math inline">\(R\)</span> to <span class="math inline">\(T\)</span>.</p>
+<p>Read the publication on the bwa-mem aligner at <a
+href="https://arxiv.org/abs/1303.3997"
+class="uri">https://arxiv.org/abs/1303.3997</a> and pay particular
+attention to the re-seeding and chaining features of the algorithm. Now
+consider a read <span class="math inline">\(R = CCCCGTTTT\)</span> and a
+reference genome <span class="math inline">\(T =
+...CCCCATTTT...CCCCGA...AGTTTT...\)</span> and explain step-by-step how
+re-seeding and chaining let bwa-mem let recover the correct best
+alignment of <span class="math inline">\(R\)</span> to <span
+class="math inline">\(T\)</span>.</p>
 </div>
 <div id="question-2a" class="section level5">
 <h5>Question 2A</h5>
@@ -474,13 +498,17 @@ div.tocify {
 <div id="question-2b" class="section level5">
 <h5>Question 2B</h5>
 <div class="question">
-<p>Would these SMEMs lead to discovery of the best possible alignment?</p>
+<p>Would these SMEMs lead to discovery of the best possible
+alignment?</p>
 </div>
 </div>
 <div id="solution-5" class="section level5">
 <h5>Solution</h5>
 <div class="answer">
-<p>No, because it would not lead to a best possible match in the reference genome. The current seeds are too specific and we may miss the seeds that lead to the best mapping (CCC- CATTTT), therefore we need to reseed.</p>
+<p>No, because it would not lead to a best possible match in the
+reference genome. The current seeds are too specific and we may miss the
+seeds that lead to the best mapping (CCC- CATTTT), therefore we need to
+reseed.</p>
 </div>
 </div>
 </div>
@@ -492,13 +520,16 @@ div.tocify {
 <div id="question-2c" class="section level5">
 <h5>Question 2C</h5>
 <div class="question">
-<p>Which shortened new SMEMs are discovered with re-seeding (assume re-seeding gets perfor- med despite the below-threshold length of the SMEMs)?</p>
+<p>Which shortened new SMEMs are discovered with re-seeding (assume
+re-seeding gets perfor- med despite the below-threshold length of the
+SMEMs)?</p>
 </div>
 </div>
 <div id="solution-6" class="section level5">
 <h5>Solution</h5>
 <div class="answer">
-<p>Re-seeding around the central base of each MEM leads to discovery of CCCC and TTTT (both occur once more often than the originals).</p>
+<p>Re-seeding around the central base of each MEM leads to discovery of
+CCCC and TTTT (both occur once more often than the originals).</p>
 </div>
 </div>
 </div>
@@ -516,7 +547,8 @@ div.tocify {
 <div id="solution-7" class="section level5">
 <h5>Solution</h5>
 <div class="answer">
-<p>The two new seeds are colinear on R and T , and can be merged into a chain, so only one local alignment has to be performed.</p>
+<p>The two new seeds are colinear on R and T , and can be merged into a
+chain, so only one local alignment has to be performed.</p>
 </div>
 </div>
 </div>
@@ -527,9 +559,13 @@ div.tocify {
 </div>
 <div id="exercise-3---programming-assignment" class="section level1">
 <h1>Exercise 3 - Programming assignment</h1>
-<p>Programming assignments are available via Github Classroom and contain automatic tests.</p>
-<p>We recommend doing these assignments since they will help you to further understand this topic.</p>
-<p>Access the Github Classroom link: <a href="https://classroom.github.com/a/v8Q0vPUN">Programming Assignment: Sheet 10</a>.</p>
+<p>Programming assignments are available via Github Classroom and
+contain automatic tests.</p>
+<p>We recommend doing these assignments since they will help you to
+further understand this topic.</p>
+<p>Access the Github Classroom link: <a
+href="https://classroom.github.com/a/v8Q0vPUN">Programming Assignment:
+Sheet 10</a>.</p>
 <hr />
 </div>
 

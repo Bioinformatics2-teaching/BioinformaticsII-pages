@@ -13,7 +13,7 @@
 
 <title>Exercise sheet 4: Pair-HMM</title>
 
-<script src="site_libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.14/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/cosmo.min.css" rel="stylesheet" />
@@ -60,6 +60,7 @@ if (window.hljs) {
 
 
 
+
 <link rel="stylesheet" href="bioinf-style.css" type="text/css" />
 
 
@@ -84,6 +85,9 @@ button.code-folding-btn:focus {
 }
 summary {
   display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
 }
 pre code {
   padding: 0;
@@ -367,11 +371,23 @@ div.tocify {
 
 <div id="exercise-1" class="section level1">
 <h1>Exercise 1</h1>
-<p>You are given the basic pair-HMM for sequence alignment between two sequences:</p>
+<p>You are given the basic pair-HMM for sequence alignment between two
+sequences:</p>
 <p><img src="figures/sheet-4/HMM.png" width="50%" style="display: block; margin: auto;" /></p>
-<p>Let <span class="math inline">\(\delta = 0.02\)</span> and <span class="math inline">\(\epsilon=0.79\)</span>. The initial probability distribution of the states is given by <span class="math inline">\(\pi(M)=0.6\)</span>, <span class="math inline">\(\pi(I_x) = 0.2\)</span> and <span class="math inline">\(\pi(I_y) = 0.2\)</span>. Furthermore, let all <span class="math inline">\(p(x_i,y_j)\)</span> and <span class="math inline">\(q(x_i)\)</span> (and <span class="math inline">\(q(y_j)\)</span>) be given in matrix <span class="math inline">\(p\)</span> and vector <span class="math inline">\(q\)</span>, respectively:</p>
+<p>Let <span class="math inline">\(\delta = 0.02\)</span> and <span
+class="math inline">\(\epsilon=0.79\)</span>. The initial probability
+distribution of the states is given by <span
+class="math inline">\(\pi(M)=0.6\)</span>, <span
+class="math inline">\(\pi(I_x) = 0.2\)</span> and <span
+class="math inline">\(\pi(I_y) = 0.2\)</span>. Furthermore, let all
+<span class="math inline">\(p(x_i,y_j)\)</span> and <span
+class="math inline">\(q(x_i)\)</span> (and <span
+class="math inline">\(q(y_j)\)</span>) be given in matrix <span
+class="math inline">\(p\)</span> and vector <span
+class="math inline">\(q\)</span>, respectively:</p>
 <p><img src="figures/sheet-4/matrix_exercise01.png" width="70%" style="display: block; margin: auto;" /></p>
-<p>Identify the probabilities of the following alignments between sequences x=AGCGG and y=ACAGGGG.</p>
+<p>Identify the probabilities of the following alignments between
+sequences x=AGCGG and y=ACAGGGG.</p>
 <div id="section" class="section level4 tabset">
 <h4 class="tabset"></h4>
 <div id="question-1a" class="section level5">
@@ -383,17 +399,24 @@ div.tocify {
 <div id="formulae" class="section level5">
 <h5>Formulae</h5>
 <div class="answer">
-<p><span class="math inline">\(Prob(path=I_xI_xMMMI_yI_yI_yI_y)=\pi(I_x) \cdot \epsilon \cdot (1-\epsilon) \cdot (1-2\delta)^2 \cdot \delta \cdot \epsilon^3\)</span></p>
-<p><span class="math inline">\(Prob(O | path)=q(A) \cdot q(G) \cdot p(C,A) \cdot p(G,C) \cdot p(G,A) \cdot q(G)^4\)</span></p>
-<p><span class="math inline">\(Prob(path, O) = Prob(O | path ) \times Prob(path)\)</span></p>
+<p><span class="math inline">\(Prob(path=I_xI_xMMMI_yI_yI_yI_y)=\pi(I_x)
+\cdot \epsilon \cdot (1-\epsilon) \cdot (1-2\delta)^2 \cdot \delta \cdot
+\epsilon^3\)</span></p>
+<p><span class="math inline">\(Prob(O | path)=q(A) \cdot q(G) \cdot
+p(C,A) \cdot p(G,C) \cdot p(G,A) \cdot q(G)^4\)</span></p>
+<p><span class="math inline">\(Prob(path, O) = Prob(O | path ) \times
+Prob(path)\)</span></p>
 </div>
 </div>
 <div id="solution" class="section level5">
 <h5>Solution</h5>
 <div class="answer">
-<p><span class="math inline">\(Prob(path=I_xI_xMMMI_yI_yI_yI_y) \approx 3.0 \cdot 10^{-4}\)</span></p>
-<p><span class="math inline">\(Prob(O | path) \approx 3.4 \cdot 10^{-9}\)</span></p>
-<p><span class="math inline">\(Prob(path,O) \approx 1.0 \cdot 10^{-12}\)</span></p>
+<p><span class="math inline">\(Prob(path=I_xI_xMMMI_yI_yI_yI_y) \approx
+3.0 \cdot 10^{-4}\)</span></p>
+<p><span class="math inline">\(Prob(O | path) \approx 3.4 \cdot
+10^{-9}\)</span></p>
+<p><span class="math inline">\(Prob(path,O) \approx 1.0 \cdot
+10^{-12}\)</span></p>
 </div>
 </div>
 </div>
@@ -411,17 +434,23 @@ div.tocify {
 <div id="formulae-1" class="section level5">
 <h5>Formulae</h5>
 <div class="answer">
-<p><span class="math inline">\(Prob(path=I_yMMMMMI_y)=\pi(I_y) \cdot (1-\epsilon) \cdot (1-2\delta)^4 \cdot \delta\)</span></p>
-<p><span class="math inline">\(Prob(O | path)=q(A) \cdot p(A,C) \cdot p(G,A) \cdot p(C,G) \cdot p(G,G) \cdot p(G,G) \cdot q(G)\)</span></p>
-<p><span class="math inline">\(Prob(path, O) = Prob(O | path ) \times Prob(path)\)</span></p>
+<p><span class="math inline">\(Prob(path=I_yMMMMMI_y)=\pi(I_y) \cdot
+(1-\epsilon) \cdot (1-2\delta)^4 \cdot \delta\)</span></p>
+<p><span class="math inline">\(Prob(O | path)=q(A) \cdot p(A,C) \cdot
+p(G,A) \cdot p(C,G) \cdot p(G,G) \cdot p(G,G) \cdot q(G)\)</span></p>
+<p><span class="math inline">\(Prob(path, O) = Prob(O | path ) \times
+Prob(path)\)</span></p>
 </div>
 </div>
 <div id="solution-1" class="section level5">
 <h5>Solution</h5>
 <div class="answer">
-<p><span class="math inline">\(Prob(path=I_yMMMMMI_y) \approx 3.4 \cdot 10^{-4}\)</span></p>
-<p><span class="math inline">\(Prob(O | path)= \approx 3.3 \cdot 10^{-8}\)</span></p>
-<p><span class="math inline">\(Prob(path,O) \approx 2.4 \cdot 10^{-11}\)</span>$</p>
+<p><span class="math inline">\(Prob(path=I_yMMMMMI_y) \approx 3.4 \cdot
+10^{-4}\)</span></p>
+<p><span class="math inline">\(Prob(O | path)= \approx 3.3 \cdot
+10^{-8}\)</span></p>
+<p><span class="math inline">\(Prob(path,O) \approx 2.4 \cdot
+10^{-11}\)</span>$</p>
 </div>
 </div>
 </div>
@@ -439,17 +468,27 @@ div.tocify {
 <div id="formulae-2" class="section level5">
 <h5>Formulae</h5>
 <div class="answer">
-<p><span class="math inline">\(Prob(path=I_xI_xI_xI_xMI_yI_yI_yI_yI_yI_y)=\pi(I_x) \cdot \epsilon^3 \cdot (1-\epsilon) \cdot \delta \cdot \epsilon^5\)</span></p>
-<p><span class="math inline">\(Prob(O | path)=q(A) \cdot q(G) \cdot q(C) \cdot q(G) \cdot p(G,A) \cdot q(C) \cdot q(A) \cdot q(G) \cdot q(G) \cdot q(G) \cdot q(G)\)</span></p>
-<p><span class="math inline">\(Prob(path, O) = Prob(O | path ) \times Prob(path)\)</span></p>
+<p><span
+class="math inline">\(Prob(path=I_xI_xI_xI_xMI_yI_yI_yI_yI_yI_y)=\pi(I_x)
+\cdot \epsilon^3 \cdot (1-\epsilon) \cdot \delta \cdot
+\epsilon^5\)</span></p>
+<p><span class="math inline">\(Prob(O | path)=q(A) \cdot q(G) \cdot q(C)
+\cdot q(G) \cdot p(G,A) \cdot q(C) \cdot q(A) \cdot q(G) \cdot q(G)
+\cdot q(G) \cdot q(G)\)</span></p>
+<p><span class="math inline">\(Prob(path, O) = Prob(O | path ) \times
+Prob(path)\)</span></p>
 </div>
 </div>
 <div id="solution-2" class="section level5">
 <h5>Solution</h5>
 <div class="answer">
-<p><span class="math inline">\(Prob(path=I_xI_xI_xI_xMI_yI_yI_yI_yI_yI_y) \approx 1.2 \cdot 10^{-4}\)</span></p>
-<p><span class="math inline">\(Prob(O | path) \approx 2.9 \cdot 10^{-9}\)</span></p>
-<p><span class="math inline">\(Prob(path,O) \approx 3.5 \cdot 10^{-13}\)</span></p>
+<p><span
+class="math inline">\(Prob(path=I_xI_xI_xI_xMI_yI_yI_yI_yI_yI_y) \approx
+1.2 \cdot 10^{-4}\)</span></p>
+<p><span class="math inline">\(Prob(O | path) \approx 2.9 \cdot
+10^{-9}\)</span></p>
+<p><span class="math inline">\(Prob(path,O) \approx 3.5 \cdot
+10^{-13}\)</span></p>
 </div>
 </div>
 </div>
@@ -460,7 +499,9 @@ div.tocify {
 </div>
 <div id="exercise-2" class="section level1">
 <h1>Exercise 2</h1>
-<p>The following alignment of sequences a=AACTT and b=AACAT is not included in the set of alignments represented by the pair-HMM of exercise 1.</p>
+<p>The following alignment of sequences a=AACTT and b=AACAT is not
+included in the set of alignments represented by the pair-HMM of
+exercise 1.</p>
 <pre><code>                                    a: AACT-T
                                        |||  |
                                     b: AAC-AT</code></pre>
@@ -472,7 +513,11 @@ div.tocify {
 </div>
 <div id="solution-3" class="section level5">
 <h5>Solution</h5>
-<p>Because the probability of moving from <span class="math inline">\(I_x\)</span> to <span class="math inline">\(I_y\)</span> is zero, there is no edge between <span class="math inline">\(I_x\)</span> and <span class="math inline">\(I_y\)</span>.</p>
+<p>Because the probability of moving from <span
+class="math inline">\(I_x\)</span> to <span
+class="math inline">\(I_y\)</span> is zero, there is no edge between
+<span class="math inline">\(I_x\)</span> and <span
+class="math inline">\(I_y\)</span>.</p>
 </div>
 </div>
 <div id="section-7" class="section level4 unnumbered">
@@ -482,19 +527,31 @@ div.tocify {
 </div>
 <div id="exercise-3" class="section level1">
 <h1>Exercise 3</h1>
-<p>As you have seen, the given pair-HMM, which emits alignments of two sequences, gives us probabilities which are quite small for any particular alignment. These probabilities are often compared to other probabilites generated by a random model.</p>
+<p>As you have seen, the given pair-HMM, which emits alignments of two
+sequences, gives us probabilities which are quite small for any
+particular alignment. These probabilities are often compared to other
+probabilites generated by a random model.</p>
 <div id="section-8" class="section level4 tabset">
 <h4 class="tabset"></h4>
 <div id="question-3" class="section level5">
 <h5>Question 3</h5>
 <div class="answer">
-<p>Design a HMM which generates two random sequences with the frequencies of <span class="math inline">\(q_i\)</span> given in exercise 1. Use the parameters <span class="math inline">\(\eta\)</span> and <span class="math inline">\(1-\eta\)</span> to describe the transition probabilities.</p>
+<p>Design a HMM which generates two random sequences with the
+frequencies of <span class="math inline">\(q_i\)</span> given in
+exercise 1. Use the parameters <span class="math inline">\(\eta\)</span>
+and <span class="math inline">\(1-\eta\)</span> to describe the
+transition probabilities.</p>
 </div>
 </div>
 <div id="hint" class="section level5">
 <h5>Hint</h5>
 <div class="answer">
-<p>The proposed solution includes two main states, which in turn emits two sequences, independently of each other. Each has a loop back onto itself with probability (1-<span class="math inline">\(\eta\)</span>). As well as Begin and End states, the proposed solution includes a silent state in between X and Y, used to gather inputs from both the X and Begin states.</p>
+<p>The proposed solution includes two main states, which in turn emits
+two sequences, independently of each other. Each has a loop back onto
+itself with probability (1-<span class="math inline">\(\eta\)</span>).
+As well as Begin and End states, the proposed solution includes a silent
+state in between X and Y, used to gather inputs from both the X and
+Begin states.</p>
 </div>
 </div>
 <div id="solution-4" class="section level5">
@@ -505,7 +562,9 @@ div.tocify {
 <div id="section-9" class="section level4 unnumbered">
 <h4 class="unnumbered"></h4>
 <hr />
-<p>Download: <a href="exercise-sheet-4.pdf" title="Download PDF Version">PDF Version</a> of this page.</p>
+<p>Download:
+<a href="exercise-sheet-4.pdf" title="Download PDF Version">PDF
+Version</a> of this page.</p>
 </div>
 </div>
 

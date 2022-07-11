@@ -1,0 +1,385 @@
+```{r, include=FALSE}
+source("custom_functions.R")
+library(flextable)
+library(officer)
+
+```
+
+---
+title: "Exercise sheet 11: RNA Bioinformatics"
+---
+
+---------------------------------
+
+# Exercise 1
+
+RNA secondary structures can be represented using a graph notation, where nodes represent nucleotides and edges encode the molecule's backbone or intramolecular base pairs between nucleotides. Below, an RNA molecule graph is depicted that encodes base pairs in blue.
+
+Decide for the following properties whether they are correct or wrong given the RNA secondary structure graph.
+
+```{r, echo=FALSE, out.width="40%", fig.align='center'}
+knitr::include_graphics("figures/sheet-11/RNA-structure.png")
+```
+
+#### {.tabset}
+
+##### Question 1A
+::: {.question data-latex=""}
+Position 23 represents the 5'-end
+::: 
+
+##### Solution
+::: {.answer data-latex=""}
+wrong; We always encode in the 5' (=1) to 3' (=n) direction.
+:::
+
+#### {-}
+
+#### {.tabset}
+
+##### Question 1B
+::: {.question data-latex=""}
+the graph is invalid
+::: 
+
+##### Solution
+::: {.answer data-latex=""}
+wrong
+:::
+
+#### {-}
+
+#### {.tabset}
+
+##### Question 1C
+::: {.question data-latex=""}
+contains invalid base pairs
+::: 
+
+##### Solution
+::: {.answer data-latex=""}
+wrong; all base pairs depicted in the graph are valid
+:::
+
+#### {-}
+
+#### {.tabset}
+
+##### Question 1D
+::: {.question data-latex=""}
+contains a pseudoknot
+::: 
+
+##### Solution
+::: {.answer data-latex=""}
+wrong; There are no pseudoknot structures in this graph.
+:::
+
+#### {-}
+
+#### {.tabset}
+
+##### Question 1E
+::: {.question data-latex=""}
+non-crossing
+::: 
+
+##### Solution
+::: {.answer data-latex=""}
+correct; There are no pseudoknot structures in this graph.
+:::
+
+#### {-}
+
+#### {.tabset}
+
+##### Question 1F
+::: {.question data-latex=""}
+nested
+::: 
+
+##### Solution
+::: {.answer data-latex=""}
+correct
+:::
+
+#### {-}
+
+#### {.tabset}
+
+##### Question 1G
+::: {.question data-latex=""}
+contains base pair (5,12)
+::: 
+
+##### Solution
+::: {.answer data-latex=""}
+wrong; Position 5 is unpaired.
+:::
+
+#### {-}
+
+#### {.tabset}
+
+##### Question 1H
+::: {.question data-latex=""}
+contains base pair (4,13)
+::: 
+
+##### Solution
+::: {.answer data-latex=""}
+correct
+:::
+
+#### {-}
+
+#### {.tabset}
+
+##### Question 1I
+::: {.question data-latex=""}
+base pair (1,10) would be crossing
+::: 
+
+##### Solution
+::: {.answer data-latex=""}
+correct
+:::
+
+#### {-}
+
+#### {.tabset}
+
+##### Question 1J
+::: {.question data-latex=""}
+obeys a minimal loop length of 4
+::: 
+
+##### Solution
+::: {.answer data-latex=""}
+wrong; The minimum loop length for this graph is 3. (number of unpaired bases in loops)
+:::
+
+#### {-}
+
+#### {.tabset}
+
+##### Question 1K
+::: {.question data-latex=""}
+encoded by ((...)).(((((...)).))).
+::: 
+
+##### Solution
+::: {.answer data-latex=""}
+wrong
+:::
+
+#### {-}
+
+#### {.tabset}
+
+##### Question 1L
+::: {.question data-latex=""}
+encoded by .(((.((...))))).((...))
+::: 
+
+##### Solution
+::: {.answer data-latex=""}
+correct
+:::
+
+#### {-}
+
+
+# Exercise 2
+
+You are given the following dot-bracket string: (((...)))...((((...))..))
+
+#### {.tabset}
+
+##### Question 2A
+::: {.question data-latex=""}
+Draw graph representations of all nested structures that can be encoded by the dot-bracket string. Assume a minimal loop length of 3. 
+::: 
+
+##### Solution
+::: {.answer data-latex=""}
+TODO
+:::
+
+#### {-}
+
+#### {.tabset}
+
+##### Question 2B
+::: {.question data-latex=""}
+Draw a graph representation of one possible crossing structure that can be encoded by the dot-bracket string. Assume a minimal loop length of 3. 
+::: 
+
+##### Solution
+::: {.answer data-latex=""}
+TODO
+:::
+
+#### {-}
+
+# Exercise 3
+
+Given the following partially filled Nussinov matrix $N$ using a minimal loop length $l = 0$, i.e. neighbored nucleotides are allowed to pair.
+
+```{r, echo=FALSE, out.width="50%", fig.align='center'}
+knitr::include_graphics("figures/sheet-11/nussinov-matrix.png")
+```
+
+#### {.tabset}
+
+##### Question 3A
+::: {.question data-latex=""}
+What are the values of the green ad red entry?
+::: 
+
+##### Solution
+::: {.answer data-latex=""}
+green: $2$
+
+red: $1$
+:::
+
+#### {-}
+
+#### {.tabset}
+
+##### Question 3B
+::: {.question data-latex=""}
+How many tracebacks exist for the red entry using the original recursion by Nussinov?
+:::
+
+##### Solution
+::: {.answer data-latex=""}
+There exist two tracebacks for the red entry; pairing with either G.
+:::
+
+#### {-}
+
+# Exercise 4
+
+Given any matrix $N$ filled by Nussinov's algorithm for and RNA sequence $S$ of length $n$. Discuss which of the following statements are correct or wrong.
+
+The entry $N_{1,n}$ of the Nussinov matrix encodes ...
+
+#### {.tabset}
+
+##### Question 4A
+::: {.question data-latex=""}
+... the optimal structure.
+:::
+
+##### Solution
+::: {.answer data-latex=""}
+wrong; It only encodes the base pair number for the optimal structure.
+:::
+
+#### {-}
+
+#### {.tabset}
+
+##### Question 4B
+::: {.question data-latex=""}
+... the minimum free energy (mfe) structure.
+:::
+
+##### Solution
+::: {.answer data-latex=""}
+wrong; No energy minimization is done.
+:::
+
+#### {-}
+
+#### {.tabset}
+
+##### Question 4C
+::: {.question data-latex=""}
+... the maximal number of base pairs for sequence $S_1$..$S_n$.
+:::
+
+##### Solution
+::: {.answer data-latex=""}
+correct
+:::
+
+#### {-}
+
+#### {.tabset}
+
+##### Question 4D
+::: {.question data-latex=""}
+... the traceback end.
+:::
+
+##### Solution
+::: {.answer data-latex=""}
+wrong; It encodes the traceback start.
+:::
+
+#### {-}
+
+#### {.tabset}
+
+##### Question 4E
+::: {.question data-latex=""}
+... the maximal number of base pairs for any structure.
+:::
+
+##### Solution
+::: {.answer data-latex=""}
+correct
+:::
+
+#### {-}
+
+#### {.tabset}
+
+##### Question 4F
+::: {.question data-latex=""}
+... information fr a unique structure.
+:::
+
+##### Solution
+::: {.answer data-latex=""}
+wrong; Typically there is more than one optimal structure with maximal number of base pairs.
+:::
+
+#### {-}
+
+# Exerccise 5
+
+```{r, echo=FALSE, out.width="50%", fig.align='center'}
+knitr::include_graphics("figures/sheet-11/nussinov-recursion.png")
+```
+
+#### {.tabset}
+
+##### Question 5A
+::: {.question data-latex=""}
+Provide all recursion and initialization details for the following recursion depictions. Note, also ensure a minimal loop length $l$ within your recursions.
+:::
+
+##### Solution
+::: {.answer data-latex=""}
+\begin{align*}
+N_{i,i} = N_{i,i-1} &=& 0 \text{ (no init for $B$ and $D$ needed)}
+\\
+\forall_{1\leq i<j\leq n}: N_{i,j} &=& max\left\{ B_{i,j}, D_{i,j} \right\}
+\\
+B_{i,j} &=& \begin{cases}
+N_{i+1,j-1}+1 & \text{ if }i+l<j \wedge S_i,S_j\text{ compl.}\\
+0 & \text{ else}
+\end{cases}
+\\
+D_{i,j} &=& \max_{i\leq k<j} \left\{ B_{i,k} +
+N_{k+1,j} \right\} \text{ (only valid for $i<j$)}
+\end{align*}
+:::
+
+#### {-}
+
+#### {.tabset}
