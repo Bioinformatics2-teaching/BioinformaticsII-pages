@@ -192,7 +192,7 @@ correct
 
 # Exercise 2
 
-You are given the following dot-bracket string: (((...)))...((((...))..))
+You are given the following dot-bracket string: **(((...)))...((((...))..))**
 
 #### {.tabset}
 
@@ -203,7 +203,11 @@ Draw graph representations of all nested structures that can be encoded by the d
 
 ##### Solution
 ::: {.answer data-latex=""}
-TODO
+```{r, echo=FALSE, out.width="50%", fig.align='center'}
+knitr::include_graphics("figures/sheet-11/nested-structure.png")
+```
+
+This is the only possible nested structure based on the dot-bracket string given.
 :::
 
 #### {-}
@@ -217,7 +221,13 @@ Draw a graph representation of one possible crossing structure that can be encod
 
 ##### Solution
 ::: {.answer data-latex=""}
-TODO
+```{r, echo=FALSE, out.width="50%", fig.align='center'}
+knitr::include_graphics("figures/sheet-11/crossing-structure.png")
+```
+
+Dot-bracket string: **(((...)))...[(((...])..))**
+
+There are multiple other possible crossing structures. (e.g. **(((...)))...[((<...])..>)** )
 :::
 
 #### {-}
@@ -350,7 +360,7 @@ wrong; Typically there is more than one optimal structure with maximal number of
 
 #### {-}
 
-# Exerccise 5
+# Exercise 5
 
 ```{r, echo=FALSE, out.width="50%", fig.align='center'}
 knitr::include_graphics("figures/sheet-11/nussinov-recursion.png")
