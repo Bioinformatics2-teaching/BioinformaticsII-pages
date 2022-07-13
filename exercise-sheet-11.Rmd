@@ -244,7 +244,7 @@ knitr::include_graphics("figures/sheet-11/nussinov-matrix.png")
 
 ##### Question 3A
 ::: {.question data-latex=""}
-What are the values of the green ad red entry?
+What are the values of the green and red entry?
 ::: 
 
 ##### Solution
@@ -350,7 +350,7 @@ correct
 
 ##### Question 4F
 ::: {.question data-latex=""}
-... information fr a unique structure.
+... information for a unique structure.
 :::
 
 ##### Solution
